@@ -1,0 +1,42 @@
+\begin{UseCase}{CU10}{Agregar Nuevo Medicamento}{
+		Se requiere una interfaz para agregar un medicamento de forma sencilla y rápida.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Vázquez Cruz Fernando Darwin }
+		\UCitem{Supervisa}{\color{Gray}}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
+		\UCitem{Propósito}{Que el Dueño pueda agregar un nuevo medicamento a la base de datos para que las sucursales puedan recibir y vender dicho medicamento.}
+		\UCitem{Entradas}{Datos del medicamento.}
+		\UCitem{Origen}{Teclado, Mouse}
+		\UCitem{Salidas}{Mensaje de confirmación de registro de medicamento.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El medicamento no debe estar registrado ya en el sistema.}
+		\UCitem{Postcondiciones}{Se agregará a la base de datos un nuevo medicamento.}
+		\UCitem{Errores}{El medicamento no puede ser agregado.}
+		\UCitem{Tipo}{Caso de uso primario.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Revisión}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU1} paso 11.
+		\UCpaso Despliega la \IUref {IU34} {Pantalla Principal de dueño}.
+		\UCpaso[\UCactor] Ve los medicamnetos disponibles dando clic en el\Ibutton {+ medicamento } .
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ agregar medicamento } .
+		\UCpaso Despliega la \IUref {IU36} {Registro de medicamento}.
+		\UCpaso [\UCactor] Llena los campos requeridos para registrar un nuevo medicamento. 
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ agregar } .
+		\UCpaso Despliega una pantalla de confirmación. \Trayref{A}
+		\UCpaso Guarda los datos del nuevo medicamento y actualiza la lista de medicamentos.
+		\UCpaso Re-direcciona al \UCactor a la \IUref{IU34} {Pantalla Principal de dueño}.
+	
+	\end{UCtrayectoria}
+
+
+		\begin{UCtrayectoriaA}{A}{El Empleado no puede ser agregado}
+			\UCpaso Despliega el mensaje \bf {+ MSG10 }.
+			\UCpaso[\UCactor] El Dueño da clic en el \Ibutton {+ aceptar }.
+			\UCpaso Continua en el paso 6 del \UCref{CU10}.
+		\end{UCtrayectoriaA}
+
+%--------------------------------------

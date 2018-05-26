@@ -1,0 +1,41 @@
+\begin{UseCase}{CU8}{Agregar un Nuevo Empleado.}{
+		Se requiere una manera sencilla e intuitiva para que el dueño pueda agregar a sus empleados.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Vázquez Cruz Fernando Darwin }
+		\UCitem{Supervisa}{\color{Gray}}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
+		\UCitem{Propósito}{Agregar un empleado que laborará en la empresa.}
+		\UCitem{Entradas}{Datos del empleado.}
+		\UCitem{Origen}{Teclado, Mouse}
+		\UCitem{Salidas}{Mensaje de confirmación de registro.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{}
+		\UCitem{Postcondiciones}{Habrá un nuevo  empleado registrado en el sistema.}
+		\UCitem{Errores}{El empleado no puede ser agregado.}
+		\UCitem{Tipo}{Caso de uso primario.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Revisión}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU1} paso 11.
+		\UCpaso Despliega la \IUref {IU34} {Pantalla Principal de dueño}.
+		\UCpaso[\UCactor] Ve los empleados disponibles dando clic en el\Ibutton {+ empleados } .
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ agregar empleado } .
+		\UCpaso Despliega la \IUref {IU35} {Registro de empleado}.
+		\UCpaso [\UCactor] Llena los campos requeridos para registrar un nuevo empleado. 
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ agregar } .
+		\UCpaso Despliega una pantalla de confirmación. \Trayref{A}
+		\UCpaso Guarda los datos del nuevo empleado y actualiza la lista de empleados.
+		\UCpaso Re-direcciona al \UCactor a la \IUref{IU34} {Pantalla Principal de dueño}.
+	\end{UCtrayectoria}
+
+
+		\begin{UCtrayectoriaA}{A}{El Empleado no puede ser agregado}
+			\UCpaso Despliega el mensaje \bf {+ MSG8 }  .
+			\UCpaso[\UCactor] El Dueño da clic en el \Ibutton {+ aceptar }.
+			\UCpaso Continua en el paso 6 del \UCref{CU8}.
+		\end{UCtrayectoriaA}
+
+%--------------------------------------

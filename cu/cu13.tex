@@ -1,0 +1,52 @@
+\begin{UseCase}{CU13}{Desactivar el estado del Medicamento}{
+		Se requiere desactivar un medicamento por diversos motivos.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Vázquez Cruz Fernando Darwin }
+		\UCitem{Supervisa}{\color{Gray}}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
+		\UCitem{Propósito}{Que el Dueño pueda desactivar un medicamento que pueda causar problemas en las sucursales.}
+		\UCitem{Entradas}{Nombre del medicamento, código de barras del medicamento o ingrediente activo del medicamento.}
+		\UCitem{Origen}{Teclado, Mouse}
+		\UCitem{Salidas}{Mensaje de confirmación de desactivación.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El medicamento debe de existir.}
+		\UCitem{Postcondiciones}{Se desactivará el medicamento.}
+		\UCitem{Errores}{El medicamento no puede ser desactivado.}
+		\UCitem{Tipo}{Caso de uso primario.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Revisión}
+	\end{UseCase}
+%--------------------------------------
+	\UCpaso Se extiende del caso de uso \UCref{CU12} paso 6.
+		\UCpaso[\UCactor] Da clic en la barra de búsqueda.
+		\UCpaso[\UCactor] Selecciona el tipo de búsqueda que hará.
+		\UCpaso [\UCactor] Ingresa nombre del medicamento, código de barras o ingrediente activo según corresponda. 
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ buscar } .
+		\UCpaso Despliega una lista que coincida con la búsqueda realizada. \Trayref{A}
+		\UCpaso[\UCactor] Selecciona el medicamento de la lista.
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ estado }.
+		\UCpaso Despliega el mensaje \bf {+ MSG11 }.
+		\UCpaso[\UCactor] El Dueño da clic en el \Ibutton {+ aceptar } para confirmar la operación. \Trayref{B}
+		\UCpaso Actualiza el estado del medicamento y la lista de medicamentos.
+		\UCpaso Re-direcciona al \UCactor a la \IUref{IU34} {Pantalla Principal de dueño}.
+	
+	\end{UCtrayectoria}
+
+
+		\begin{UCtrayectoriaA}{A}{El Medicamento no se encuentra en la base de datos}
+			\UCpaso[\UCactor] El Dueño busca el medicamento a seleccionar y no lo encuentra.
+			\UCpaso[\UCactor] El Dueño regresa a la pantalla principal de medicamentos.
+			\UCpaso Continua en el paso 4 del \UCref{CU11}.
+		\end{UCtrayectoriaA}
+		
+		
+		\begin{UCtrayectoriaA}{B}{El Medicamento ya está desactivado}.
+			\UCpaso[\UCactor] El Dueño da clic en el \Ibutton {+ estado }.
+			\UCpaso Despliega el mensaje \bf {+ MSG11 }.
+			\UCpaso[\UCactor] El Dueño lee el mensaje y se percata que el medicamento ya está desactivado.
+			\UCpaso[\UCactor] El Dueño da clic en el \Ibutton {+ cancelar }.
+			\UCpaso Continua en el paso 4 del \UCref{CU13}.
+		\end{UCtrayectoriaA}
+
+%--------------------------------------

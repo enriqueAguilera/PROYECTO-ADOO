@@ -1,0 +1,40 @@
+\begin{UseCase}{CU9}{Asignar Sucursal(es} a Supervisor{
+		Se requiere un método sencillo y rápido para asignar diferentes sucursales a un supervisor.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Vázquez Cruz Fernando Darwin }
+		\UCitem{Supervisa}{\color{Gray}}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
+		\UCitem{Propósito}{Que el Dueño pueda asignarles a sus nuevos supervisores una o más sucursales para tener un mejor control de las franquicias.}
+		\UCitem{Entradas}{Datos del supervisor, nombre de las sucursales.}
+		\UCitem{Origen}{Teclado, Mouse}
+		\UCitem{Salidas}{Mensaje de confirmación de asignación.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El dueño debe seleccionar la opción de supervisor en el formulario de agregar un nuevo empleado}
+		\UCitem{Postcondiciones}{Se asignará un nuevo supervisor a una o más sucursales.}
+		\UCitem{Errores}{La sucursal no puede ser asignada.}
+		\UCitem{Tipo}{Caso de uso primario.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Revisión}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU8} paso 6.
+		\UCpaso[\UCactor] En el formulario selecciona la opción supervisor en el campo tipo de empleado.
+		\UCpaso Despliega una lista de sucursales para asignar a el supervisor.
+		\UCpaso [\UCactor] Da clic en las sucursales en las que se desea asignar al supervisor.
+		\UCpaso [\UCactor] Da clic en el botón.\IUbutton{agregar}.
+		\UCpaso Despliega una pantalla de confirmación. \Trayref{A}
+		\UCpaso Guarda los datos del nuevo supervisor y actualiza la lista de empleados.
+		\UCpaso Re-direcciona al \UCactor a la \IUref{IU34} {Pantalla Principal de dueño}.
+	
+	\end{UCtrayectoria}
+
+
+		\begin{UCtrayectoriaA}{A}{El supervisor no puede ser asignado a una sucursal}
+			\UCpaso Despliega el mensaje \bf {+ MSG9 }  .
+			\UCpaso[\UCactor] El Dueño da clic en el \Ibutton {+ aceptar }.
+			\UCpaso Continua en el paso 4 del \UCref{CU9}.
+		\end{UCtrayectoriaA}
+
+%--------------------------------------

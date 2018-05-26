@@ -1,0 +1,41 @@
+\begin{UseCase}{CU14}{Agregar Paquete de Descuentos}{
+		Se requiere agregar un paquete de descuentos para evitar pérdida monetaria.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Vázquez Cruz Fernando Darwin }
+		\UCitem{Supervisa}{\color{Gray}}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
+		\UCitem{Propósito}{Que el Dueño pueda agregar un paquete de descuentos de manera fácil y rápida para evitar que haya pérdidas monetarias.}
+		\UCitem{Entradas}{Datos del paquete de descuentos.}
+		\UCitem{Origen}{Teclado, Mouse}
+		\UCitem{Salidas}{Mensaje de confirmación registro.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El paquete no debe existir.}
+		\UCitem{Postcondiciones}{Se agregará el paquete de descuentos a la base de datos.}
+		\UCitem{Errores}{El paquete no puede ser agregado.}
+		\UCitem{Tipo}{Caso de uso primario.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Revisión}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU1} paso 11.
+		\UCpaso Despliega la \IUref {IU34} {Pantalla Principal de dueño}.
+		\UCpaso[\UCactor] Ve los paquetes de descuentos disponibles dando clic en el\Ibutton {+ paquetes } .
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ agregar paquete } .
+		\UCpaso Despliega la \IUref {IU36} {Registro de paquete}.
+		\UCpaso [\UCactor] Llena los campos requeridos para registrar un nuevo paquete. 
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ agregar } .
+		\UCpaso Despliega una pantalla de confirmación. \Trayref{A}
+		\UCpaso Guarda los datos del nuevo paquete y actualiza la lista de paquetes.
+		\UCpaso Re-direcciona al \UCactor a la \IUref{IU34} {Pantalla Principal de dueño}.
+	\end{UCtrayectoria}
+
+
+		\begin{UCtrayectoriaA}{A}{El Paquete no puede ser agregado}
+			\UCpaso Despliega el mensaje \bf {+ MSG21 }  .
+			\UCpaso[\UCactor] El Dueño da clic en el \Ibutton {+ aceptar }.
+			\UCpaso Continua en el paso 6 del \UCref{CU14}.
+		\end{UCtrayectoriaA}
+
+%--------------------------------------

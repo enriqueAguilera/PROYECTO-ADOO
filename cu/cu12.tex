@@ -1,0 +1,38 @@
+\begin{UseCase}{CU12}{Listar Medicamentos y sus Datos}{
+		Se requiere mostrar una lista de medicamentos para la realización de operaciones que los involucran.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Vázquez Cruz Fernando Darwin }
+		\UCitem{Supervisa}{\color{Gray}}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño, Supervisor y Cajero}}
+		\UCitem{Propósito}{Que el \UCactor pueda vizualizar de forma rápida y sencilla todos los medicamentos existentes en la base de datos .}
+		\UCitem{Entradas}{}
+		\UCitem{Origen}{Teclado, Mouse}
+		\UCitem{Salidas}{Lista de medicamnetos.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{La base debe contener por lo menos un medicamneto registrado}
+		\UCitem{Postcondiciones}{}
+		\UCitem{Errores}{No hay medicamentos registrados.}
+		\UCitem{Tipo}{Caso de uso primario.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Revisión}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU1} paso 11.
+		\UCpaso Despliega la interfaz correspondiente con el \UCactor.
+		\UCpaso Despliega la \IUref {IU34} {Pantalla Principal de dueño}.
+		\UCpaso[\UCactor] Ve los medicamentos disponibles dando clic en el\Ibutton {+ medicamento }.
+		\UCpaso Despliega una lista con los medicamentos de la base de datos junto con sus características.\Trayref{A}
+		\UCpaso[\UCactor] Realiza operaciones con los medicamentos.
+		\UCpaso Re-direcciona al \UCactor a la pantalla principal correspondiente.
+	
+	\end{UCtrayectoria}
+
+
+		\begin{UCtrayectoriaA}{A}{La lista de medicamentos está vacia}
+			\UCpaso[\UCactor] Observa una lista vacía.
+			\UCpaso[\UCactor] Regresa a la pantalla principal.
+		\end{UCtrayectoriaA}
+
+%--------------------------------------
