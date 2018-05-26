@@ -1,0 +1,81 @@
+\begin{UseCase}{CU30}{Modificar Paquete de Descuentos}
+{
+}
+    \UCitem{Versión}
+    {
+	\color{Gray} 0.1
+    }
+    \UCitem{Autor}
+    {
+	\color{Gray}Mart\'inez Quevedo Miguel \'Angel
+    }
+    \UCitem{Supervisa}
+    {
+	\color{Gray}
+    }
+    \UCitem{Actor}
+    {
+	Due\~no
+    }
+    \UCitem{Propósito}
+    {
+	Que el due\~no pueda modificar un paquete de descuentos en caso de error o
+	que lo considere necesario.
+    }
+    \UCitem{Entradas}
+    {
+	Asociaciones Medicamento-Descuento proporcionadas por el usuario.
+    }
+    \UCitem{Origen}
+    {
+	Teclado, Mouse
+    }
+    \UCitem{Salidas}
+    {}
+    \UCitem{Destino}
+    {}
+    \UCitem{Precondiciones}
+    {}
+    \UCitem{Postcondiciones}
+    {
+	El paquete de descuentos modificado est\'a registrado en el sistema.
+    }
+    \UCitem{Errores}
+    {}
+    \UCitem{Historia de cambio}
+    {}
+    \UCitem{Observaciones}
+    {}
+    \UCitem{Estado}
+    {
+		Aprobado
+	}
+\end{UseCase}
+
+%Trayectoria Principal
+
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+    % el actor selecciona el paquete de descuentos
+    \UCpaso Se despliega la pantalla \IUref{IUtodo}{Lista de Paquetes de Descuentos}
+    \UCpaso [\UCactor] selecciona un paquete de descuentos del men\'u.
+    \UCpaso [\UCactor] presiona el bot\'on \IUbutton{Seleccionar} para confirmar su selecci\'on.
+    % el actor modifica el paquete de descuentos
+    \UCpaso Se despliega la pantalla \IUref{IUtodo}{Edici\'on de Paquete de Descuentos}
+    correspondiente a el paquete seleccionado por el usuario.
+    \UCpaso [\UCactor] modifica seg\'un sus necesidades los pares Medicamento-Descuento.
+    \UCpaso [\UCactor] presiona el bot\'on \IUbutton{Hecho} para indicar que ha terminado su edici\'on.
+    % el actor confirma la modificacion
+    \UCpaso Se despliega la pantalla \IUref{IUtodo}{Confirmaci\'on de edici\'on de paquete de
+	descuentos} con las ediciones correspondientes.
+    \UCpaso [\UCactor] presiona el bot\'on \IUbutton{Aceptar} para indicar que acepta los cambios.
+    % el actor es redireccionado a la pantalla principal
+    \UCpaso Redirecciona al \UCactor a la  \IUref{IU32}{Pantalla Principal} 
+\end{UCtrayectoria}
+
+%Trayectorias Alternativas
+
+%Trayectoria Alternativa C
+\begin{UCtrayectoriaA}{}{}
+\end{UCtrayectoriaA}
+

@@ -1,0 +1,54 @@
+\begin{UseCase}{CU27}{Dar de baja Sucursal}{
+	Cuando el dueño venda una sucursal sera necesario migrar su registro
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Supervisa}{\color{Gray}Alejandro Bravo}
+		\UCitem{Actor}{Dueño}
+		\UCitem{Propósito}{para llevar un mejor control de las sucursales que  actualmente están a posesión del dueño}
+		\UCitem{Entradas}{identificador de la sucursal(id)}
+		\UCitem{Origen}{Teclado y mouse}
+		\UCitem{Salidas}{mensaje de confirmación {\bf MSG11-}`` [{\em ¿Seguro que quiere dar de baja esta sucursal?}]se pasaran la información de la sucursal a dar de baja a otra disponible.''}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{La sucursal a dar de baja debe estar registrada en el sistema}
+		\UCitem{Postcondiciones}{Se marcara que la sucursal no esta en propiedad de la empresa y se pasará la información a otra sucursal.}
+		\UCitem{Errores}{Que no haya una sucursal a la cual se le transfiera la información de la sucursal dada de baja,sin conexión a Internet,que la sucursal que se quiere dar de baja no este registrada en el sistema.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso La trayectoria se Extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso El caso de uso Incluye el caso de uso listar Sucursales \UCref{CU24}. 
+		\UCpaso [\UCactor] busca la sucursal en la lista utilizando la barra de búsqueda, donde introduce el identificador de la sucursal a dar de baja.		
+		\UCpaso Realiza un filtrado del identificador introducido por [\UCactor] Mostrando los resultados obtenidos\Trayref{A}
+		\UCpaso[\UCactor] Selecciona la sucursal que busca haciendo click al botón \IUbutton{boton con forma de tache} que se encuentra en la misma fila en la columna de opciones.
+		\UCpaso Muestra El mensaje de confirmación de operación {\bf MSG11-}`` [{\em ¿Seguro que quiere dar de baja esta sucursal?}]se pasaran la información de la sucursal a dar de baja a otra disponible.''
+		\UCpaso [\UCactor] Da click en el boton \IUbutton{aceptar}\Trayref{B}
+		\UCpaso pregunta al [\UCactor] mediante el mensaje 
+		{\bf MSG0-}`` [{\em Elija una sucursal de la lista.}]toda la información de de la sucursal dada de baja se traslada a la sucursal elegida.'' \Trayref{C}
+
+		\UCpaso Muestra la lista de sucursales.
+		\UCpaso [\UCactor] Escoge la sucursal a la cual quiere pasar la información.\Trayref{D}
+		\UCpaso Fusiona la información de la sucursal elegida por el usuario
+		\UCpaso regresa al [\UCactor] a la pantalla principal de dueño\IUref{IU33}{Pantalla Principal de dueño}
+	\end{UCtrayectoria}
+
+%----------------------------------------------------Alternativa A
+\begin{UCtrayectoriaA}{A}{La sucursal buscada no existe}
+			\UCpaso No muestra ninguna sucursal.
+			\UCpaso regresa al paso 2 del caso de uso \UCref{CU27}
+		\end{UCtrayectoriaA}
+%----------------------------------------------------Alternativa B
+\begin{UCtrayectoriaA}{B}{El Dueño cancela la operación}
+			\UCpaso No se altera ningún registro.
+			\UCpaso regresa al paso 2 del caso de uso \UCref{CU27}
+		\end{UCtrayectoriaA}		
+%-----------------------------------------------------Alternativa C
+\begin{UCtrayectoriaA}{C}{No hay ninguna sucursal para trasladar los datos}
+			\UCpaso Muestra el mensaje {\bf MSG10-}`` [{\em No existe Sucursal para trasladar datos.}]--se aborta la operación de 'dar de baja sucursal'.''
+			\UCpaso regresa al paso 2 del caso de uso \UCref{CU27}
+		\end{UCtrayectoriaA}		
+%-------------------------------------- TERMINA descripción del caso de uso 27.
+
+

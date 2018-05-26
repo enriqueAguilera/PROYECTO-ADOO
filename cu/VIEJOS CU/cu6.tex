@@ -1,0 +1,44 @@
+\begin{UseCase}{CU6}{Dar de Alta Empleado}{ 
+		El sistema sera operable para aquellos que esten registrados en el, por lo tanto se requiere que se pueda dar de alta nuevos empleados
+	}
+		\UCitem{Versión}{\color{Gray}0.1.2}
+		\UCitem{Autor}{\color{Gray}Aguilera Rosas Landa Enrique}
+		\UCitem{Supervisa}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
+		\UCitem{Propósito}{Tener empleados que puedan acceder al sistema para que trabajen en la farmacia.}
+		\UCitem{Entradas}{Nombre completo del solicitante, Edad, Direccion, Curp, RFC, Expreiencia Laboral, Puesto , Sucursal}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{No Aplica.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El solicitante no debe de estar dado de alta en el sistema.}
+		\UCitem{Postcondiciones}{El solicitante estara registrado como empleado en el sistema.}
+		\UCitem{Errores}{Los datos del solicitante sean incorrectos, El sistema falle por causas Electricas }
+		\UCitem{Tipo}{Caso de uso primario}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso[\UCactor] Selecciona La opcion de Dar de Alta Empleado presionando el boton \IUbutton{Agregar Empleado}.
+		\UCpaso Genera el formulario de Agregar Empleado y lo despliega.
+		\UCpaso[\UCactor] Llena el formulario de Agregar Empleado y presiona el boton \IUbutton{Guardar Registro}. \Trayref{A} \label{CU6For}.
+		\UCpaso[\UCactor] Selecciona un usuario y contraseña que sera guardado en el sistema.\Trayref{B} \label{CU6Usu}.
+		\UCpaso Redirecciona al \UCactor a la  \IUref{IU34}{Pantalla Principal Del Dueño} con la lista de Opciones Disponibles para el dueño.
+	\end{UCtrayectoria}
+
+
+%-------------------------------------- 
+		 \begin{UCtrayectoriaA}{A}{Error en algun campo de solicitud de empleado}
+			\UCpaso Muestra el Mensaje {\bf MSG6-}`` [{\em Campo no valido}] Algun campo no se lleno con los caracteres especificados.''.
+			\UCpaso Continua en el paso \ref{CU6For} del \UCref{CU6}.
+		\end{UCtrayectoriaA}
+%----------------------------------------
+
+		\begin{UCtrayectoriaA}{B}{El usuario ya Existe.}
+			\UCpaso Muestra el Mensaje {\bf MSG7-}`` [{\em El usuario ya existe }] Selcciona otro Nombre de usuario.''.
+			\UCpaso Continúa en el paso \ref{CU6Usu} del \UCref{CU6}.
+		\end{UCtrayectoriaA}
+
+
+

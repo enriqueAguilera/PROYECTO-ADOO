@@ -1,0 +1,35 @@
+\begin{UseCase}{CU24}{Listar Sucursales}{
+	Cuando el dueño quiera ver las diferentes sucursales
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Zapata Jasso José Rodolfo}
+		\UCitem{Supervisa}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Actor}{Dueño}
+		\UCitem{Propósito}{Llevar un control de las sucursales que están en posesión del dueño}
+		\UCitem{Entradas}{identificador de la sucursal(id)}
+		\UCitem{Origen}{Teclado y mouse}
+		\UCitem{Salidas}{Listado de sucursales.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Tener al menos una sucursal registrada en el sistema}
+		\UCitem{Postcondiciones}{Una sucursal mas registrada}
+		\UCitem{Errores}{Que no haya una sucursal a la cual se le transfiera la información de la sucursal dada de baja,sin conexión a Internet,que la sucursal que se quiere dar de baja no este registrada en el sistema.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso La trayectoria se Extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso Despliega la \IUref{IU34}{Pantalla Principal Del Dueño} con la lista de Opciones Disponibles para el Dueño.
+		\UCpaso[\UCactor] Selecciona La opcion de ver sucursales con el boton\IUbutton{Ver Sucursales}.
+		\UCpaso Despliega todas las sucursales por ID.  \Trayref{A} \label{NmS} 
+		
+	\end{UCtrayectoria}
+
+%----------------------------------------------------Alternativa A
+\begin{UCtrayectoriaA}{A}{No hay sucursales}
+			\UCpaso No muestra ninguna sucursal.
+			\UCpaso regresa al paso 2 del caso de uso \UCref{NmS}
+		\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso 24.
+
+

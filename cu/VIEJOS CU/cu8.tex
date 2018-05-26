@@ -1,0 +1,43 @@
+\begin{UseCase}{CU8}{Aplicar Descuento}{
+		El Empleado aplica un descuento agregado por el dueño.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Supervisa}{\color{Gray}Alejandro Bravo}
+		\UCitem{Actor}{\hyperlink{Alumno}{Empleado}}
+		\UCitem{Propósito}{Que el Cliente se motive a comprar más medicamento.}
+		\UCitem{Entradas}{Nombre del Medicamento con descuento}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{listado de medicamentos con descuento.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Debe haber un paquete de descuentos agregado por el 		dueño.}
+		\UCitem{Postcondiciones}{Cambiara el precio de uno o varios
+		medicamento(s).}
+		\UCitem{Errores}{Que no exista ningún paquete de descuentos agregado previamente.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso La trayectoria se Extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso[\UCactor] Presiona el botón de Descuento \IUbutton{Descuento}.
+		\UCpaso Verifica que existan paquetes de descuentos agregados.\Trayref{A}
+		\UCpaso Muestra un listado de los medicamentos que tienen descuento
+		\UCpaso[\UCactor] Busca el medicamento entre los medicamentos con descuento 		en la barra de búsqueda.
+		\UCpaso Realiza un filtrado con los caracteres introducidos por el Empleado, y Muestra la/los medicamentos filtrados \Trayref{B}
+		\UCpaso[\UCactor] Selecciona El medicamento que busca.
+		\UCpaso Baja el precio del medicamento seleccionado de acuerdo al paquete donde se encuentre dicho medicamento.
+	\end{UCtrayectoria}
+
+%----------------------------------------------------Alternativa A
+\begin{UCtrayectoriaA}{A}{No Existe ningún paquete de descuento.}
+			\UCpaso Muestra el Mensaje {\bf MSG7-}`` [{\em El Dueño no ha agregado a un ningún paquete de descuento}].''.
+			\UCpaso Fin de caso de uso.
+		\end{UCtrayectoriaA}
+
+%----------------------------------------------------Alternativa B
+\begin{UCtrayectoriaA}{B}{El medicamento no tiene descuento}
+			\UCpaso No muestra ningún medicamento.
+			\UCpaso Fin de caso de uso.
+		\end{UCtrayectoriaA}
+	

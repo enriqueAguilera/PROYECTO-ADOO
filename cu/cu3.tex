@@ -1,0 +1,47 @@
+\begin{UseCase}{CU3}{Modificar datos de  Empleado}{
+		Los datos del empleado se tienen que modificar, por inconsistencia en los datos registrados en el sistema con sus datos actuales
+	}
+		\UCitem{Versión}{\color{Gray}0.1.2}
+		\UCitem{Autor}{\color{Gray}Aguilera Rosas Landa Enrique}
+		\UCitem{Supervisa}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
+		\UCitem{Propósito}{Evitar problemas con los empleados por datos erroneos guardados en el sistema.}
+		\UCitem{Entradas}{Nombre completo del solicitante, Edad, Direccion, Curp, RFC, Expreiencia Laboral, Puesto , Sucursa}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{No Aplica.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El empleado debe de estar dado de alta en el sistema.}
+		\UCitem{Postcondiciones}{Los datos del empleado seran diferentes.}
+		\UCitem{Errores}{Exista algun duplicado en los datos del empleado, sus cambios no sean guardados}
+		\UCitem{Tipo}{Caso de uso primario}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{En revision}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso[\UCactor] Selecciona La opcion de ver Lista de  Empleados presionando el boton \IUbutton{Ver Lista de Empleado}.
+		\UCpaso Incluye el caso de uso \UCref{CU5}.
+		\UCpaso[\UCactor] Introduce el Nombre del empleado a buscar en el campo de Busqueda \Trayref{A} .
+		\UCpaso Genera y Despliega una lista que coincida con la busqueda realizada
+		\UCpaso[\UCactor] Selecciona la opcion modificar datos Del empleado Deseado presionando\IUbutton{Modificar Datos}.
+		\UCpaso Genera y despliega una tabla con los datos actuales del empleado.
+		\UCpaso Genera el formulario Datos del empleado y los despliega.
+		\UCpaso[\UCactor] Cambia los datos que el empleado necesita modificar y guarda los cambios presionando el boton \IUbutton{Aceptar y Guardar} \Trayref{B}.
+	\end{UCtrayectoria}
+
+
+%-------------------------------------------------------------------------
+
+
+\begin{UCtrayectoriaA}{A}{Empleado no encontrado.}
+			\UCpaso Muestra el Mensaje {\bf MSG8-}`` [{\em Empleado no encontrado}] revisa que los campos sean llenados correctamente.''.
+			\UCpaso Continúa en el paso \ref{CU7Bus} del \UCref{CU3}.
+		\end{UCtrayectoriaA}
+%-------------------------------------------------------------------------
+
+
+\begin{UCtrayectoriaA}{B}{Algun campo del Empleado tiene un error.}
+			\UCpaso Muestra el Mensaje {\bf MSG7-}`` [{\em Error en un dato del Empleado}] revisa que los campos sean llenados correctamente.''.
+			\UCpaso Continúa en el paso 9 del \UCref{CU3}.
+		\end{UCtrayectoriaA}

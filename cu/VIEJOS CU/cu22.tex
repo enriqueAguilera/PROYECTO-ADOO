@@ -1,0 +1,78 @@
+\begin{UseCase}{CU22}{Cerrar Turno de Caja}
+{
+    El supervisor debe registrar la hora de cierre de actividades de la sucursal.
+}
+    \UCitem{Versión}
+    {
+	\color{Gray} 0.1
+    }
+    \UCitem{Autor}
+    {
+	\color{Gray} Miguel \'Angel Mart\'inez Quevedo
+    }
+    \UCitem{Supervisa}
+    {
+	\color{Gray}
+    }
+    \UCitem{Actor}
+    {
+	Supervisor
+    }
+    \UCitem{Propósito}
+    {
+	Que el supervisor registre la hora de cierre de actividades de la sucursal, para ser esto
+	despu\'es reportado al Due\~no y en conformidad a la normatividad.
+	Que el supervisor pueda revisar y comprobar la actividad que ha tenido la sucursal durante
+	el d\'ia.
+    }
+    \UCitem{Entradas}
+    {
+    }
+    \UCitem{Origen}
+    {
+    }
+    \UCitem{Salidas}
+    {}
+    \UCitem{Destino}
+    {}
+    \UCitem{Precondiciones}
+    {
+    }
+    \UCitem{Postcondiciones}
+    {}
+    \UCitem{Errores}
+    {}
+    \UCitem{Historia de cambio}
+    {}
+    \UCitem{Observaciones}
+    {}
+    \UCitem{Estado}
+    {
+		Aprobado
+	}
+\end{UseCase}
+
+%Trayectoria Principal
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+    \UCpaso Se muestra la pantalla \IUref{IUtodo}{Pantalla de Confirmaci\'on de Cierre de Turno de
+	Caja}
+    \UCpaso El supervisor revisa los registros de venta mostrados.
+    \UCpaso El supervisor presiona el bot\'on \IUbutton{Cerrar Turno} al terminar.
+    \UCpaso El usuario es redirigido a la pantalla principal \IUref{IUtodo}{Pantalla de Men\'u
+	Principal}
+\end{UCtrayectoria}
+% \UCpaso \UCactor \IUref \IUbutton \UCref
+
+%Trayectorias Alternativas
+%Trayectoria Alternativa
+\begin{UCtrayectoriaA}{A}{El usuario seleccion\'o la opci\'on de 'Reportar problema al due\~no'}
+    \UCpaso Se muestra la pantalla \IUref{IUtodo}{Reporte de problema en cierre de caja}.
+    \UCpaso El usuario introduce una descripci\'on detallada del problema en el campo
+    correspondiente.
+    \UCpaso El usuario da click en el bot\'on \IUbutton{Hecho}.
+    \UCpaso Se manda un reporte de problema al due\~no.
+    \UCpaso Se notifica que se ha env\'iado con \'exito a trav\'es de un mensaje en pantalla.
+    \UCpaso Se redirige a la trayectoria principal paso 3.
+\end{UCtrayectoriaA}
+

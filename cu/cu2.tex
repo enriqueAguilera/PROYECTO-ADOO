@@ -1,0 +1,60 @@
+\begin{UseCase}{CU2}{Recuperar Contraseña}{
+		El empleado puede cometer la equivocacion de perder la contraseña asociada a la cuenta con la que ingresa al sistema, por lo cual se requiere de una forma para poder recuperar la contraseña. La recuperacion de realizara mediante un correo electronico el cual se le enviara al empleado con la posibilidad de reasignar una nueva contraseña
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Enrique Aguilera Rosas Landa}
+		\UCitem{Supervisa}{\color{Gray}}
+		\UCitem{Actor}{\hyperlink{Empleado}{Dueño}}
+		\UCitem{Propósito}{Conceder el acceso al sistema de nuevo mediante la recuperacion de la contraseña.}
+		\UCitem{Entradas}{Correo Electronico.}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{Contraseña Asociada con la cuenta.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El empleado debe estar registrado en el sistema y que no recuerde su contraseña asociada .}
+		\UCitem{Postcondiciones}{El empleado recuperara su contraseña y su acceso al sistema.}
+		\UCitem{Errores}{Que el acceso a la pagina sea incorrecto debido a razones de Errores De conexion o Mantenimiento de los Servidores, Que el usuario no este registrado en el sistema}
+		\UCitem{Tipo}{Caso de uso primario}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{En revision}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 10.
+		\UCpaso[\UCactor] Selecciona la Opcion de Recuperacion de contraseña dando click en el boton \IUbutton{Recuperar Contraseña}.
+
+		\UCpaso Genera y despliega la pantalla \IUref(04){Recuperación de Contraseña}
+		\UCpaso [\UCactor] Proporciona su Correo Electronico asociado a la contraseña perdida y  Confirma la operación presionando el botón 			\IUbutton{Aceptar}.		
+		\UCpaso Verifica que el correo proporcionado cumpla con el formato XXXX@XXX.XXX \Trayref{A}
+		\UCpaso Busca la cuenta asociada al correo ingresado. \Trayref{B}
+		\UCpaso Verifica que dicha cuenta este activa. \Trayref{C}.
+		\UCpaso Envia un correo electronico al correo proporcionado; el cual contara con un link para asignar una nueva contraseña. \Trayref{D}.
+		\UCpaso Redirecciona al \UCactor a la  \IUref{IU1}{Pantalla Principal Dueño}.
+	\end{UCtrayectoria}
+
+%--------------------------------------		
+	\begin{UCtrayectoriaA}{A}{El Correo no esta Correcto}
+			\UCpaso Muestra el Mensaje {\bf MSG03-}`` [{\em correo con formato incorrecto}] Introduzca un correo con el formato xxx@xx.xx .''.
+			\UCpaso Continúa en el paso 3 del \UCref{CU2}.
+		\end{UCtrayectoriaA}
+%----------------------------------------
+		\begin{UCtrayectoriaA}{B}{El \UCactor no esta registrado}
+			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error [{\em Usuario no Encontrado}] El usuario y/o contraseña no existen .''.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso[] Continua en el paso 3 del \UCref{CU2}.
+		\end{UCtrayectoriaA}		
+%--------------------------------------
+		\begin{UCtrayectoriaA}{C}{La cuenta a la que intenta acceder no esta activa}
+			\UCpaso Muestra el Mensaje {\bf MSG02-}``Error [{\em Cuenta Desactivada}] Contacta con el Dueño para resolver el problema .''.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}
+			\UCpaso Continua en el paso 3 del \UCref{CU2}.
+		\end{UCtrayectoriaA}
+%--------------------------------------
+	\begin{UCtrayectoriaA}{D}{Correo Electronico de recuperación de contraseña no se envio}
+			\UCpaso Muestra el Mensaje {\bf MSG04-}``Error [{\em Correo no enviado}] Revisa tu conexión y vuelve a enviar el mensaje .''.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}
+			\UCpaso Continua en el paso 7 del \UCref{CU2}.
+		\end{UCtrayectoriaA}
+%--------------------------------------
+
+
+		

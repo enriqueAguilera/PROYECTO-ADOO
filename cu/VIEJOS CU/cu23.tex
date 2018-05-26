@@ -1,0 +1,72 @@
+\begin{UseCase}{CU23}{Abrir Turno de Caja}
+{
+    El supervisor registra la hora de inicio de actividades.
+}
+    \UCitem{Versión}
+    {
+	\color{Gray} 0.1
+    }
+    \UCitem{Autor}
+    {
+	\color{Gray} Miguel \'Angel Mart\'inez Quevedo
+    }
+    \UCitem{Supervisa}
+    {
+	\color{Gray}
+    }
+    \UCitem{Actor}
+    {Supervisor}
+    \UCitem{Propósito}
+    {
+	Que el supervisor registre la hora de inicio de actividades de la sucursal, con el fin de,
+	posteriormente, reportar esta informaci\'on al Due\~no y cumplir con la normatividad.
+    }
+    \UCitem{Entradas}
+    {
+	Bot\'on de Confirmaci\'on
+    }
+    \UCitem{Origen}
+    {
+	Mouse
+    }
+    \UCitem{Salidas}
+    {}
+    \UCitem{Destino}
+    {}
+    \UCitem{Precondiciones}
+    {
+	El usuario seleccion\'o la opci\'on de Abrir Turno de Caja
+    }
+    \UCitem{Postcondiciones}
+    {
+	El sistema tiene registrada la hora de inicio de actividades para la sucursal.
+        El sistema acepta nuevos registros de ventas.
+    }
+    \UCitem{Errores}
+    {}
+    \UCitem{Historia de cambio}
+    {}
+    \UCitem{Observaciones}
+    {}
+    \UCitem{Estado}
+    {
+		Aprobado
+	}
+\end{UseCase}
+
+%Trayectoria Principal
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+    \UCpaso Se muestra la pantalla \IUref{IUtodo}{Confirmaci\'on de Apertura de Caja}
+    \UCpaso El usuario presiona el bot\'on \IUbutton{Confirmar} para confirmar que desea abrir el
+    turno de caja.
+    \UCpaso Se redirecciona al usuario a la pantalla \IUref{IUtodo}{Men\'u Principal}
+\end{UCtrayectoria}
+% \UCpaso \UCactor \IUref \IUbutton \UCref
+
+%Trayectorias Alternativas
+%Trayectoria Alternativa
+\begin{UCtrayectoriaA}{A}{El usuario presion\'o el bot\'on de Cancelar}
+    \UCpaso Se redirecciona al usuario a la pantalla \IUref{IUtodo}{Men\'u Principal}
+\end{UCtrayectoriaA}
+

@@ -1,0 +1,42 @@
+\begin{UseCase}{CU18}{Inhabilitar Cuenta de Empleado}{
+		Los empleados trabajaran a base de contrato y una vez que venza su contrato puede o no renovarse, y si no se decide renovar se Inhabilitara la cuenta de ese empleado
+	}
+		\UCitem{Versión}{\color{Gray}0.1.2}
+		\UCitem{Autor}{\color{Gray}Aguilera Rosas Landa Enrique}
+		\UCitem{Supervisa}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
+		\UCitem{Propósito}{Evitar que personas no Habilitadas tengan acceso al sistema, Evitar Movimientos extraños en las operaciones del sistema.}
+		\UCitem{Entradas}{Motivo de Suspension de cuenta}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{No aplica.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El empleado debe de existir y su cuenta debe de tener los permisos adecuados a su puesto.}
+		\UCitem{Postcondiciones}{El empleado ya no podra accerder al sistema con su cuenta.}
+		\UCitem{Errores}{Existan problemas en el sistema debido a fallas electricas. No exista el empleado}
+		\UCitem{Tipo}{Caso de uso primario}
+		\UCitem{Observaciones}{Faltan más errores en {Errores}.paso 2 innecesario se explica en el paso 10 cu0,el propósito seria la respuesta a ¿para que quiero remover los permisos del empleado?:En el paso 4 se hace referencia a un paso de un caso de uso que aun no se desarrolla no se puede saber que va haber en el paso 5 del CU35.Paso 11 falta una trayectoria alternativa 'validar los campos'.Revisar ortografía.Lo demás lo veo bien.}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso[\UCactor] Selecciona La opción de ver Lista de  Empleados presionando el boton \IUbutton{Ver Lista de Empleado}.
+		\UCpaso Incluye el caso de uso \UCref{CU35}.
+		\UCpaso[\UCactor] Introduce el Nombre del empleado a buscar en el campo de Busqueda.
+		\UCpaso Genera y Despliega una lista que coincida con la busqueda realizada
+		\UCpaso[\UCactor] Selecciona el empleado cuyos permisos van a ser inhabilitados dando click en el Nombre del empleado
+		\UCpaso Genera y despliega una tabla con los datos del empleado
+		\UCpaso[\UCactor] Selecciona la opcion inhabilitar cuenta presionando\IUbutton{Inhabilitar cuenta}.
+		\UCpaso Genera el formulario de causa de suspension de cuenta y  lo despliega 
+		\UCpaso[\UCactor] Llena el formulario de causa de suspension de cuenta y lo guarda presionando  \IUbutton{Aceptar y Guardar} \Trayref{A} \label{CU17For}.
+		\UCpaso Remueve los permisos y el acceso al empleado seleccionado 
+	\end{UCtrayectoria}
+
+
+
+%-------------------------------------- 
+		 \begin{UCtrayectoriaA}{A}{Error en el Formulario}
+			\UCpaso Muestra el Mensaje {\bf MSG10-}`` [{\em Campo no Valido}] Revisa que los campos sean llenados correctamente.''.
+			\UCpaso Continua en el paso \ref{CU17For} del \UCref{CU17}.
+		\end{UCtrayectoriaA}
+%----------------------------------------

@@ -1,0 +1,39 @@
+\begin{UseCase}{CU12}{Darle un crédito a un cliente}{
+		Se requiere darle un crédito a un cliente por inconformidades.
+	}
+		\UCitem{Versión}{\color{Gray}0.2}
+		\UCitem{Autor}{\color{Gray}Vázquez Cruz Fernando Darwin }
+		\UCitem{Supervisa}{\color{Gray}Rosas Landa Enrique Aguilera.}
+		\UCitem{Actor}{\hyperlink{Alumno}{Empleado}}
+		\UCitem{Propósito}{El Empleado pueda extender un crédito a un cliente de manera facil y rápida cuando este presente incoformidades con su compra por fallas en los medicamentos comprados, de esta manera se aliviará la inconformidad de los clientes.}
+		\UCitem{Entradas}{número de tarjeta del cliente o su nombre.}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{Mensaje de confirmación de crédito.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El cliente debe de existir en el sistema, el empleado debe estar en activo en el sistema.}
+		\UCitem{Postcondiciones}{Se dará un crédito al cliente.}
+		\UCitem{Errores}{El crédito no puede ser otorgado.}
+		\UCitem{Tipo}{Caso de uso secundario.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU13} paso 7.
+		\UCpaso Genera y despliega El formulario \IUref {IU10} {FormularioCréditos}.
+		\UCpaso [ \ UCactor ] llena los datos del Formulario \ IUref {IU10} {FormularioCréditos}.
+		\UCpaso [ \ UCactor ] Confirma la operación presionando el boton \IUbutton {Asignar}
+		\UCpaso Verifica que todos los campos sean llenados correctamente. \Trayref{A}
+		\UCpaso Asigna El Crédito al cliente.
+		\UCpaso Actualiza y guarda la información del cliente en el sistema.
+		\UCpaso Re-direcciona al \UCactor a la \IUref {IU32} {Pantalla principal}.
+	
+	\end{UCtrayectoria}
+
+% ------------------------------------------------- --- Alternativa A
+	\begin{UCtrayectoriaA}{A}{Error en algun campo}
+			\UCpaso Muestra el Mensaje {\bf MSG6-}`` [{\em Campo no valido}] Algun campo no se lleno con los caracteres especificados.''.
+			\UCpaso Continua en el paso \ref{CU6For} del \UCref{CU6}.
+		\end{UCtrayectoriaA}
+
+%--------------------------------------

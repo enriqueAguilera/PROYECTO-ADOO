@@ -1,0 +1,53 @@
+\begin{UseCase}{CU25}{Listar ventas por empleado}{
+	Cuando llega el fin del mes,sera de gran ayuda que se reconozca el trabajo
+	del empleado más destacado.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Supervisa}{\color{Gray}Alejandro Bravo}
+		\UCitem{Actor}{Supervisor}
+		\UCitem{Propósito}{Nombrar al empleado del mes en base a sus ventas}
+		\UCitem{Entradas}{lo requerido ya lo tiene el sistema}
+		\UCitem{Origen}{Teclado y mouse}
+		\UCitem{Salidas}{datos de las ventas y lista de empleados}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Debe existir al menos un empleado registrado en el sistema con una venta registrada}
+		\UCitem{Postcondiciones}{el sistema no cambia pero el supervisor ya tiene una noción de que empleados están vendiendo más}
+		\UCitem{Errores}{Que no existan empleados registrados, que no se tenga conexión a Internet o que no se hayan realizado ventas aun.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso La trayectoria se Extiende del caso de uso 'Solicitar el reporte de ventas'\UCref{CU21}.
+		\UCpaso [\UCactor] Presiona el botón \IUbutton{listar ventas por empleado}
+		\Trayref{A}
+		\UCpaso Muestra una lista ordenada de mayor a menor con respecto al número de ventas realizadas por empleado
+		\UCpaso[\UCactor] Selecciona al empleado con el mayor número de ventas haciendo click sobre el nombre del empleado.
+		\UCpaso Identifica al empleado que el \UCactor selecciono y abre una ventana para escribir un mensaje.
+		\UCpaso [\UCactor] Escribe su mensaje se felicitaciones y presiona el botón \IUbutton{Enviar}.\Trayref{B}\Trayref{C}
+		\UCpaso Muestra el mensaje {\bf MSG11-}`` [{\em Enviado}]se ha podido enviar el mensaje con éxito..''
+		\UCpaso [\UCactor] presiona el botón \IUbutton{OK}.
+		\UCpaso regresa al empleado a la pantalla principal \IUref{IU34}{Pantalla principal de supervisor}
+		
+	\end{UCtrayectoria}
+
+%----------------------------------------------------Alternativa A
+\begin{UCtrayectoriaA}{A}{No hay ninguna venta realizada por algún empleado}
+			\UCpaso Muestra el mensaje {\bf MSG12-}`` [{\em No hay elementos que mostrar}]realice una venta para poder visualizar esta lista.''
+			\UCpaso manda al \UCactor al paso 1 del \UCref{CU25}
+		\end{UCtrayectoriaA}	
+%----------------------------------------------------Alternativa B
+\begin{UCtrayectoriaA}{B}{El supervisor cancela la operación }
+			\UCpaso [\UCactor] presiona el botón \IUbutton{Cancelar}
+			\UCpaso Regresa al paso 1 de \UCref{CU25}.
+		\end{UCtrayectoriaA}				
+		
+%----------------------------------------------------Alternativa C
+\begin{UCtrayectoriaA}{C}{Se pierde la conexión a Internet}
+			\UCpaso Muere
+			\UCpaso fin de caso de uso.
+		\end{UCtrayectoriaA}				
+%-------------------------------------- TERMINA descripción del caso de uso 25.
+
+

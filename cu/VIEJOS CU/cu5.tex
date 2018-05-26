@@ -1,0 +1,61 @@
+\begin{UseCase}{CU5}{Realizar Una Venta}{
+		La venta de medicamentos es esencial para el progreso de la Farmacia, y este requiere llevar un control y registro 
+	}
+		\UCitem{Versión}{\color{Gray}0.1.2}
+		\UCitem{Autor}{\color{Gray}Aguilera Rosas Landa Enrique}
+		\UCitem{Supervisa}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Actor}{\hyperlink{Alumno}{Empleado}}
+		\UCitem{Propósito}{Generar ganancia para que la farmacia siga operando.}
+		\UCitem{Entradas}{Datos del medicamento, Cantidad, Datos del Cliente}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{Ticket de Compra.}
+		\UCitem{Destino}{Pantalla, Impresora}
+		\UCitem{Precondiciones}{El medicamento debe existir y su existencia debe ser mayor a 0.}
+		\UCitem{Postcondiciones}{El medicamento reducira sus existencias en la cantidad original-La cantidad de venta del mismo medicamento.}
+		\UCitem{Errores}{Exista un problema con la luz de la sucursal y el sistema no este operable.}
+		\UCitem{Tipo}{Caso de uso primario}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso [\UCactor] Presiona el botón \IUbutton{Realizar venta}
+		\UCpaso genera y despliega el Formulario de venta
+		
+		\UCpaso[\UCactor] Introduce los datos requeridos en el Formulario de venta .
+		\UCpaso valida que el medicamento solicitado exista y la cantidad en el inventario sea suficiente para realizar la venta \Trayref{A} \Trayref{B} \label{CU5Cantidad}
+		\UCpaso[\UCactor] Confirma la venta presionando el boton \IUbutton{Aceptar}\Trayref{C}
+		\UCpaso Genera un ticket de impresion con los datos del Formulario de venta  con destino a la impresora.\Trayref{D} \label{CU5Imp}.
+		\UCpaso Reduce el inventario del medicamento 
+	           \UCpaso Guarda y actualiza  el inventario de la lista de medicamentos.
+		\UCpaso Redirecciona al \UCactor a la  \IUref{IU32}{Pantalla Principal} con la lista de Medicamentos Disponibles.
+	\end{UCtrayectoria}
+
+%-------------------------------------- 
+		 \begin{UCtrayectoriaA}{A}{El Medicamento No existe}
+			\UCpaso Muestra el Mensaje {\bf MSG6-}`` [{\em Medicamento no Encontrado}] El  medicamento buscado no existe.''.
+			\UCpaso   redirige al empleado a la pantalla principal de Medicamentos.
+			\UCpaso Continua en el paso \ref{CU5Cantidad} del \UCref{CU5}.
+		\end{UCtrayectoriaA}
+%----------------------------------------
+
+		\begin{UCtrayectoriaA}{B}{Cantidad de venta excede la del inventario.}
+			\UCpaso Muestra el Mensaje {\bf MSG5-}`` [{\em Cantidad Excedente}] revisa que el medicamento tenga inventario suficiente para realizar la venta.''.
+			\UCpaso Continúa en el paso \ref{CU5Cantidad} del \UCref{CU5}.
+		\end{UCtrayectoriaA}
+
+%-------------------------------------- 
+		 \begin{UCtrayectoriaA}{C}{Venta Cancelada}
+			\UCpaso [\UCactor] Cancela la venta presionando el boton \IUbutton{Cancelar Venta}
+			\UCpaso Muestra el Mensaje {\bf MSG7-}`` [{\em Venta Cancelada}].''.
+			\UCpaso   redirige al empleado a la pantalla principal.
+		\end{UCtrayectoriaA}
+%----------------------------------------
+
+		\begin{UCtrayectoriaA}{D}{Error De Impresion.}
+			\UCpaso Muestra el Mensaje {\bf MSG8-}`` [{\em Error con La Impresora}] revisa que la impresora este conectada al sistema y tenga rollo suficiente para impresion.''.
+			\UCpaso Continúa en el paso \ref{CU5Imp} del \UCref{CU5}.
+		\end{UCtrayectoriaA}
+
+

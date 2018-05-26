@@ -1,0 +1,35 @@
+\begin{UseCase}{CU14}{Listar Clientes}{
+		Cuando el empleado quiera ver los clientes registrados
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Zapata Jasso José Rodolfo}
+		\UCitem{Supervisa}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Actor}{\hyperlink{Alumno}{Empleado}}
+		\UCitem{Propósito}{Llevar un control de los clientes que están registrados.}
+		\UCitem{Entradas}{Identificador del cliente}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{Listado de clientes.}
+		\UCitem{Destino}{Base de datos}
+		\UCitem{Precondiciones}{Tener clientes registrados con anterioridad.}
+		\UCitem{Postcondiciones}{Un cliente mas registrado}
+		\UCitem{Errores}{Exista un problema con la luz de la sucursal y el sistema no este operable.}
+		\UCitem{Tipo}{Caso de uso secundario}
+		\UCitem{Observaciones}{...}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso Despliega la \IUref{IU32}{Pantalla Principal} con las opciones disponibles.\label{CU3Principal}.
+		\UCpaso[\UCactor] Selecciona La opcion de ver clientes con el boton\IUbutton{Ver Clientes}.
+		\UCpaso Despliega todos los clientes registrados por ID.  \Trayref{A} \label{NmC} 
+	\end{UCtrayectoria}
+
+%----------------------------------------------------Alternativa A
+\begin{UCtrayectoriaA}{A}{No hay clientes}
+			\UCpaso No muestra ningun cliente.
+			\UCpaso regresa al paso 2 del caso de uso \UCref{NmC}
+		\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso 14.
+
+

@@ -1,0 +1,38 @@
+\begin{UseCase}{CU3}{Eliminar Medicamento}{
+		El medicamentos requiere ser eliminado ya que en rara ocasión se solicita
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Zapata Jasso José Rodolfo}
+		\UCitem{Supervisa}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
+		\UCitem{Propósito}{El dueño eliminara los medicamentos que ya no sean necesarios.}
+		\UCitem{Entradas}{Datos del medicamento.}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{Medicamento eliminado.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El medicamento debe existir. El actor deberá tener los permisos necesarios para eliminar medicamentos.}
+		\UCitem{Postcondiciones}{El medicamento ya no deberá estar registrado.}
+		\UCitem{Errores}{}
+		\UCitem{Tipo}{Caso de uso primario}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso Despliega la \IUref{IU34}{Pantalla Principal de dueño} con la lista de Medicamentos Disponibles.
+		\UCpaso[\UCactor]Selecciona el medicamento que desea eliminar con el boton\IUbutton{+eliminar}
+		\UCpaso Despliega confirmación de eliminar medicamento.\Trayref{A}.
+		\UCpaso [\UCactor] Confirma la eliminación de medicamento presionando el botón \IUbutton{Aceptar}.
+		\UCpaso Guarda y actualiza la lista de medicamentos.
+		\UCpaso Redirecciona al \UCactor a la  \IUref{IU32}{Pantalla Principal} con la lista de Medicamentos Disponibles.
+	\end{UCtrayectoria}
+
+%--------------------------------------
+		\begin{UCtrayectoriaA}{A}{Imposible eliminar.}
+			\UCpaso Muestra el Mensaje {\bf MSG4-}`` [{\em Error al eliminar Medicamento}] revisa que el medicamento se pueda eliminar.''.
+
+		\end{UCtrayectoriaA}
+
+

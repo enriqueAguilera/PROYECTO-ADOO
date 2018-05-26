@@ -1,0 +1,74 @@
+\begin{UseCase}{CU28}{Agregar Sucursal}
+{
+    El Due\~no requiere tener control y registro de todas sus sucursales.
+}
+    \UCitem{Versión}
+    {
+	\color{Gray} 0.1 
+    }
+    \UCitem{Autor}
+    {
+	\color{Gray} Miguel \'Angel Mart\'inez Quevedo
+    }
+    \UCitem{Supervisa}
+    {
+	\color{Gray}
+    }
+    \UCitem{Actor}
+    {
+	Due\~no
+    }
+    \UCitem{Propósito}
+    {
+	Tener control y registro de las sucursales con las que cuenta la farmacia
+    }
+    \UCitem{Entradas}
+    {
+	Datos de la nueva sucursal.
+    }
+    \UCitem{Origen}
+    {
+	Teclado.
+    }
+    \UCitem{Salidas}
+    {}
+    \UCitem{Destino}
+    {}
+    \UCitem{Precondiciones}
+    {}
+    \UCitem{Postcondiciones}
+    {
+	Se tiene registrada en la base de datos la nueva sucursal con los datos estipulados por el
+	usuario.
+    }
+    \UCitem{Errores}
+    {}
+    \UCitem{Historia de cambio}
+    {}
+    \UCitem{Observaciones}
+    {}
+    \UCitem{Estado}
+    {
+		Aprobado
+	}
+\end{UseCase}
+
+%Trayectoria Principal
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+    \UCpaso Se presenta la pantalla \IUref{IUtodo}{Agregar Sucursal}.
+    \UCpaso El usuario llena el formulario dado de acuerdo a los datos de la nueva sucursal que
+    desea registrar.
+    \UCpaso El usuario presiona el bot\'on \IUbutton{Hecho} para indicar que ha terminado.
+    \UCpaso El ususario es redireccionado a la pantalla \IUref{IUtodo}{Men\'u Principal}
+\end{UCtrayectoria}
+% \UCpaso \UCactor \IUref \IUbutton \UCref
+
+%Trayectorias Alternativas
+%Trayectoria Alternativa
+\begin{UCtrayectoriaA}{A}{El usuario no ingres\'o un dato requerido}
+    \UCpaso Se muestra un mensaje al usuario notificandole de los campos requeridos que no ha
+    llenado.
+    \UCpaso Continua en la Trayectoria Principal paso 3.
+\end{UCtrayectoriaA}
+

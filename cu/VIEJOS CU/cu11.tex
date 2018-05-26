@@ -1,0 +1,40 @@
+\begin{UseCase}{CU13}{Registrar una venta como devolución}{
+	Se debe registrar la devolución del medicamento por el motivo que haya sido.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Zapata Jasso José Rodolfo}
+		\UCitem{Supervisa}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Actor}{Empleado}
+		\UCitem{Propósito}{Registrar la devolución del producto y reportarlo de ser necesario}
+		\UCitem{Entradas}{Id, nombre e ingrediente activo del producto}
+		\UCitem{Origen}{Teclado y mouse}
+		\UCitem{Salidas}{-}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El medicamento debio haber sido devuelto}
+		\UCitem{Postcondiciones}{Registro de la devolucion}
+		\UCitem{Errores}{Que el cliente no este registrado,que no se tenga conexión a Internet, que el medicamento no tenga motivo para hacer una devolución}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso La trayectoria se Extiende del caso de uso 'Hacer una devolución al cliente' \UCref{CU13} 
+		\UCpaso incluye el caso de uso 'Aplicar credito del cliente' \UCref{CU10}.
+		\UCpaso [\UCactor] Selecciona la devolucion que desea registrar entre las disponibles.
+		\UCpaso Despliega un formulario en el que solicitan las razones por las que se solicito la devolución.
+		\UCpaso [\UCactor] Llena el formulario con los datos proporcionados por el cliente que solicito la devolución y al finalizar selecciona el boton de \IUbutton{Aceptar} 	
+		\UCpaso El sistema despliega una pantalla de confirmación.
+		\UCpaso [\UCactor] Selecciona el boton de \IUbutton{Aceptar} \Trayref{A}
+		\UCpaso Guarda el registro de devolucion. y regresa a la pantalla principal \IUref{IU32}{Pantalla principal}
+		
+	\end{UCtrayectoria}
+
+%----------------------------------------------------Alternativa A
+\begin{UCtrayectoriaA}{A}{El empleado cancela la acción}
+			\UCpaso No se registra la devolución.
+			\UCpaso fin del caso de uso.
+		\end{UCtrayectoriaA}	
+	
+%-------------------------------------- TERMINA descripción del caso de uso 11.
+
+

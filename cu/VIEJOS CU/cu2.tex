@@ -1,0 +1,49 @@
+\begin{UseCase}{CU2}{Modificar Datos de Medicamento}{
+		Los datos de los medicamentos requieren cambios en sus datos ya que sus campos rara vez son fijos
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Enrique Aguilera Rosas Landa}
+		\UCitem{Supervisa}{\color{Gray}Jose Rodolfo Zapata Jasso.}
+		\UCitem{Actor}{\hyperlink{Alumno}{Empleado}}
+		\UCitem{Propósito}{Que el Empleado pueda modificar los datos de los medicamentos de manera facil y rapida.}
+		\UCitem{Entradas}{Datos del medicamento.}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{Medicamento con los valores actualizados.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El medicamento debe de existir, El actor tenga los permisos necesarios para realizar los cambios en los datos del medicamento.}
+		\UCitem{Postcondiciones}{El medicamento quedara registrado con los nuevos datos.}
+		\UCitem{Errores}{}
+		\UCitem{Tipo}{Caso de uso primario}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso Despliega la \IUref{IU32}{Pantalla Principal} con la lista de Medicamentos Disponibles.\label{CU2Principal}.
+		\UCpaso[\UCactor] Selecciona el Medicamento en el que desea modificar los datos \Trayref{A}
+
+		\UCpaso Genera y despliega los datos del Medicamento seleccionado \label{CU2Cambio}.
+		\UCpaso [\UCactor] Cambia los datos del Medicamento conforme el lo requiere
+		\UCpaso[\UCactor] Confirma la operación presionando el botón \IUbutton{Aceptar y Guardar}.
+		\UCpaso Verifica que todos los campos de Medicamento  sean llenados correctamente  \BRref{BR143}{Validar Campos} \Trayref{B}.
+		\UCpaso Guarda los cambios realizados en el Medicamento Seleccionado.
+		\UCpaso Redirecciona al \UCactor a la  \IUref{IU32}{Pantalla Principal} con la lista de Medicamentos Disponibles.
+	
+	\end{UCtrayectoria}
+
+
+		\begin{UCtrayectoriaA}{A}{El Medicamento No existe}
+			\UCpaso[\UCactor] El Empleado busca el Medicamento a seleccionar y no encuentra el Medicamento
+			\UCpaso[\UCactor] El emplado regresa a la pantalla principal de Medicamentos
+			\UCpaso Continua en el paso \ref{CU2Principal} del \UCref{CU2}.
+		\end{UCtrayectoriaA}
+
+%--------------------------------------
+
+%--------------------------------------
+		\begin{UCtrayectoriaA}{B}{Algun campo del Medicamento tiene un error.}
+			\UCpaso Muestra el Mensaje {\bf MSG3-}`` [{\em Error en un dato del Medicamento}] revisa que los campos sean llenados correctamente.''.
+			\UCpaso Continúa en el paso \ref{CU2Cambio} del \UCref{CU2}.
+		\end{UCtrayectoriaA}
+		

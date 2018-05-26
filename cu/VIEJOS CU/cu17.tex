@@ -1,0 +1,79 @@
+\begin{UseCase}{CU17}{Cambiar Datos de Clientes}
+{
+    Se requiere cambiar los datos de clientes de forma ocasional. Ya sea porque hay un error en los
+    datos registrados de este o porque el cliente ha perdido su tarjeta y tiene que ser reasignado a
+    una nueva.
+}
+    \UCitem{Versión}
+    {
+	\color{Gray} 0.1
+    }
+    \UCitem{Autor}
+    {
+	\color{Gray} Miguel \'Angel Mart\'inez Quevedo
+    }
+    \UCitem{Supervisa}
+    {
+	\color{Gray}
+    }
+    \UCitem{Actor}
+    {
+	Empleado
+    }
+    \UCitem{Propósito}
+    {
+	Corregir errores en los registros actuales de los clientes.
+	Realizar cambios de tarjeta cambiando el n\'umero de tarjeta registrado.
+    }
+    \UCitem{Entradas}
+    {
+	Cliente a Cambiar. Datos a cambiar. Cambios.
+    }
+    \UCitem{Origen}
+    {
+	Teclado, Mouse
+    }
+    \UCitem{Salidas}
+    {}
+    \UCitem{Destino}
+    {}
+    \UCitem{Precondiciones}
+    {
+	El usuario eligi\'o la opci\'on de Cambiar Datos de Clientes del men\'u principal.
+    }
+    \UCitem{Postcondiciones}
+    {
+	El registro del usuario est\'a cambiado de acuerdo a lo que requer\'ia el usuario.
+    }
+    \UCitem{Errores}
+    {}
+    \UCitem{Historia de cambio}
+    {}
+    \UCitem{Observaciones}
+    {}
+    \UCitem{Estado}
+    {
+		Aprobado
+	}
+\end{UseCase}
+
+%Trayectoria Principal
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Se extiende del caso de uso \UCref{CU0} paso 11.
+    \UCpaso Se incluye el caso de uso \UCref{CU14} que muestra al usuario una lista de clientes, y
+    aqu\'i, el usuario elige un cliente a modificar.
+    \UCpaso Se muestra la pantalla \IUref{IUtodo}{Edici\'on de datos de cliente} con los datos del
+    cliente previamente seleccionado.
+    \UCpaso El usuario edita los campos que requiera a trav\'es de la pantalla mostrada.
+    \UCpaso El usuario presiona el bot\'on \IUbutton{Aceptar} para indicar que acepta los cambios
+    hechos en los datos del cliente.
+    \UCpaso El usuario es redirigido a \IUref{IUtodo}{Pantalla Principal}.
+\end{UCtrayectoria}
+% \UCpaso \UCactor \IUref \IUbutton \UCref
+
+%Trayectorias Alternativas
+%Trayectoria Alternativa
+\begin{UCtrayectoriaA}{A}{El usuario presion\'o el bot\'on de Cancelar}
+    \UCpaso El usuario es redirigido a \IUref{IUtodo}{Pantalla Principal}.
+\end{UCtrayectoriaA}
+

@@ -1,0 +1,34 @@
+\begin{UseCase}{CU4}{Buscar Medicamento}{
+		Se requiere una función que ayude en la búsqueda eficaz de medicamentos.
+	}
+		\UCitem{Versión}{\color{Gray}0.4}
+		\UCitem{Autor}{\color{Gray}Vazquez Cruz Fernando Darwin}
+		\UCitem{Supervisa}{\color{Gray}Aguilera Rosas Landa Enrique}
+		\UCitem{Actor}{\hyperlink{Alumno}{Empleado}}
+		\UCitem{Propósito}{Que el empleado pueda buscar de manera eficiente y rápida los medicamentos para brindar una mejor atención al cliente y  comprobar su disponibilidad.}
+		\UCitem{Entradas}{Nombre del medicamento y/o ingrediente activo del medicamento y/o ID del medicamento.}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{Lista con los resultados  de la búsqueda.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El medicamento debe existir.}
+		\UCitem{Postcondiciones}{}
+		\UCitem{Errores}{El medicamento no se encuentra, no hay conexión a la red.}
+		\UCitem{Tipo}{Caso de uso primario}
+		\UCitem{Observaciones}{  }
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11.
+		\UCpaso[\UCactor] Da clic en la barra de búsqueda  e Introduce Uno de los datos del Medicamento: nombre del medicamento,  ingrediente activo o ID.
+		\UCpaso Redirecciona al \UCactor a la  \IUref{IU33}{Pantalla de Resultados de búsqueda} con la lista de los posibles Medicamentos.
+		\UCpaso[\UCactor] Selecciona el medicamento deseado de la lista \Trayref{A} \label{CU4Bus}.
+		\UCpaso Despliega una pantalla donde se muestran los datos del Medicamento seleccionado.
+	\end{UCtrayectoria}		
+%--------------------------------------
+		\begin{UCtrayectoriaA}{A}{El Medicamento No existe}
+			\UCpaso[\UCactor] El Empleado busca el Medicamento en la lista y no encuentra.
+			\UCpaso[\UCactor] El emplado regresa a la pantalla principal de Medicamentos.
+			\UCpaso Continua en el paso \ref{CU4Bus} del \UCref{CU4}.
+		\end{UCtrayectoriaA}
+	

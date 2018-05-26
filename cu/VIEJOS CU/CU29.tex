@@ -1,0 +1,41 @@
+\begin{UseCase}{CU29}{Dar de baja paquete de descuento}{
+		Se requiere dar de baja un paquete de descuentos por diversos motivos
+	}
+		\UCitem{Versión}{\color{Gray}0.2}
+		\UCitem{Autor}{\color{Gray}Vázquez Cruz Fernando Darwin }
+		\UCitem{Supervisa}{\color{Gray}Rosas Landa Enrique Aguilera.}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
+		\UCitem{Propósito}{Que el Dueño pueda dar de baja un paquete de descuentos de manera fácil y rápida por diversos motivos como: escases de inventario, pérdida monetaria por parte de la farmacia, fin de temporada, etc.}
+		\UCitem{Entradas}{Datos del paquete de descuentos.}
+		\UCitem{Origen}{Teclado, Mouse}
+		\UCitem{Salidas}{Mensaje de confirmación de baja.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El paquete debe de existir.}
+		\UCitem{Postcondiciones}{Se eliminara el paquete de descuentos.}
+		\UCitem{Errores}{El paquete no puede ser eliminado, el paquete no se encuentra.}
+		\UCitem{Tipo}{Caso de uso primario.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso[\UCactor] Ve los paquetes activos presionando el botón\ Ibutton {+ paquetes } .
+		\UCpaso[\UCactor] Selecciona el Paquete de descuento que se desea eliminar. \Trayref{A}
+		\UCpaso Despliega opciones para el paquete seleccionado.
+		\UCpaso [\UCactor] Da clic en el botón.\IUbutton{Eliminar}.
+		\ UCpaso Despliega una pantalla de confirmación.
+		\UCpaso[\UCactor] Confirma la operación presionando el botón \IUbutton{Aceptar}.
+		\UCpaso Guarda los cambios realizados y actusliza la lista de paquetes de descuento.
+		\UCpaso Re-direcciona al \ UCactor a la   \IUref{IU34} {Pantalla Principal de dueño}.
+	
+	\end{UCtrayectoria}
+
+
+		\begin{UCtrayectoriaA}{A}{El Paquete de descuento no existe}
+			\UCpaso[\UCactor] El Dueño busca el Paquete de descuento a seleccionar y no lo encuentra.
+			\UCpaso[\UCactor] El Dueño regresa a la pantalla principal de Paquetes.
+			\UCpaso Continua en el paso \ref{CU29Principal} del \UCref{CU29}.
+		\end{UCtrayectoriaA}
+
+%--------------------------------------

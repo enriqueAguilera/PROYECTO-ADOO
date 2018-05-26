@@ -1,0 +1,75 @@
+\begin{UseCase}{CU36}{Recuperar Contrase\~na}
+{
+    Los empleados pueden no recordar su contrase\~na y requieren cambiarla.
+}
+    \UCitem{Versión}
+    {
+	\color{Gray} 0.1
+    }
+    \UCitem{Autor}
+    {
+	\color{Gray} Miguel \'Angel Mart\'inez Quevedo
+    }
+    \UCitem{Supervisa}
+    {
+	\color{Gray}
+    }
+    \UCitem{Actor}
+    {
+	Empleado
+    }
+    \UCitem{Propósito}
+    {
+	Que el empleado pueda acceder a su cuenta dado que ha olvidado su contrase\~na
+    }
+    \UCitem{Entradas}
+    {
+	Nombre de usuario del empleado
+    }
+    \UCitem{Origen}
+    {
+	Teclado
+    }
+    \UCitem{Salidas}
+    {}
+    \UCitem{Destino}
+    {}
+    \UCitem{Precondiciones}
+    {
+	El usuario ha requerido recuperar su contrase\~na
+    }
+    \UCitem{Postcondiciones}
+    {
+	El supervisor es notificado de la solicitud de recuperaci\'on de contrase\~na
+    }
+    \UCitem{Errores}
+    {}
+    \UCitem{Historia de cambio}
+    {}
+    \UCitem{Observaciones}
+    {}
+    \UCitem{Estado}
+    {}
+\end{UseCase}
+
+%Trayectoria Principal
+\begin{UCtrayectoria}{Principal}
+    \UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+    \UCpaso Se muestra la pantalla \IUref{IUtodo}{Confirmaci\'on Recuperaci\'on de Contrase\~na} en
+    donde el usuario es comunicado que en caso de aceptar, se enviar\'a una notificaci\'on al
+    Supervisor.
+    \UCpaso El usuario da click en el bot\'on \IUbutton{Aceptar}.
+    \UCpaso Se env\'ia una notificaci\'on de la solicitud de recuperaci\'on de contrase\~na al
+    Supervisor correspondiente. 
+    \UCpaso Se notifica al usuario del \'exito de la notificaci\'on al Supervisor.
+    \UCpaso Se redirige al usuario a la pantalla \IUref{IUtodo}{Men\'u Principal}
+\end{UCtrayectoria}
+% \UCpaso \UCactor \IUref \IUbutton \UCref
+
+%Trayectorias Alternativas
+%Trayectoria Alternativa
+\begin{UCtrayectoriaA}{A}{El usuario cancel\'o la operaci\'on}
+    \UCpaso El usuario presiona el bot\'on IUbutton{Cancelar}.
+    \UCpaso Se redirige al usuario a la pantalla \IUref{IUtodo}{Men\'u Principal}
+\end{UCtrayectoriaA}
+

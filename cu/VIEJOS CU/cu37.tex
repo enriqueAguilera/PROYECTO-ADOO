@@ -1,0 +1,41 @@
+\begin{UseCase}{CU37}{Registrar medicamentos del proveedor}{
+		El registro de medicamentos es necesario ya que pueden salir nuevos productos al mercado o se hacen los acuerdos necesarios para vender dicho producto que aun no este registrado.
+	}
+		\UCitem{Versión}{\color{Gray}0.1.1}
+		\UCitem{Autor}{\color{Gray}Zapata Jasso José Rodolfo}
+		\UCitem{Supervisa}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Actor}{\hyperlink{Alumno}{Empleado}}
+		\UCitem{Propósito}{Registro de medicamentos que aun no estan a la venta.}
+		\UCitem{Entradas}{Datos del medicamento, Cantidad, Datos del Proveedor}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{Ticket de Compra.}
+		\UCitem{Destino}{Base de datos}
+		\UCitem{Precondiciones}{El medicamento no debera estar registrado con anterioridad.}
+		\UCitem{Postcondiciones}{El medicamento quedara registrado como nuevo medicamento.}
+		\UCitem{Errores}{Exista un problema con la luz de la sucursal y el sistema no este operable.}
+		\UCitem{Tipo}{Caso de uso primario}
+		\UCitem{Observaciones}{...}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso Despliega la \IUref{IU32}{Pantalla Principal} con las opciones disponibles.\label{CU3Principal}.
+		\UCpaso [\UCactor]  Selecciona la opción \IUbutton{Registrar medicamento} 
+		\UCpaso Despliega una pantalla donde se registraran los nuevos medicamentos para su posterior venta
+		\UCpaso [\UCactor]Ingresa los datos del medicamento: Nombre, tipo, fecha de caducidad, etc 	
+		\UCpaso [\UCactor]Selecciona el boton \IUbutton{Aceptar} \Trayref{A} \label{DnI1}
+		\UCpaso Despliega una confirmación del usuario
+		\UCpaso[\UCactor] Selecciona el boton \IUbutton{Aceptar}
+		\UCpaso Guarda y actualiza  el inventario de la lista de medicamentos.
+		\UCpaso Redirecciona al \UCactor a la  \IUref{IU32}{Pantalla Principal}. 
+	\end{UCtrayectoria}
+
+%-------------------------------------- 
+		 \begin{UCtrayectoriaA}{A}{Datos principales no ingresados}
+			\UCpaso Muestra el Mensaje {\bf MSG6-}`` [{\em Datos no ingresados}] No se ingresaron datos necesarios del medicamento.''.
+			\UCpaso   Muestra la pantalla de llenado para ingresar los datos faltantes.
+			\UCpaso Continua en el paso \ref{DnI1} del \UCref{CU37}.
+		\end{UCtrayectoriaA}
+
+

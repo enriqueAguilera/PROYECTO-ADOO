@@ -1,0 +1,46 @@
+\begin{UseCase}{CU13}{Hacer una devolución al cliente}{
+	El medicamento que se vendió esta en mal estado, con envase violado, o se olvido dar de baja cuando se caduco.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Supervisa}{\color{Gray}Alejandro Bravo}
+		\UCitem{Actor}{Empleado}
+		\UCitem{Propósito}{Que no exista una desconformidad de parte del cliente o en el peor de los casos que se haga una demanda}
+		\UCitem{Entradas}{número de tarjeta del cliente o su nombre}
+		\UCitem{Origen}{Teclado y mouse}
+		\UCitem{Salidas}{no aplica}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El cliente que pide devolución debe estar registrado en el sistema con anticipación}
+		\UCitem{Postcondiciones}{El cliente tendrá más crédito en su tarjeta, o se le entregara un nuevo medicamento}
+		\UCitem{Errores}{Que el cliente no este registrado,que no se tenga conexión a Internet, que el medicamento no tenga motivo para hacer una devolución}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso La trayectoria se Extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso incluye el caso de uso 'Listar cliente' \UCref{CU14}.
+		\UCpaso [\UCactor] busca al cliente en la lista utilizando la barra de búsqueda, donde introduce el número de tarjeta del cliente para localizarlo.\Trayref{A}	\Trayref{B}
+		\UCpaso Realiza un filtrado del identificador introducido por [\UCactor] Mostrando los resultados obtenidos.
+		\UCpaso[\UCactor] Selecciona al Cliente que quiere la devolución haciendo click al botón \IUbutton{Devolución} en la columna de opciones en la fila del cliente.
+		\UCpaso Muestra las opciones de operación de devolución que son \IUbutton{Usar crédito} y 
+		\IUbutton{Dar crédito}
+		\UCpaso [\UCactor] Da click en el botón \IUbutton{Dar crédito} que extiende al caso de uso 'Darle un crédito a un cliente'\UCref{CU12}
+		o el \UCactor Da click en el botón \IUbutton{Usar crédito} que extiende al caso de uso 'Aplicar crédito del cliente' \UCref{CU10}
+		\UCpaso regresa al empleado a la pantalla principal \IUref{IU32}{Pantalla principal}
+		
+	\end{UCtrayectoria}
+
+%----------------------------------------------------Alternativa A
+\begin{UCtrayectoriaA}{A}{El cliente no esta registrado}
+			\UCpaso No se puede hacer la operación de devolución.
+			\UCpaso fin del caso de uso.
+		\end{UCtrayectoriaA}	
+%----------------------------------------------------Alternativa B
+\begin{UCtrayectoriaA}{B}{El Cliente perdió su tarjeta}
+			\UCpaso [\UCactor] trata de Buscar al cliente en la lista de clientes mediante su nombre.\Trayref{A}
+			\UCpaso Regresa al paso 4 de \UCref{CU13}.
+		\end{UCtrayectoriaA}				
+%-------------------------------------- TERMINA descripción del caso de uso 13.
+
+

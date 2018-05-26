@@ -1,0 +1,54 @@
+\begin{UseCase}{CU19}{Registrar datos de un cliente}{
+	Se propone al cliente registrarse para que pueda obtener descuentos y 
+	devoluciones sin problemas
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Supervisa}{\color{Gray}Alejandro Bravo}
+		\UCitem{Actor}{Supervisor}
+		\UCitem{Propósito}{identificar a clientes frecuentes y proporcionar créditos}
+		\UCitem{Entradas}{todos los datos señalados en en el Formulario \IUref{IU05}{Formulario registrar clientes}}
+		\UCitem{Origen}{Teclado y mouse}
+		\UCitem{Salidas}{nuevo cliente registrado}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Se deben tener almenos una 'Tarjeta de cliente' física para que se le entregue al cliente,que el cliente proporcione sus datos}
+		\UCitem{Postcondiciones}{el sistema tendrá a un cliente mas registrado}
+		\UCitem{Errores}{Que no se tenga una 'Tarjeta de Cliente' para entregar al cliente, que se corte la conexión a Internet,que el identificador de la 'Tarjeta de cliente' este duplicada,que el cliente no proporcione sus datos.} 
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso La trayectoria se Extiende del caso de uso 'Control de acceso'\UCref{CU0} paso 11.
+		\UCpaso [\UCactor] Presiona el botón \IUbutton{Registrar cliente}
+		\UCpaso Muestra el formulario \IUref{IU05}{Formulario registrar clientes} 	
+		\UCpaso[\UCactor] llena los campos del formulario con los datos proporcionados por el cliente y el identificador de la 'Tarjeta de cliente' y guarda los datos oprimiendo el botón \IUbutton{Guardar}.
+		\UCpaso Valida los campos del formulario \IUref{IU05}{Formulario registrar clientes}\Trayref{A}\Trayref{B}\Trayref{C}
+		\UCpaso Muestra el mensaje {\bf MSG20-}`` [{\em Se ha Registrado al cliente con exito }] Entregue la 'Tarjeta de cliente' al cliente correspondiente..''
+		\UCpaso [\UCactor] presiona el botón \IUbutton{Aceptar}.
+		\UCpaso regresa al empleado a la pantalla principal \IUref{IU32}{Pantalla principal}
+		
+	\end{UCtrayectoria}
+
+%----------------------------------------------------Alternativa A
+\begin{UCtrayectoriaA}{A}{No todos los campos obligatorios están llenos}
+			\UCpaso Muestra el mensaje {\bf MSG12-}`` [{\em algún campo obligatorio esta vacio}]Asegurarse que por lo menos los datos obligatorios estén llenos .''
+			\UCpaso [\UCactor] presiona el botón \IUbutton{OK}
+			\UCpaso manda al \UCactor al paso 4 del \UCref{CU19}
+		\end{UCtrayectoriaA}	
+%----------------------------------------------------Alternativa B
+\begin{UCtrayectoriaA}{B}{El identificador de la tarjeta ya esta registrado}
+			\UCpaso Muestra el mensaje {\bf MSG8-}`` [{\em El número de tarjeta introducido ya esta registrado}]Asegurarse de entregar una tarjeta con identificador único.''
+			\UCpaso [\UCactor] presiona el botón \IUbutton{Cancelar}
+			\UCpaso Regresa al paso 4 de \UCref{CU19}.
+		\end{UCtrayectoriaA}
+		
+%----------------------------------------------------Alternativa C
+\begin{UCtrayectoriaA}{B}{El Empleado cancela la operación }
+			\UCpaso [\UCactor] presiona el botón \IUbutton{Cancelar}
+			\UCpaso Regresa al paso 1 de \UCref{CU19}.
+		\end{UCtrayectoriaA}							
+						
+%-------------------------------------- TERMINA descripción del caso de uso 19.
+
+

@@ -1,0 +1,27 @@
+\begin{UseCase}{CU32}{Listar supervisores}{
+		Se requiere que el dueño pueda ver de manera fácil y organizada a todo su personal encargado.
+	}
+		\UCitem{Versión}{\color{Gray}0.2}
+		\UCitem{Autor}{\color{Gray}Vázquez Cruz Fernando Darwin }
+		\UCitem{Supervisa}{\color{Gray}Rosas Landa Enrique Aguilera}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
+		\UCitem{Propósito}{Muestra una lista con todos los supervisores para una rápida gestión de los mismos, así como para aplicar cambios en sus funciones dentro de la farmacia de ser necesario.}
+		\UCitem{Entradas}{}
+		\UCitem{Origen}{Teclado, Mouse}
+		\UCitem{Salidas}{Lista de supervisores}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Debe existir mínimo un supervisor registrado en el sistema}
+		\UCitem{Postcondiciones}{}
+		\UCitem{Errores}{}
+		\UCitem{Tipo}{Caso de uso primario}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso[\UCactor]Ve la lista de supervisores presionando el botón\ Ibutton {+ supervisores } .
+		\UCpaso Despliega una tabla con todos los supervisores según la \ IUref {IU44} {Lista de supervisores}.
+		\UCpaso [ \ UCactor ] Realiza acciones en esta pantalla.
+		\UCpaso[\UCactor] Regresa a la a la \ IUref {IU34} {Pantalla Principal de dueño}.
+	\end{UCtrayectoria}

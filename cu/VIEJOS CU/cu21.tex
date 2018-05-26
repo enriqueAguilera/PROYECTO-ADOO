@@ -1,0 +1,60 @@
+\begin{UseCase}{CU21}{Solicitar Reporte de venta}{
+	para tener un mejor control del inventario y del progreso de la empresa,
+	se crea un reporte de ventas diario o mensual según lo necesite el supervisor que le entrega los datos al dueño, pero si el dueño quiere solicitar reportes también lo puede hacer sin problemas.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Supervisa}{\color{Gray}Alejandro Bravo}
+		\UCitem{Actor}{Supervisor,Dueño}
+		\UCitem{Propósito}{Conocer la dirección general de la empresa}
+		\UCitem{Entradas}{Lo requerido ya lo tiene el sistema}
+		\UCitem{Origen}{Teclado y mouse}
+		\UCitem{Salidas}{Reportes por mes o por día}
+		\UCitem{Destino}{Pantalla,Impresora}
+		\UCitem{Precondiciones}{Se deben tener al menos un día desde que se empezó a utilizar el sistema,la computadora debe estar conectada a una impresora}
+		\UCitem{Postcondiciones}{El sistema guardara un registro más ya sea por mes o por día}
+		\UCitem{Errores}{Que no se tenga ni un día pasado desde que se Utiliza el sistema,que no se tenga conexión a Internet y que la impresora no este conectada} 
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso La trayectoria se Extiende del caso de uso 'Control de acceso'\UCref{CU0} paso 11.
+		\UCpaso [\UCactor] Presiona el botón \IUbutton{solicitar Registros}
+		\UCpaso Verifica el día que se instalo el sistema y verifica que ya haya pasado al menos un día \Trayref{A}
+		\UCpaso Muestra la pantalla \IUref{IU9}{Pantalla de reportes}
+		\UCpaso[\UCactor] presiona el botón \IUbutton{Reporte de ayer} o presiona el botón\IUbutton{Reporte del mes pasado}\Trayref{B}
+		\UCpaso Desglosa las ventas de ayer o del mes pasado, según sea la elección del supervisor o dueño.Desglosa las ventas en una nueva pantalla donde muestra el documento en formato pdf.\Trayref{C}
+		\UCpaso [\UCactor] presiona el botón \IUbutton{Imprimir reporte}
+		\UCpaso Verifica que la impresora este conectada.\Trayref{D}
+		\UCpaso Muestra el mensaje {\bf MSG12-}`` [{\em El documento ha sido impreso}]Recoja la Impresión de la impresora.''.
+		\UCpaso manda al \UCactor a la pantalla principal de dueño o de supervisor
+		según sea el caso \IUref{IU33}{Pantalla principal se supervisor} o\IUref{IU34}{Pantalla principal de dueño}
+		
+	\end{UCtrayectoria}
+
+%----------------------------------------------------Alternativa A
+\begin{UCtrayectoriaA}{A}{No ha pasado ni un día desde que se utiliza el sistema}
+			\UCpaso Muestra el mensaje {\bf MSG12-}`` [{\em No hay ningún reporte por generar}]Asegurarse que por lo menos haya pasado un día desde la instalación.''
+			\UCpaso [\UCactor] presiona el botón \IUbutton{OK}
+			\UCpaso manda al \UCactor al paso 1 del \UCref{CU21}
+		\end{UCtrayectoriaA}	
+%----------------------------------------------------Alternativa B
+\begin{UCtrayectoriaA}{B}{El Dueño o supervisor cancela la operación}
+			\UCpaso [\UCactor] presiona el botón \IUbutton{Cancelar}
+			\UCpaso Regresa al paso 1 de \UCref{CU21}.
+		\end{UCtrayectoriaA}
+		
+%----------------------------------------------------Alternativa C
+\begin{UCtrayectoriaA}{C}{La nueva página con el formato .pdf no carga correctamente}
+			\UCpaso Muestra el mensaje {\bf MSG8-}`` [{\em Ha ocurrido un erro al intentar generar el pdf}]Por favor vuelva a intentarlo.''
+			\UCpaso Regresa al paso 1 de \UCref{CU19}.
+		\end{UCtrayectoriaA}							
+%----------------------------------------------------Alternativa D
+\begin{UCtrayectoriaA}{D}{La impresora no esta conectada}
+			\UCpaso Muestra el mensaje {\bf MSG8-}`` [{\em No hay ningun dispositivo de impresión conectado.}]Por favor conecte la impresora con cable USB o establezca una conexión vía bluetooth .''
+			\UCpaso Regresa al paso 6 de \UCref{CU19}.
+		\end{UCtrayectoriaA}			
+%-------------------------------------- TERMINA descripción del caso de uso 19.
+
+

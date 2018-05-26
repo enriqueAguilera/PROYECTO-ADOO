@@ -1,0 +1,41 @@
+\begin{UseCase}{CU1}{Agregar Medicamentos}{
+		Cada que llega un nuevo medicamento es necesario registrarlo en el
+		sistema.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Supervisa}{\color{Gray}Vázquez Cruz Darwin Fernando.}
+		\UCitem{Actor}{Dueño}
+		\UCitem{Propósito}{Que cualquier medicamento que se venda en la farmacia este registrado en el sistema,lo cual facilitara su venta}
+		\UCitem{Entradas}{Todos los datos señalados en el formulario \IUref{IU100}{Formulario}}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{El Nuevo medicamento mostrado en la pantalla principal \IUref{IU32}{Pantalla Principal}}
+		\UCitem{Destino}{Pantalla principal}
+		\UCitem{Precondiciones}{El medicamento no debe existir en el sistema y tiene que existir en el almacen de la farmacia.}
+		\UCitem{Postcondiciones}{El medicamento quedara registrado en el sistema.}
+		\UCitem{Errores}{Que se corte el internet cuando se esta registrando un nuevo medicamento,que el empleado meta datos equivocados,que el medicamento no exista en el almacen de la farmacia,que el medicamento ya exista en el sistema.}
+		\UCitem{Historia de cambio}{se cambio los primeros tres pasos y la trayectoria alternativa A}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso Despliega la \IUref{IU34}{Pantalla Principal de dueño} con la lista de Medicamentos Disponibles.
+		\UCpaso[\UCactor] Agrega un nuevo medicamento oprimiendo el boton\IUbutton{+agregar}
+
+		\UCpaso Genera y despliega El formulario \IUref{IU100}{Formulario}.
+		\UCpaso [\UCactor]llena los datos del Formulario \IUref{IU100}{Formulario}.
+		\UCpaso[\UCactor] Confirma la operación presionando el botón \IUbutton{Guardar} 
+		\UCpaso Verifica que todos los campos del Medicamento  sean llenados correctamente\Trayref{B}.
+		\UCpaso Guarda El nuevo Medicamento en el sistema
+		\UCpaso Re-direcciona al \UCactor a la  \IUref{IU34}{Pantalla Principal de dueño} 
+		
+	\end{UCtrayectoria}
+
+%-----------------------------------------------------------------------------
+		\begin{UCtrayectoriaA}{C}{Algun campo del Medicamento no fué llenado.}
+			\UCpaso Muestra el Mensaje {\bf MSG3-}`` [{\em Todos los campos son obligatorios}] revisa que los campos sean llenados correctamente.''.
+			\UCpaso Continúa en el paso 4 del \UCref{CU1}.
+		\end{UCtrayectoriaA}
+

@@ -1,0 +1,40 @@
+\begin{UseCase}{CU9}{Cambiar Datos de Sucursal}{
+		El Dueño podrá cambiar los datos de la sucursal en caso de que lo necesite.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Supervisa}{\color{Gray}Alejandro Bravo}
+		\UCitem{Actor}{Dueño}
+		\UCitem{Propósito}{Hacer cambios al registro de una sucursal en caso de que se cometa un error al registrar los datos de la sucursal.}
+		\UCitem{Entradas}{Nombre de la sucursal con datos a modificar}
+		\UCitem{Origen}{Teclado y mouse}
+		\UCitem{Salidas}{La sucursal con diferentes datos.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{La sucursal debe estar registrada y se deben tener permisos de dueño.}
+		\UCitem{Postcondiciones}{La sucursal tendrá los datos correctos.}
+		\UCitem{Errores}{Que la sucursal no este registrada,que el usuario no tenga los permisos requeridos,que no haya conexión a Internet, o la misma sea interrumpida.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso La trayectoria se Extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso Incluye al Caso de Uso Listar Sucursales \UCref{CU24}.
+		\UCpaso[\UCactor] Busca la sucursal entre la lista de sucursales ya sea recorriendo la o buscando la por su nombre usando la barra de búsqueda.
+		\UCpaso Realiza un filtrado con el nombre introducido por el Dueño, y Muestra la/las sucursales filtradas \Trayref{A}
+		\UCpaso[\UCactor] Selecciona la sucursal que busca haciendo click al botón \IUbutton{boton con forma de lápiz} que se encuentra en la misma fila en la columna de opciones.
+		\UCpaso Muestra la pantalla del formulario de sucursal con los datos de la sucursal seleccionada ya llenados.
+		\UCpaso [\UCactor] Modifica los datos que necesiten ser modificados.
+		\UCpaso [\UCactor] Oprime el botón \IUbutton{Guardar}.
+		\UCpaso Guarda la nueva información en la base de datos, sobre-escribiendo los datos ya existentes.
+	\end{UCtrayectoria}
+
+%----------------------------------------------------Alternativa A
+\begin{UCtrayectoriaA}{A}{La sucursal buscada no existe}
+			\UCpaso No muestra ninguna sucursal.
+			\UCpaso Fin de caso de uso.
+		\end{UCtrayectoriaA}
+		
+%-------------------------------------- TERMINA descripción del caso de uso 9.
+
+

@@ -1,0 +1,44 @@
+\begin{UseCase}{CU16}{Dar de baja Clientes}{
+	El empleado podrá Borrar el registro de un cliente si así lo desea el cliente.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Autor}{\color{Gray}Correa Medina Carlos Miguel}
+		\UCitem{Supervisa}{\color{Gray}Alejandro Bravo}
+		\UCitem{Actor}{Empleado}
+		\UCitem{Propósito}{quitar registro de clientes inconformes.
+		No perder clientes}
+		\UCitem{Entradas}{nombre o identificador del cliente}
+		\UCitem{Origen}{Teclado y mouse}
+		\UCitem{Salidas}{Mensaje de confirmación}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El cliente debe estar registrado en el sistema.y se debe tener permiso de empleado}
+		\UCitem{Postcondiciones}{Cliente contento y un registro menos en el sistema.}
+		\UCitem{Errores}{Que el usuario no este registrado,que el usuario no tenga los permisos requeridos,que no haya conexión a Internet, o la misma sea interrumpida.}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso La trayectoria se Extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso El caso de uso Incluye a listar clientes \UCref{CU14}. 
+		\UCpaso [\UCactor] busca al ciente en la lista utilizando la barra de búsqueda, donde introduce su nombre o identificador.		
+		\UCpaso Realiza un filtrado con el nombre introducido por el empleado, y Muestra a o los clientes filtrados \Trayref{A}
+		\UCpaso[\UCactor] Selecciona al cliente que busca haciendo click al botón \IUbutton{boton con forma de tache} que se encuentra en la misma fila en la columna de opciones.
+		\UCpaso Muestra El mensaje de confirmación de operación
+		\UCpaso [\UCactor] Da click en el boton \IUbutton{aceptar}\Trayref{B}
+		\UCpaso Elimina el registro del cliente.
+	\end{UCtrayectoria}
+
+%----------------------------------------------------Alternativa A
+\begin{UCtrayectoriaA}{B}{El cliente buscado no existe}
+			\UCpaso No muestra ningún cliente.
+			\UCpaso Fin de caso de uso.
+		\end{UCtrayectoriaA}
+%----------------------------------------------------Alternativa B
+\begin{UCtrayectoriaA}{B}{El empleado cancela la operación}
+			\UCpaso No se altera ningún registro.
+			\UCpaso Fin de caso de uso.
+		\end{UCtrayectoriaA}		
+%-------------------------------------- TERMINA descripción del caso de uso 9.
+
+
