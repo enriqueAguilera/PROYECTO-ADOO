@@ -1,0 +1,38 @@
+\begin{UseCase}{CU7}{Activar estado de Empleado}{
+		Por razones laborales, a algunos empleados se les reactivara una cuenta suspendida para que puedan trabajar en el sistema de nuevo
+	}
+		\UCitem{Versión}{\color{Gray}0.1.2}
+		\UCitem{Autor}{\color{Gray}Aguilera Rosas Landa Enrique}
+		\UCitem{Supervisa}{\color{Gray}}
+		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
+		\UCitem{Propósito}{Que el empleado tenga acceso al sistema.}
+		\UCitem{Entradas}{Nombre del Empleado, Id de Empleado}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{No Aplica.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El empleado debe de estar registrado en el sistema y con un estado desactivado.}
+		\UCitem{Postcondiciones}{El empleado ganará su acceso al sistema y su estado cambiara a activado .}
+		\UCitem{Errores}{La pagina sea inaccesible por el momento debido a fallas con los servidores, Que el empleado tenga su cuenta activada}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{En revisión}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso[\UCactor] Selecciona La opción de ver Lista de  Empleados presionando el botón \IUbutton{Ver Lista de Empleado}.
+		\UCpaso Incluye el caso de uso \UCref{CU5}.
+		\UCpaso[\UCactor] Introduce el Nombre del empleado a buscar en el campo de Búsqueda  .
+		\UCpaso Genera y Despliega una lista que coincida con la búsqueda realizada.\Trayref{A}
+		\UCpaso[\UCactor] Presiona el botón\IUbutton{Activar Cuenta} del empleado seleccionado.
+		\UCpaso Genera y despliega una ventana emergente para confirmar la operación de Activar la cuenta seleccionada.
+		\UCpaso [\UCactor] Confirma la operación presionando el \IUbutton{Aceptar}
+		\UCpaso Redirige al [\UCactor] a la  \IUref{01}{Pantalla Principal de Dueño}.
+	\end{UCtrayectoria}
+
+
+%-------------------------------------------------------------------------
+\begin{UCtrayectoriaA}{A}{Empleado no encontrado.}
+			\UCpaso Muestra el Mensaje {\bf MSG8-}`` [{\em Empleado no encontrado}] revisa que los campos sean llenados correctamente.''.
+			\UCpaso Continúa en el paso 4 del \UCref{CU4}.
+		\end{UCtrayectoriaA}
+%-------------------------------------------------------------------------

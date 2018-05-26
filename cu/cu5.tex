@@ -1,0 +1,35 @@
+\begin{UseCase}{CU5}{Listar Empleados y sus Datos}{
+		La farmacia consta con múltiples empleados y para poder checar los datos de todos los empleados, la opción mas eficaz es hacer un listado con los empleados y sus datos correspondientes
+	}
+		\UCitem{Versión}{\color{Gray}0.1.2}
+		\UCitem{Autor}{\color{Gray}Aguilera Rosas Landa Enrique}
+		\UCitem{Supervisa}{\color{Gray}}
+		\UCitem{Actor}{Dueño}
+		\UCitem{Propósito}{Control rápido sobre el manejo de los datos de los empleados.}
+		\UCitem{Entradas}{Nombre del Empleado, Id de Empleado}
+		\UCitem{Origen}{Teclado}
+		\UCitem{Salidas}{No Aplica.}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{El empleado debe de estar registrado en el sistema.}
+		\UCitem{Postcondiciones}{El dueño checara la lista de los empleados y sus respectivos datos .}
+		\UCitem{Errores}{La pagina sea inaccesible por el momento debido a fallas con los servidores, Que el empleado tenga su cuenta no este registrado}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{En revisión}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso[\UCactor] Selecciona La opción de ver Lista de  Empleados presionando el botón \IUbutton{Ver Lista de Empleado}.
+		\UCpaso[\UCactor] Introduce el Nombre del empleado a buscar en el campo de Búsqueda.
+		\UCpaso Genera y Despliega una lista que coincida con la búsqueda realizada. \Trayref{A} 
+		\UCpaso [\UCactor]Realiza las acciones necesarias y  Confirma la operación presionando el \IUbutton{Aceptar}
+		\UCpaso Redirige al [\UCactor] a la  \IUref{01}{Pantalla Principal de Dueño}.
+	\end{UCtrayectoria}
+
+
+%-------------------------------------------------------------------------
+\begin{UCtrayectoriaA}{A}{Empleado no encontrado.}
+			\UCpaso Muestra el Mensaje {\bf MSG8-}`` [{\em Empleado no encontrado}] revisa que los campos sean llenados correctamente.''.
+			\UCpaso Continúa en el paso 4 del \UCref{CU5}.
+		\end{UCtrayectoriaA}
+%-------------------------------------------------------------------------
