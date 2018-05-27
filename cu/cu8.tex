@@ -19,23 +19,27 @@
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}{Principal}
-		\UCpaso Se extiende del caso de uso \UCref{CU1} paso 11.
-		\UCpaso Despliega la \IUref {IU34} {Pantalla Principal de dueño}.
-		\UCpaso[\UCactor] Ve los empleados disponibles dando clic en el\Ibutton {+ empleados } .
-		\UCpaso[\UCactor] Da clic en el \Ibutton {+ agregar empleado } .
-		\UCpaso Despliega la \IUref {IU35} {Registro de empleado}.
+		\UCpaso Se incluye el caso de uso \UCref{CU1}.
+		\UCpaso Despliega la \IUref {IU1} {Pantalla Principal}.
+		\UCpaso[\UCactor] Ve los empleados disponibles dando clic en el\Ibutton {+ Empleados }.
+		\UCpaso Despliega los tipos de empleado existentes en el sistema abajo del \Ibutton {+ Empleados }.
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ Cajero } o en el \Ibutton {+ Supervisor } según el tipo de empleado a agregar.
+		\UCpaso Despliega la \IUref {IU18} {Tabla de Cajeros} o la \IUref {IU13} {Tabla de Supervisores} según el tipo de empleado a agregar.
+		\UCpaso[\UCactor] Independientemente del tipo de empleado a agregar presiona el \Ibutton {+ Nuevo }.
+		\UCpaso Despliega la \IUref {IU7} {Formulario Cajero} o la \IUref {IU2} {Formulario Supervisor} según el tipo de empleado a agregar.
 		\UCpaso [\UCactor] Llena los campos requeridos para registrar un nuevo empleado. 
-		\UCpaso[\UCactor] Da clic en el \Ibutton {+ agregar } .
-		\UCpaso Despliega una pantalla de confirmación. \Trayref{A}
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ Guardar } .
+		\UCpaso Despliega el mensaje \bf {+ MSG0}. \Trayref{A}
 		\UCpaso Guarda los datos del nuevo empleado y actualiza la lista de empleados.
-		\UCpaso Re-direcciona al \UCactor a la \IUref{IU34} {Pantalla Principal de dueño}.
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ Ok }.
+		\UCpaso Re-direcciona al \UCactor a la la \IUref {IU18} {Tabla de Cajeros} o la \IUref {IU13} {Tabla de Supervisores} según el tipo de empleado agregado.
 	\end{UCtrayectoria}
 
 
 		\begin{UCtrayectoriaA}{A}{El Empleado no puede ser agregado}
-			\UCpaso Despliega el mensaje \bf {+ MSG8 }  .
-			\UCpaso[\UCactor] El Dueño da clic en el \Ibutton {+ aceptar }.
-			\UCpaso Continua en el paso 6 del \UCref{CU8}.
+			\UCpaso Despliega el mensaje \bf {+ MSG1 }.
+			\UCpaso[\UCactor] Da clic en el \Ibutton {+ Ok }.
+			\UCpaso Continua en el paso 7 del \UCref{CU8}.
 		\end{UCtrayectoriaA}
 
 %--------------------------------------

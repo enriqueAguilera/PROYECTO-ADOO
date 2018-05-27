@@ -19,24 +19,26 @@
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}{Principal}
-		\UCpaso Se extiende del caso de uso \UCref{CU1} paso 11.
-		\UCpaso Despliega la \IUref {IU34} {Pantalla Principal de dueño}.
-		\UCpaso[\UCactor] Ve los medicamnetos disponibles dando clic en el\Ibutton {+ medicamento } .
-		\UCpaso[\UCactor] Da clic en el \Ibutton {+ agregar medicamento } .
-		\UCpaso Despliega la \IUref {IU36} {Registro de medicamento}.
+		\UCpaso Se incluye el caso de uso \UCref{CU1}.
+		\UCpaso Despliega la \IUref {IU1} {Pantalla Principal}.
+		\UCpaso[\UCactor] Ve los medicamentos disponibles dando clic en el\Ibutton {+ Medicamento } .
+		\UCpaso Despliega la \IUref {IU17} {Tabla de Medicamentos}.
+		\UCpaso[\UCactor] Presiona el \Ibutton {+ Nuevo }.
+		\UCpaso Despliega la \IUref {IU5} {Formulario Medicamento}.
 		\UCpaso [\UCactor] Llena los campos requeridos para registrar un nuevo medicamento. 
-		\UCpaso[\UCactor] Da clic en el \Ibutton {+ agregar } .
-		\UCpaso Despliega una pantalla de confirmación. \Trayref{A}
-		\UCpaso Guarda los datos del nuevo medicamento y actualiza la lista de medicamentos.
-		\UCpaso Re-direcciona al \UCactor a la \IUref{IU34} {Pantalla Principal de dueño}.
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ Guardar } .
+		\UCpaso Despliega el mensaje \bf {+ MSG0}. \Trayref{A}
+		\UCpaso Guarda los datos del nuevo empleado y actualiza la lista de empleados.
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ Ok }.
+		\UCpaso Re-direcciona al \UCactor a la \IUref {IU17} {Tabla de Medicamentos}.
 	
 	\end{UCtrayectoria}
 
 
 		\begin{UCtrayectoriaA}{A}{El Empleado no puede ser agregado}
-			\UCpaso Despliega el mensaje \bf {+ MSG10 }.
-			\UCpaso[\UCactor] El Dueño da clic en el \Ibutton {+ aceptar }.
-			\UCpaso Continua en el paso 6 del \UCref{CU10}.
+			\UCpaso Despliega el mensaje \bf {+ MSG1 }.
+			\UCpaso[\UCactor] Da clic en el \Ibutton {+ Ok }.
+			\UCpaso Continua en el paso 5 del \UCref{CU10}.
 		\end{UCtrayectoriaA}
 
 %--------------------------------------

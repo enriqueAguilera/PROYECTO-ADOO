@@ -1,4 +1,4 @@
-\begin{UseCase}{CU9}{Asignar Sucursal(es} a Supervisor{
+\begin{UseCase}{CU9}{Asignar Sucursal(es) a Supervisor.}{
 		Se requiere un método sencillo y rápido para asignar diferentes sucursales a un supervisor.
 	}
 		\UCitem{Versión}{\color{Gray}0.1}
@@ -10,7 +10,7 @@
 		\UCitem{Origen}{Teclado, Mouse}
 		\UCitem{Salidas}{Mensaje de confirmación de asignación.}
 		\UCitem{Destino}{Pantalla}
-		\UCitem{Precondiciones}{El dueño debe seleccionar la opción de supervisor en el formulario de agregar un nuevo empleado}
+		\UCitem{Precondiciones}{El dueño debe dar clic en el \Ibutton {+ Supervisor } en el paso 5 del caso de uso \UCref{CU8}.}
 		\UCitem{Postcondiciones}{Se asignará un nuevo supervisor a una o más sucursales.}
 		\UCitem{Errores}{La sucursal no puede ser asignada.}
 		\UCitem{Tipo}{Caso de uso primario.}
@@ -19,22 +19,25 @@
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}{Principal}
-		\UCpaso Se extiende del caso de uso \UCref{CU8} paso 6.
-		\UCpaso[\UCactor] En el formulario selecciona la opción supervisor en el campo tipo de empleado.
-		\UCpaso Despliega una lista de sucursales para asignar a el supervisor.
+		\UCpaso Se extiende del caso de uso \UCref{CU8} paso 5.
+		\UCpaso Despliega la \IUref {IU13} {Tabla de Supervisores}.
+		\UCpaso[\UCactor] Presiona el \Ibutton {+ Nuevo }.
+		\UCpaso Despliega la \IUref {IU2} {Formulario Supervisor}.
+		\UCpaso [\UCactor] Llena los campos requeridos para registrar un nuevo supervisor. 
 		\UCpaso [\UCactor] Da clic en las sucursales en las que se desea asignar al supervisor.
-		\UCpaso [\UCactor] Da clic en el botón.\IUbutton{agregar}.
-		\UCpaso Despliega una pantalla de confirmación. \Trayref{A}
-		\UCpaso Guarda los datos del nuevo supervisor y actualiza la lista de empleados.
-		\UCpaso Re-direcciona al \UCactor a la \IUref{IU34} {Pantalla Principal de dueño}.
+		\UCpaso [\UCactor] Da clic en el botón.\IUbutton{Guardar}.
+		\UCpaso Despliega el mensaje \bf {+ MSG0}. \Trayref{A}
+		\UCpaso Guarda los datos del nuevo empleado y actualiza la lista de empleados.
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ Ok }.
+		\UCpaso Re-direcciona al \UCactor a la \IUref {IU13} {Tabla de Supervisores}.
 	
 	\end{UCtrayectoria}
 
 
 		\begin{UCtrayectoriaA}{A}{El supervisor no puede ser asignado a una sucursal}
-			\UCpaso Despliega el mensaje \bf {+ MSG9 }  .
-			\UCpaso[\UCactor] El Dueño da clic en el \Ibutton {+ aceptar }.
-			\UCpaso Continua en el paso 4 del \UCref{CU9}.
+			\UCpaso Despliega el mensaje \bf {+ MSG1 }.
+			\UCpaso[\UCactor] Da clic en el \Ibutton {+ Ok }.
+			\UCpaso Continua en el paso 3 del \UCref{CU9}.
 		\end{UCtrayectoriaA}
 
 %--------------------------------------

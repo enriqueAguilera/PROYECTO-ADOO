@@ -19,23 +19,25 @@
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}{Principal}
-		\UCpaso Se extiende del caso de uso \UCref{CU1} paso 11.
-		\UCpaso Despliega la \IUref {IU34} {Pantalla Principal de dueño}.
-		\UCpaso[\UCactor] Ve los paquetes de descuentos disponibles dando clic en el\Ibutton {+ paquetes } .
-		\UCpaso[\UCactor] Da clic en el \Ibutton {+ agregar paquete } .
-		\UCpaso Despliega la \IUref {IU36} {Registro de paquete}.
+		\UCpaso Se incluye el caso de uso \UCref{CU1}.
+		\UCpaso Despliega la \IUref {IU1} {Pantalla Principal}.
+		\UCpaso[\UCactor] Ve los paquetes de descuentos disponibles dando clic en el\Ibutton {+ Paquetes de Descuento } .
+		\UCpaso Despliega la \IUref {IU16} {Tabla de Paquetes de Descuento}.
+		\UCpaso[\UCactor] Presiona el \Ibutton {+ Nuevo }.
+		\UCpaso Despliega la \IUref {IU4} {Formulario Paquete Descuento}.
 		\UCpaso [\UCactor] Llena los campos requeridos para registrar un nuevo paquete. 
-		\UCpaso[\UCactor] Da clic en el \Ibutton {+ agregar } .
-		\UCpaso Despliega una pantalla de confirmación. \Trayref{A}
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ Guardar } .
+		\UCpaso Despliega el mensaje \bf {+ MSG0}. \Trayref{A}
 		\UCpaso Guarda los datos del nuevo paquete y actualiza la lista de paquetes.
-		\UCpaso Re-direcciona al \UCactor a la \IUref{IU34} {Pantalla Principal de dueño}.
+		\UCpaso[\UCactor] Da clic en el \Ibutton {+ Ok }.
+		\UCpaso Re-direcciona al \UCactor a la \IUref {IU16} {Tabla de Paquetes de Descuento}.
 	\end{UCtrayectoria}
 
 
 		\begin{UCtrayectoriaA}{A}{El Paquete no puede ser agregado}
-			\UCpaso Despliega el mensaje \bf {+ MSG21 }  .
-			\UCpaso[\UCactor] El Dueño da clic en el \Ibutton {+ aceptar }.
-			\UCpaso Continua en el paso 6 del \UCref{CU14}.
+			\UCpaso Despliega el mensaje \bf {+ MSG1 }.
+			\UCpaso[\UCactor] Da clic en el \Ibutton {+ Ok }.
+			\UCpaso Continua en el paso 5 del \UCref{CU14}.
 		\end{UCtrayectoriaA}
 
 %--------------------------------------
