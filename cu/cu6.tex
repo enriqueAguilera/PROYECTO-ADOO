@@ -1,5 +1,5 @@
 \begin{UseCase}{CU6}{Reasignar Sucursales a Supervisor}{
-		Un supervisor tiene la responsabilidad de checar el funcionamiento adecuado de las sucursales y por lo tanto se le asignaran nuevas sucursales dependiendo de los movimientos operacionales de cada una
+		Un supervisor tiene la responsabilidad de checar el funcionamiento adecuado de las sucursales que le son asignadas y por lo tanto se le asignaran nuevas sucursales o se le modificaran dependiendo de los movimientos operacionales de cada una
 	}
 		\UCitem{Versión}{\color{Gray}0.1}
 		\UCitem{Autor}{\color{Gray}Aguilera Rosas Landa Enrique}
@@ -11,22 +11,22 @@
 		\UCitem{Salidas}{No Aplica.}
 		\UCitem{Destino}{Pantalla}
 		\UCitem{Precondiciones}{El supervisor debe de estar registrado en el sistema y con un estado activado.}
-		\UCitem{Postcondiciones}{ El supervisor tendrá otra sucursal diferente a la original .}
+		\UCitem{Postcondiciones}{ El supervisor por lo menos tendrá una sucursal diferente a la original .}
 		\UCitem{Errores}{La pagina sea inaccesible por el momento debido a fallas con los servidores, Que el empleado tenga su cuenta desactivada}
-		\UCitem{Observaciones}{en descripción El supervisor solo se encarga solo de las sucursales que se le asignan, {funcionamiento adecuado de las sucursales} se puede entender de que un supervisor esta acarga de todas las sucursales. postCondiciones:por lo menos una sucursal diferente, pero puede cambiar más de una sucursal. referencia a las IUX}
+		\UCitem{Observaciones}{ referencia a las IUX}
 		\UCitem{Estado}{En Corrección}
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}{Principal}
 		\UCpaso Se extiende del caso de uso \UCref{CU3} paso 8
 		\UCpaso [\UCactor] Modifica la sucursal del empleado y guarda los cambios presionando el botón\IUbutton{Aceptar y Guardar}
-		\UCpaso Redirige al [\UCactor] a la  \IUref{01}{Pantalla Principal de Dueño}.
+		\UCpaso Redirige al [\UCactor] a la  \IUref{01}{Pantalla Principal}.
 	\end{UCtrayectoria}
 
 
 %-------------------------------------------------------------------------
 \begin{UCtrayectoriaA}{A}{Empleado no encontrado.}
-			\UCpaso Muestra el Mensaje {\bf MSG8-}`` [{\em Empleado no encontrado}] revisa que los campos sean llenados correctamente.''.
+			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error en la Operación [{\em Empleado no encontrado}] revisa que los campos sean llenados correctamente.''.
 			\UCpaso Continúa en el paso 4 del \UCref{CU4}.
 		\end{UCtrayectoriaA}
 %-------------------------------------------------------------------------

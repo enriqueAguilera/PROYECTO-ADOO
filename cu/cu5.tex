@@ -1,7 +1,7 @@
 \begin{UseCase}{CU5}{Listar Empleados y sus Datos}{
 		La farmacia consta con múltiples empleados y para poder checar los datos de todos los empleados, la opción mas eficaz es hacer un listado con los empleados y sus datos correspondientes
 	}
-		\UCitem{Versión}{\color{Gray}0.1.2}
+		\UCitem{Versión}{\color{Gray}0.1.3}
 		\UCitem{Autor}{\color{Gray}Aguilera Rosas Landa Enrique}
 		\UCitem{Supervisa}{\color{Gray}Correa Medina Carlos Miguel}
 		\UCitem{Actor}{Dueño}
@@ -13,23 +13,23 @@
 		\UCitem{Precondiciones}{El empleado debe de estar registrado en el sistema.}
 		\UCitem{Postcondiciones}{El dueño checara la lista de los empleados y sus respectivos datos .}
 		\UCitem{Errores}{La pagina sea inaccesible por el momento debido a fallas con los servidores, Que el empleado tenga su cuenta no este registrado}
-		\UCitem{Observaciones}{la ultima parte del Atributo Errores del caso de uso es confusa,paso 1: no se extiende del CU0 paso 2: no hay boton {ver lista de Empleados} del paso 3 en adelante el caso de uso se torna confuso, se debe de especificar los botones de {supervisor} y {Cajero} que estan dentro del boton {Empleados} en el escritorio}
-		\UCitem{Estado}{Corrección}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Revision}
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}{Principal}
-		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
-		\UCpaso[\UCactor] Selecciona La opción de ver Lista de  Empleados presionando el botón \IUbutton{Ver Lista de Empleado}.
-		\UCpaso[\UCactor] Introduce el Nombre del empleado a buscar en el campo de Búsqueda.
+		\UCpaso Incluye el caso de uso \UCref{CU1} paso 11
+		\UCpaso[\UCactor] Selecciona La opción de ver Lista de  Empleados presionando el botón \IUbutton{Empleados}.
+		\UCpaso[\UCactor] Introduce el Nombre del empleado a buscar en el campo de Búsqueda y Presiona el \IUbutton{Buscar}.
 		\UCpaso Genera y Despliega una lista que coincida con la búsqueda realizada. \Trayref{A} 
-		\UCpaso [\UCactor]Realiza las acciones necesarias y  Confirma la operación presionando el \IUbutton{Aceptar}
-		\UCpaso Redirige al [\UCactor] a la  \IUref{01}{Pantalla Principal de Dueño}.
+		\UCpaso [\UCactor] Presiona el \IUbutton{Regresar}.
+		\UCpaso Redirige al [\UCactor] a la  \IUref{01}{Pantalla Principal}.
 	\end{UCtrayectoria}
 
 
 %-------------------------------------------------------------------------
 \begin{UCtrayectoriaA}{A}{Empleado no encontrado.}
-			\UCpaso Muestra el Mensaje {\bf MSG8-}`` [{\em Empleado no encontrado}] revisa que los campos sean llenados correctamente.''.
+			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error en la Operación [{\em Empleado no encontrado}] revisa que los campos sean llenados correctamente.''.
 			\UCpaso Continúa en el paso 4 del \UCref{CU5}.
 		\end{UCtrayectoriaA}
 %-------------------------------------------------------------------------

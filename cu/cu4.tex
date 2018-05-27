@@ -1,7 +1,7 @@
 \begin{UseCase}{CU4}{Desactivar estado de  Empleado}{
 		Por razones laborales, es mejor desactivar el estado de un empleado que eliminarlo y revocar el acceso al sistema
 	}
-		\UCitem{Versión}{\color{Gray}0.1.2}
+		\UCitem{Versión}{\color{Gray}0.1.3}
 		\UCitem{Autor}{\color{Gray}Aguilera Rosas Landa Enrique}
 		\UCitem{Supervisa}{\color{Gray}Correa Medina Carlos Miguel}
 		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
@@ -13,19 +13,18 @@
 		\UCitem{Precondiciones}{El empleado debe de estar registrado en el sistema y con un estado activo.}
 		\UCitem{Postcondiciones}{El empleado perderá su acceso al sistema y su estado cambiara a desactivado .}
 		\UCitem{Errores}{La pagina sea inaccesible por el momento debido a fallas con los servidores, Que el empleado tenga su cuenta desactivada}
-		\UCitem{Observaciones}{Destino: no aplica, paso 1: no extiende del CU0,paso2:si se incluye el CU5 este paso esta de más. paso 7: Que ventana emergente muestra? revisar #mensajes-de-bitacora y #modelo-de-interaccion slack,paso 8: boton {ok} en vez de boton {aceptar} trayectoriaAlternativa:revisar #mensajes-de-bitacora,paso 4,5: Entre estos dos pasos falta el paso donde el actor presiona el boton {buscar}}
+		\UCitem{Observaciones}{}
 		\UCitem{Estado}{En Corrección}
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}{Principal}
-		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 11
+		\UCpaso Incluye el caso de uso \UCref{CU1} paso 11
 		\UCpaso[\UCactor] Selecciona La opción de ver Lista de  Empleados presionando el botón \IUbutton{Ver Lista de Empleado}.
-		\UCpaso Incluye el caso de uso \UCref{CU5}.
-		\UCpaso[\UCactor] Introduce el Nombre del empleado a buscar en el campo de Búsqueda \Trayref{A} .
+		\UCpaso[\UCactor] Introduce el Nombre del empleado a buscar en el campo de Búsqueda y presiona el botón \IUbutton{Buscar} \Trayref{A} .
 		\UCpaso Genera y Despliega una lista que coincida con la búsqueda realizada
-		\UCpaso[\UCactor] Presiona el botón\IUbutton{Desactivar Cuenta} del empleado seleccionado.
-		\UCpaso Genera y despliega una ventana emergente para confirmar la operación de desactivar la cuenta seleccionada.
-		\UCpaso [\UCactor] Confirma la operación presionando el \IUbutton{Aceptar}
+		\UCpaso[\UCactor] Presiona el botón\IUbutton{Desactivar} del empleado seleccionado.
+		\UCpaso Genera y despliega la ventana \IUref{Confirmación Desactivar} para confirmar la operación de desactivar la cuenta seleccionada.
+		\UCpaso [\UCactor] Confirma la operación presionando el \IUbutton{Si, Desactivar}
 		\UCpaso Redirige al [\UCactor] a la  \IUref{01}{Pantalla Principal de Dueño}.
 	\end{UCtrayectoria}
 
@@ -34,7 +33,7 @@
 
 
 \begin{UCtrayectoriaA}{A}{Empleado no encontrado.}
-			\UCpaso Muestra el Mensaje {\bf MSG8-}`` [{\em Empleado no encontrado}] revisa que los campos sean llenados correctamente.''.
+			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error en la Operación [{\em Empleado no encontrado}] revisa que los campos sean llenados correctamente.''.
 			\UCpaso Continúa en el paso 4 del \UCref{CU4}.
 		\end{UCtrayectoriaA}
 %-------------------------------------------------------------------------

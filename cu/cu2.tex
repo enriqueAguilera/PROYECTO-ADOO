@@ -4,7 +4,7 @@
 		\UCitem{Versión}{\color{Gray}0.1}
 		\UCitem{Autor}{\color{Gray}Enrique Aguilera Rosas Landa}
 		\UCitem{Supervisa}{\color{Gray}Correa Medina Carlos Miguel}
-		\UCitem{Actor}{\hyperlink{Empleado}{Dueño}}
+		\UCitem{Actor}{\hyperlink{Empleado}{Supervisor, Cajero}}
 		\UCitem{Propósito}{Conceder el acceso al sistema de nuevo mediante la recuperación de la contraseña.}
 		\UCitem{Entradas}{Correo Electrónico.}
 		\UCitem{Origen}{Teclado}
@@ -14,44 +14,41 @@
 		\UCitem{Postcondiciones}{El empleado recuperara su contraseña y su acceso al sistema.}
 		\UCitem{Errores}{Que el acceso a la pagina sea incorrecto debido a razones de Errores De conexión o Mantenimiento de los Servidores, Que el usuario no este registrado en el sistema}
 
-		\UCitem{Observaciones}{¿Que es el formato xxxx@xxx.xx?, Las referencias a las patallas no son, paso 9: link a donde me lleva?,solo existe una pantalla principal, y se llama pantalla principal, pero dependiendo de los permisos que se tengan una opciones del escritorio estaran desabilitadas.los mensajes de bitacora estan en slack para que referencies esos.
-		lo démas lo veo bien.}
+		\UCitem{Observaciones}{}
 		\UCitem{Estado}{Corrección}
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}{Principal}
-		\UCpaso Se extiende del caso de uso \UCref{CU0} paso 10.
-		\UCpaso[\UCactor] Selecciona la Opción de Recuperación de contraseña dando click en el botón \IUbutton{Recuperar Contraseña}.
-
-		\UCpaso Genera y despliega la pantalla \IUref(04){Recuperación de Contraseña}
-		\UCpaso [\UCactor] Proporciona su Correo Electrónico asociado a la contraseña perdida y  Confirma la operación presionando el botón 			\IUbutton{Aceptar}.		
-		\UCpaso Verifica que el correo proporcionado cumpla con el formato XXXX@XXX.XXX \Trayref{A}
+		\UCpaso Incluye el caso de uso \UCref{CU1}.
+		\UCpaso[\UCactor] Presiona el botón \IUbutton{¿Olvidaste tu Password?}.
+		\UCpaso [\UCactor] Proporciona su Correo Electrónico asociado a la contraseña perdida y  Confirma la operación presionando el botón  \IUbutton{Aceptar}.		
+		\UCpaso Verifica que el correo proporcionado cumpla con el formato ``Ejemplo@ejemplo.com'' \Trayref{A}
 		\UCpaso Busca la cuenta asociada al correo ingresado. \Trayref{B}
 		\UCpaso Verifica que dicha cuenta este activa. \Trayref{C}.
-		\UCpaso Envía un correo electrónico al correo proporcionado; el cual contara con un link para asignar una nueva contraseña. \Trayref{D}.
-		\UCpaso Redirecciona al \UCactor a la  \IUref{IU1}{Pantalla Principal Dueño}.
+		\UCpaso Envía un correo electrónico al correo proporcionado; el cual contara con un link que lleva a la \IUref{12}{Recuperar Contraseña} para asignar una nueva contraseña. \Trayref{D}.
+		\UCpaso Redirecciona al \UCactor a la  \IUref{IU1}{Pantalla Principal}.
 	\end{UCtrayectoria}
 
 %--------------------------------------		
 	\begin{UCtrayectoriaA}{A}{El Correo no esta Correcto}
-			\UCpaso Muestra el Mensaje {\bf MSG03-}`` [{\em correo con formato incorrecto}] Introduzca un correo con el formato xxx@xx.xx .''.
+			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error en la Operación [{\em correo con formato incorrecto}] Introduzca un correo con el formato xxx@xx.xx .''.
 			\UCpaso Continúa en el paso 3 del \UCref{CU2}.
 		\end{UCtrayectoriaA}
 %----------------------------------------
 		\begin{UCtrayectoriaA}{B}{El \UCactor no esta registrado}
-			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error [{\em Usuario no Encontrado}] El usuario y/o contraseña no existen .''.
+			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error en la operación [{\em Usuario no Encontrado}] El usuario y/o contraseña no existen .''.
 			\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
 			\UCpaso[] Continua en el paso 3 del \UCref{CU2}.
 		\end{UCtrayectoriaA}		
 %--------------------------------------
 		\begin{UCtrayectoriaA}{C}{La cuenta a la que intenta acceder no esta activa}
-			\UCpaso Muestra el Mensaje {\bf MSG02-}``Error [{\em Cuenta Desactivada}] Contacta con el Dueño para resolver el problema .''.
+			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error en la operación [{\em Cuenta Desactivada}] Contacta con el Dueño para resolver el problema .''.
 			\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}
 			\UCpaso Continua en el paso 3 del \UCref{CU2}.
 		\end{UCtrayectoriaA}
 %--------------------------------------
 	\begin{UCtrayectoriaA}{D}{Correo Electrónico de recuperación de contraseña no se envió}
-			\UCpaso Muestra el Mensaje {\bf MSG04-}``Error [{\em Correo no enviado}] Revisa tu conexión y vuelve a enviar el mensaje .''.
+			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error en la operación [{\em Correo no enviado}] Revisa tu conexión y vuelve a enviar el mensaje .''.
 			\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}
 			\UCpaso Continua en el paso 7 del \UCref{CU2}.
 		\end{UCtrayectoriaA}
