@@ -9,7 +9,6 @@ Cliente: Se refiere a todas las personas físicas y morales que Compran medicame
 Cliente Preferente: Se refiere a todas aquellas personas físicas y morales que Compran medicamentos y que están registrados en el sistema, estos clientes cuentan con un monedero electrónico
 
 
-
 Dosis: Cantidad a ingerir o suministrar expresado en unidades de volumen o peso(gramos) por unidad de un Medicamento.\\
 
 Dueño: Es propietario de la farmacia y de todas sus sucursales, se encarga de la contratación de todos los Empleados, es el Empleado con mayor rango en “Fran Farmacias”.\\
@@ -26,9 +25,16 @@ Lote: Es una clave de identificación de los Medicamentos de un mismo proceso de
 
 Medicamento: Producto que sirve para curar, prevenir una enfermedad, para reducir sus efectos sobre el organismo o para aliviar un dolor físico.\\
 
+Monedero electrónico: Dinero abonado por una devolución a la cuenta del cliente preferente.\\
+
 Paquete De Descuento: Son paquetes que añade el dueño cuando se esta por caducar un medicamento, o es temporada en la que un medicamento tiene un rango de venta mayor que otros y se aprovecha para hacer un descuento de esos medicamentos, al conjunto de medicamentos que se van a poner en descuento es un: paquete de Descuento.\\
 
-Sucursal: Una extension de la farmacia donde se opera como la farmacia original.
+Presentación Del Medicamento: Es el tipo de Presentación del medicamento, los cuales son:\\
+1.-Presentación Solida: Polvos, Cápsulas, Tabletas o Comprimidos, Píldoras, Grageas, Supositorios, Óvulos\\
+2.-Presentaciones Semisolidas: Pomadas o Cremas\\
+3.-Presentaciones Liquidas: Soluciones, Jarabes, Colirios, Lociones, Linimentos, Elixir, Enemas, Inhalaciones, Aerosoles\\
+
+Sucursal: Una extensión de la farmacia donde se opera como la farmacia original.
 Esta Sucursal tiene nombre Único \\
 
 Supervisor: (es un tipo de Empleado) Es un empleado con mayor Jerarquía que Empleado pero menor que Dueño.\\
@@ -36,13 +42,510 @@ Supervisor: (es un tipo de Empleado) Es un empleado con mayor Jerarquía que Emp
 Venta: Son los datos que se guardan de una venta de medicamento realizada.\\
 
 Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar el medicamento.entre estas están: Vía Digestiva, Vía Oral, Vía Sublingual, Gastroenteritis, Vía Rectal, Vía Parental, Vía Respiratoria, Vía Tópica, Vía Oftálmica, Vía Ótica, Vía Transdérmica.\\
-
-
-Monedero electrónico: Dinero abonado por una devolución a la cuenta del cliente preferente.
-
-\section{Hechos y términos del Negocio}
+\newpage
 \section{Modelo de Dominio del problema}
+
+	El modelo del dominio del problema se muestra en la figura~\ref{fig:modeloDeDominio}, a continuación se describen cada una de las entidades y sus relaciones.
+	
+\begin{figure}[htbp!]
+	\begin{center}
+		\includegraphics[width=.9\textwidth]{images/diagramaRelacional}
+		\caption{Modelo del dominio del problema}
+		\label{fig:modeloDeDominio}
+	\end{center}
+\end{figure}
+%---------------------detalle de las entidades
+
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\newenvironment{cdtEntidad}[2]{%
+	\def \varBusinessEntityId{#2}%
+	\hypertarget{#1}{\hspace{1pt}}%
+	\newline%
+	\noindent{\includegraphics[width=\textwidth]{images/uc/classRule}}%
+	\vspace{-25pt}%
+	\subsection{Entidad: #2}%
+	\noindent\begin{longtable}{|p{.2\textwidth}| p{.15\textwidth} | p{.46\textwidth} |p{.08\textwidth} |}%
+	\hline%
+	\multicolumn{4}{|c|}{{\cellcolor{colorSecundario}\color{white}Atributos}}\\ \hline%
+	{\cellcolor{colorAgua}Nombre} &%
+	{\cellcolor{colorAgua}Tipo} &%
+	{\cellcolor{colorAgua}Descripción} &%
+	{\cellcolor{colorAgua}Requerido}%
+	\\ \hline%
+	\endhead%
+}{%
+	\end{longtable}%
+}
+
+\newcommand{\brAttr}[5]{%
+	{\bf\hypertarget{\varBusinessEntityId:#1}{#2}} & {\em{#3}} & {#4} & #5 \\\hline
+}
+
+\newcommand{\cdtEntityRelSection}{%
+	\multicolumn{4}{|c|}{{\cellcolor{colorSecundario}\color{white}Relaciones}}\\ \hline%
+	{\cellcolor{colorAgua}Tipo de relación} &%
+	{\cellcolor{colorAgua}Entidad} &%
+	\multicolumn{2}{|c|}{{\cellcolor{colorAgua}Rol}}
+	\\ \hline%
+}
+
+\newcommand{\brRelComposition}{{\color{colorPrincipal}$\Diamondblack$\hspace{-1pt}---Composición}}
+\newcommand{\brRelAgregation}{{\color{colorPrincipal}$\Diamond$\hspace{-1pt}---Agregación}}
+\newcommand{\brRelGeneralization}{{\color{colorPrincipal}$\lhd$\hspace{-1pt}---Generalización}}
+
+\newcommand{\brRel}[3]{%
+	{\em{#1}} & {\bf{#2}} & \multicolumn{2}{|l|}{#3}\\\hline
+}
+\newpage
+
+
+%- - - - - -------------------------------------------------
+\begin{cdtEntidad}{Dueño}{Dueño}
+\brAttr{ID}{ID}{int}{Número de registro utilizado para identificar al Dueño}{Sí}
+	\brAttr{nombre}{Nombre}{String}
+		{Nombre o nombres del Dueño.}{Sí}
+		
+	\brAttr{ApellidoPaterno}{Apellido Paterno}{String}
+		{Apellido Paterno del Dueño.}{Sí}
+		
+	\brAttr{ApellidoMaterno}{ApellidoMaterno}{String}
+		{Apellido Materno del Dueño.}{No}
+		
+	\brAttr{Email}{Email}{String}
+		{Correo del Dueño para enviar información Laboral y entrar al sistema junto con su Clave.}{Sí}
+		
+	\brAttr{Clave}{Clave}{String}
+		{Forma de permitir al Dueño ingresar en el sistema junto con su correo.}{Sí}
+		
+\end{cdtEntidad}
+
+%- - - - - -------------------------------------------------
+\begin{cdtEntidad}{Supervisor}{Supervisor}
+\brAttr{registro}{Registro}{int}{Número de registro utilizado para identificar al supervisor}{Sí}
+	\brAttr{nombre}{Nombre}{String}
+		{Nombre o nombres del Supervisor.}{Sí}
+		
+	\brAttr{primerApellido}{Primer apellido}{String}
+		{Apellido Paterno del Supervisor.}{Sí}
+		
+	\brAttr{segundoApellido}{Segundo apellido}{String}
+		{Apellido Materno del Supervisor.}{No}
+		
+	\brAttr{Email}{Email}{String}
+		{Correo del Empleado para enviar información Laboral y identificar al Supervisor en el sistema con sus respectivos permisos.}{Sí}
+
+	\brAttr{telefono}{Teléfono}{int}
+		{Teléfono para contactar al Supervisor.}{Sí}
+		
+	\brAttr{Contraseña}{Contraseña}{String}
+		{Forma de permitir al Supervisor ingresar en el sistema junto con su correo.}{Sí}
+		
+	\brAttr{Estado}{Estado}{TINYINT}
+		{Estado del supervisor, puede estar activado o desactivado (un tipo de dato TINYINT representa un carácter , por razones de eficiencia se utiliza este tipo de dato en vez de un booleano).}{Sí}	
+	
+	\brAttr{Sucursal}{Sucursal}{Sucursal}
+		{Sucursal de la que esta a cargo el supervisor.}{Sí}
+
+		\cdtEntityRelSection
+	\brRel{\brRelAgregation}{Sucursal}{El Supervisor Es un tipo especializado de Empleado}
+\end{cdtEntidad}
+
+
+
+%- - - - - -------------------------------------------------
+\begin{cdtEntidad}{Cajero}{Cajero}
+\brAttr{ID}{ID}{int}{Número de registro utilizado para identificar al Cajero}{Sí}
+	\brAttr{nombre}{Nombre}{String}
+		{Nombre o nombres del Cajero.}{Sí}
+		
+	\brAttr{ApellidoPaterno}{Apellido Paterno}{String}
+		{Apellido Paterno del Cajero.}{Sí}
+		
+	\brAttr{ApellidoMaterno}{ApellidoMaterno}{String}
+		{Apellido Materno del Cajero.}{No}
+		
+	\brAttr{Salaro}{Salariol}{Float}
+		{Salario a que cobra el cajero.}{Sí}
+		
+	\brAttr{telefono}{Teléfono}{String}
+		{Teléfono para contactar al Cajero.}{Sí}
+		
+	\brAttr{Email}{Email}{String}
+		{Correo del Cajero para enviar información Laboral y entrar al sistema junto con su Clave.}{Sí}
+		
+	\brAttr{Clave}{Clave}{String}
+		{Forma de permitir al Cajero ingresar en el sistema junto con su correo.}{Sí}
+	
+	\brAttr{Estado}{Estado}{TINYINT}
+		{Estado del cajero, puede estar activado o desactivado (un tipo de dato TINYINT representa un carácter , por razones de eficiencia se utiliza este tipo de dato en vez de un booleano).}{Sí}	
+	
+	\brAttr{Sucursal}{Sucursal}{Sucursal}
+		{Sucursal de la que esta a cargo el supervisor.}{Sí}
+
+		\cdtEntityRelSection
+	\brRel{\brRelAgregation}{Sucursal}{El cajero Es un tipo de Empleado}
+\end{cdtEntidad}
+
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\begin{cdtEntidad}{Cliente}{Cliente}
+	\brAttr{ID}{ID}{int}{Número de registro utilizado para identificar al Cliente}{Sí}
+	\brAttr{nombre}{Nombre}{String}
+		{Nombre o nombres del Cliente.}{Sí}
+		
+	\brAttr{ApellidoPaterno}{Apellido Paterno}{String}
+		{Apellido Paterno del Cliente.}{Sí}
+		
+	\brAttr{ApellidoMaterno}{ApellidoMaterno}{String}
+		{Apellido Materno del Cliente.}{No}
+		
+	\brAttr{Email}{Email}{String}
+		{Correo del cliente para enviar información sobre promociones.}{Sí}
+		
+	\brAttr{telefono}{Teléfono}{String}
+		{Teléfono para contactar al Cliente.}{Sí}
+		
+	\brAttr{Tarjeta}{Tarjeta}{int}
+		{forma única de hacer devoluciones sobre compras hechas a los clientes.}{si}
+
+	\brAttr{Estado}{Estado}{TINYINT}
+		{Estado del Cliente, puede estar activado o desactivado (un tipo de dato TINYINT representa un carácter , por razones de eficiencia se utiliza este tipo de dato en vez de un booleano).}{Sí}	
+		
+		\cdtEntityRelSection
+	\brRel{\brRelAgregation}{Cliente}{El Cliente Compra en Sucursal}
+\end{cdtEntidad}
+%---------------------------------------------------------
+
+\begin{cdtEntidad}{Medicamento}{Medicamento}
+	\brAttr{ID}{ID}{Int}{Identificador del Medicamento.}{Sí}
+	
+	\brAttr{IDViaAdministracion}{IDViaAdministracion}{Int}{Identificador de la vía de Administración del Medicamento.}{Sí}
+	
+	\brAttr{IDPaqueteDescuento}{IDPaqueteDescuento}{Int}{Identificador del paquete de descuento al que pertenece el Medicamento.}{Sí}
+
+	\brAttr{IDPresentacion}{IDPresentaicon}{Int}{Identificador del tipo de presentación del Medicamento.}{Sí}
+	
+	\brAttr{Nombre}{Nombre}{String}{Nombre del Medicamento.}{Sí}
+	
+	\brAttr{Marca}{Marca}{String}{Marca del medicamento}{Sí}
+	
+	\brAttr{FechaCaducidad}{FechaCaducidad}{DATE}{La fecha de caducidad del medicamento}{si}
+	
+	\brAttr{Lote}{Lote}{Int}{el numero de lote del medicamento}{Sí}
+	
+	\brAttr{ViaDeAdministracion}{ViaDeAdministracion}{String}
+		{Indica la forma en la que el medicamento debe ser ingerido}{si}
+		
+	\brAttr{Advertencias}{Advertencias}{string}
+		{Las precauciones que se deben tomar en cuenta con el medicamento}{si}
+		
+	\brAttr{PrecioPublico}{PrecioPublico}{int}
+		{El precio al que se le vende al cliente.}{si}
+		
+	\brAttr{PrecioCompra}{PrecioCompra}{Int}
+		{El precio al que se compra el medicamento al proveedor}{si}
+		
+	\brAttr{noIngedientesActivos}{noIngredientesActivos}{int}
+		{número de ingredientes activos que contiene el medicamento}{si}
+
+		\cdtEntityRelSection
+	\brRel{\brRelComposition}{Medicamento}{El Medicamento Esta compuesto por IngredienteActivo}
+\end{cdtEntidad}
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\begin{cdtEntidad}{IngredienteActivo}{IngredienteActivo}
+	\brAttr{ID}{ID}{Int}
+		{El identificador al que pertenece el ingrediente activo}{Sí}
+	\brAttr{Nombre}{Nombre}{String}
+		{El Nombre del ingrediente activo}{Sí}
+	\brAttr{Cantidad}{Cantidad}{String}
+		{La cantidad del ingrediente activo presente en el Medicamento}{Sí}
+
+\end{cdtEntidad}
+%---------------------------------------------------------
+
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\begin{cdtEntidad}{Presentación}{Presentación}
+	\brAttr{ID}{ID}{Int}
+		{El identificador al que pertenece la Presentación Del Medicamento}{Sí}
+	\brAttr{Nombre}{Nombre}{String}
+		{El Nombre del tipo de presentación}{Sí}
+
+\end{cdtEntidad}
+
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\begin{cdtEntidad}{ViaAdministracion}{ViaAdministracion}
+	\brAttr{ID}{ID}{Int}
+		{El identificador al que pertenece a la Vía de Administración}{Sí}
+	\brAttr{Nombre}{Nombre}{String}
+		{El Nombre del tipo de Vía de Administración}{Sí}
+
+\end{cdtEntidad}
+
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\begin{cdtEntidad}{Lote}{Lote}
+	\brAttr{ID}{ID}{Int}
+		{El identificador al que pertenece el Lote}{Sí}
+	\brAttr{Nombre}{Nombre}{String}
+		{El Nombre compuesto del lote}{Sí}
+	\brAttr{FechaCaducidad}{FechaCaducidad}{DATE}
+		{Fecha en la que el medicamento caduca}{Sí}
+	\brAttr{PrecioCompra}{PrecioCompra}{DATE}
+		{Precio en el que se compro el Lote de medicamento}{Sí}
+	\brAttr{Cantidad}{Cantidad}{DATE}
+		{Cantidad de medicamento que se registro por lote}{Sí}
+\end{cdtEntidad}
+
+%------------------------------------------------------------
+\begin{cdtEntidad}{PaqueteDescuento}{PaqueteDescuento}
+	\brAttr{ID}{ID}Int
+		{Identificador del descuento.}{Sí}
+	\brAttr{porcentajeDescuento}{porcentajeDescuento}{Int}
+		{Descuento de porcentaje(\%) a aplicar sobre los medicamentos}{si}
+	\brAttr{FechaInicio}{FechaInicio}{DATE}
+		{La fecha en la que se empieza a aplicar el descuento}{si}
+	\brAttr{FechaFin}{FechaFin}{DATE}
+		{Fecha limite para aplicar Descuento}{Sí}
+\end{cdtEntidad}
+
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\begin{cdtEntidad}{Venta}{Venta}
+
+	\brAttr{idVenta}{idVenta}{int}
+		{Identificador del la venta}{si}
+		
+	\brAttr{IDCliente}{IDCliente}{Int}
+		{Cliente al que se le vendió si es que este esta registrado en el sistema.}{si}
+		
+	\brAttr{IDSucursal}{IDSucursal}{Int}
+		{Sucursal en la que se realizó la venta}{si}
+		
+	\brAttr{IDEmpleado}{IDEmpleado}{Int}
+		{Empleado que realizó la venta}{si}
+		
+	\brAttr{Condición}{Condición}{TINYINT}
+		{Estado de la venta, puede estar activa o cancelada (un tipo de dato TINYINT representa un carácter , por razones de eficiencia se utiliza este tipo de dato en vez de un booleano).}{Sí}	
+
+	\brAttr{Comprobante}{Comprobante}{String}
+		{Comprobante de la venta}{si}
+		
+	\brAttr{noComprobante}{noComprobante}{String}
+		{Identificador de Comprobante de la venta}{si}
+		
+	\brAttr{Impuesto}{Impuesto}{Float}
+		{Impuesto de la venta}{si}
+		
+	\brAttr{TotalVenta}{TotalVenta}{Float}
+		{Costo total de la venta realizada}{si}
+	
+\end{cdtEntidad}
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\begin{cdtEntidad}{DetalleVenta}{DetalleVenta}
+
+	\brAttr{idDetalleVen}{idDetalleVen}{int}
+		{Identificador del Detalle de la venta}{si}
+		
+	\brAttr{IDVenta}{IDVenta}{Int}
+		{Identificador de la Venta}{si}
+		
+	\brAttr{PrecioVenta}{PrecioVenta}{Int}
+		{Precio de la venta realizada}{si}
+		
+	\brAttr{Cantidad}{Cantidad}{Int}
+		{Cantidad por la cual se realizó la venta}{si}
+		
+	\brAttr{Descuento}{Descuento}{Float}
+		{Descuento aplicado sobre la venta.}{Sí}	
+	
+\end{cdtEntidad}
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+%- - - - - -------------------------------------------------
+\begin{cdtEntidad}{Proveedor}{Proveedor}
+\brAttr{ID}{ID}{int}{Número de registro utilizado para identificar al proveedor}{Sí}
+	\brAttr{nombre}{Nombre}{String}
+		{Nombre o nombres del proveedor.}{Sí}
+		
+	\brAttr{ApellidoPaterno}{Apellido Paterno}{String}
+		{Apellido Paterno del proveedor.}{Sí}
+		
+	\brAttr{ApellidoMaterno}{ApellidoMaterno}{String}
+		{Apellido Materno del proveedor.}{No}
+
+	\brAttr{Email}{Email}{String}
+		{Correo del proveedor para poder contactar con el.}{Sí}
+		
+	\brAttr{telefono}{Teléfono}{String}
+		{Teléfono para contactar al proveedor.}{Sí}
+		
+	\brAttr{RFC}{RFC}{String}
+		{RFC del proveedor.}{Sí}
+	
+	\brAttr{Estado}{Estado}{TINYINT}
+		{Estado del proveedor, puede estar activado o desactivado (un tipo de dato TINYINT representa un carácter , por razones de eficiencia se utiliza este tipo de dato en vez de un booleano).}{Sí}	
+\end{cdtEntidad}
+
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+\begin{cdtEntidad}{Ingreso}{Ingreso}
+\brAttr{ID}{ID}{int}{Número de registro utilizado para identificar el ingreso}{Sí}
+	\brAttr{FechaHora}{FechaHora}{DATETIME}
+		{Fecha y Hora del ingreso.}{Sí}
+		
+	\brAttr{TotalCompra}{TotalCompra}{Int}
+		{Cantidad total de la compra a ingresar.}{Sí}
+		
+	\brAttr{Condición}{Condición}{TINYINT}
+		{Condición de la compra a ingresar.}{No}
+
+	\brAttr{Impuesto}{Impuesto}{Double}
+		{Impuesto Aplicado sobre la compra a ingresar.}{Sí}
+		
+	\brAttr{Comprobante}{Comprobante}{String}
+		{Comprobante de la compra realizada.}{Sí}
+		
+	\brAttr{RFC}{RFC}{String}
+		{RFC del proveedor.}{Sí}
+	
+	\brAttr{Estado}{Estado}{TINYINT}
+		{Estado del proveedor, puede estar activado o desactivado (un tipo de dato TINYINT representa un carácter , por razones de eficiencia se utiliza este tipo de dato en vez de un booleano).}{Sí}	
+\end{cdtEntidad}
+
+
+
+
+
+
+
+
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+\begin{cdtEntidad}{Sucursal}{Sucursal}
+
+	\brAttr{idSucursal}{idSucursal}{Int}
+		{Identificador único de la sucursal}{Sí}
+		
+	\brAttr{Nombre}{Nombre}{String}
+		{Nombre de la sucursal.}{Sí}
+
+	\brAttr{Dirección}{Dirección}{String}
+		{Localización de la sucursal.}{Sí}
+	
+	\brAttr{Teléfono}{Teléfono}{String}
+		{Teléfono de contacto de la sucursal.}{Sí}
+		
+	\brAttr{EstadoRepublica}{EstadoRepublica}{String}
+		{Estado de la República donde esta ubicada la sucursal.}{Sí}
+		
+	\brAttr{noComprobante}{noComprobante}{String}
+		{Identificador del Comprobante sobre la compra realizada.}{Sí}	
+
+\end{cdtEntidad}
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+\begin{cdtEntidad}{Horarios}{Horarios}
+
+	\brAttr{ID}{ID}{Int}
+		{Identificador único del Horario}{Sí}
+		
+	\brAttr{Nombre}{Nombre}{String}
+		{Nombre del Horario.}{Sí}
+
+	\brAttr{HoraInicio}{HoraInicio}{DATETIME}
+		{Hora de Inicio del Turno.}{Sí}
+	
+	\brAttr{HoraFinal}{HoraFinal}{DATETIME}
+		{Hora de Fin del Turno.}{Sí}
+		
+\end{cdtEntidad}
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+
+
+%------------------------------------------------------
+\newpage
 \section{Reglas del Negocio}
+\begin{BussinesRule}{BR1}{Control de Acceso.}
+	\BRitem[Tipo:] Regla de Autorizacion. 
+				
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:]	El acceso al Sistema debe ser manejado mediante un control de acceso, el cual solo permitira ingresar al sistema una vez que el Empleado ingrese de manera correcta su Usuario y Contraseña.
+	\BRitem[Motivación:] Evitar posibles fraudes en las operaciones y funcionamiento del sistema de la farmacia.
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] \hyperlink{CU0}{CU0}.
+\end{BussinesRule}
+
+\begin{BussinesRule}{BR2}{Eliminar Un Medicamento.}
+	\BRitem[Tipo:] Regla de Autorizacion. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:]	Solo el dueño puede eliminar medicamentos que han sido registrados en el sistema.
+	\BRitem[Motivación:] Evitar posibles fraudes en las operaciones y funcionamiento del sistema de la farmacia.
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:]
+	\BRitem[Referenciado por:] \hyperlink{CU3}{CU3}.
+\end{BussinesRule}
+%------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR3}{Realizar Una Venta.}
+	\BRitem[Tipo:] Regla de Operacion. 
+	\BRitem[Clase:] Cronometrada. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El numero de medicamentos en el almacen debe de ser mayor a la cantidad que se realiza al momento de la venta.
+	\BRitem[Motivación:] Evitar problemas con el inventario de la Farmacia .
+\BRitem[Sentencia:] 
+		\begin{displaymath}
+			Inventario>=Venta\\
+			Inventario= CantidadInventario-Venta;
+		\end{displaymath}
+	\BRitem[Ejemplo positivo:] 
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] \hyperlink{CU5}{CU5}.
+\end{BussinesRule}
+
+%------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR4}{Aplicar Un Descuento.}
+	\BRitem[Tipo:] Regla de Operacion. 
+	\BRitem[Clase:] Ejecutive. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Bajo ciertas Condiciones se aplicaran descuentos sobre ciertos Medicamentos.
+	\BRitem[Motivación:] Evitar perdida de dinero al dejar que los medicamentos que casi no tienen salida de almacen se queden guardados y terminen caducando.
+\BRitem[Sentencia:] 
+		\begin{displaymath}
+			MedicamentoConDescuento=Medicamento*Descuento\\
+		\end{displaymath}
+	\BRitem[Ejemplo positivo:] 
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] \hyperlink{CU8}{CU8}.
+\end{BussinesRule}
+
+%------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR5}{Abrir Turno de Caja.}
+	\BRitem[Tipo:] Regla de Integridad Referencial. 
+	\BRitem[Clase:] Ejecutive. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:]Al inicio de cada jornada laboral el supervisor debe ser el que Abre el turno de caja para iniciar con las operaciones diarias de la farmacia.
+	\BRitem[Motivación:] Tener un Reporte de ventas que sea relevante y descriptivo sobre las operaciones de cierto periodo en la farmacia.
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] \hyperlink{CU23}{CU23}.
+\end{BussinesRule}
+
+%------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR6}{Cerrar Turno de Caja.}
+	\BRitem[Tipo:] Regla de Integridad Referencial. 
+	\BRitem[Clase:] Ejecutive. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:]Al final de cada jornada laboral el supervisor se encargara del cierre de caja.
+	\BRitem[Motivación:] Evitar Perdias de dinero en la farmacia y que al final de cada turno de caja las ventas realizadas coincidan con el reporte de ventas.
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] \hyperlink{CU24}{CU24}.
+\end{BussinesRule}
+\newpage
+
+
 \section{Procesos del Negocio}
 
 
