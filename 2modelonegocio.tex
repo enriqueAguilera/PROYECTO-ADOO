@@ -49,11 +49,20 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 	
 \begin{figure}[htbp!]
 	\begin{center}
-		\includegraphics[width=.9\textwidth]{images/diagramaRelacional}
+		\includegraphics[width=.9\textwidth]{images/diagramaRelacional1}
 		\caption{Modelo del dominio del problema}
 		\label{fig:modeloDeDominio}
 	\end{center}
 \end{figure}
+
+\begin{figure}[htbp!]
+	\begin{center}
+		\includegraphics[width=.9\textwidth]{images/diagramaRelacional2}
+		\caption{Modelo del dominio del problema}
+		\label{fig:modeloDeDominio}
+	\end{center}
+\end{figure}
+\newpage
 %---------------------detalle de las entidades
 
 %- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -147,7 +156,7 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 		{Sucursal de la que esta a cargo el supervisor.}{Sí}
 
 		\cdtEntityRelSection
-	\brRel{\brRelAgregation}{Sucursal}{El Supervisor Es un tipo especializado de Empleado}
+	\brRel{\brRelAgregation}{Sucursal}{Muchos Supervisores trabajan en muchas Sucursales}
 \end{cdtEntidad}
 
 
@@ -183,7 +192,10 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 		{Sucursal de la que esta a cargo el supervisor.}{Sí}
 
 		\cdtEntityRelSection
-	\brRel{\brRelAgregation}{Sucursal}{El cajero Es un tipo de Empleado}
+	\brRel{\brRelAgregation}{Horario}{El Cajero tiene un horario}
+	\brRel{\brRelAgregation}{Cliente}{Un Cajero atiende a muchos clientes}
+	\brRel{\brRelAgregation}{Venta}{Un Cajero realiza muchas ventas}
+	\brRel{\brRelComposition}{Sucursal}{Una sucursal se compone de muchos cajeros}
 \end{cdtEntidad}
 
 %- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -249,6 +261,10 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 
 		\cdtEntityRelSection
 	\brRel{\brRelComposition}{Medicamento}{El Medicamento Esta compuesto por IngredienteActivo}
+	\brRel{\brRelComposition}{Medicamento}{El Medicamento tiene una Presentacion}
+	\brRel{\brRelComposition}{Medicamento}{El Medicamento tiene una viaAdministracion}
+	\brRel{\brRelComposition}{Medicamento}{El Medicamento tiene un Lote}
+	\brRel{\brRelAgregation}{Medicamento}{El Medicamento se agrega a un paquete de descuento}
 \end{cdtEntidad}
 %- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 \begin{cdtEntidad}{IngredienteActivo}{IngredienteActivo}
@@ -296,7 +312,7 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 
 %------------------------------------------------------------
 \begin{cdtEntidad}{PaqueteDescuento}{PaqueteDescuento}
-	\brAttr{ID}{ID}Int
+	\brAttr{ID}{ID}{Int}
 		{Identificador del descuento.}{Sí}
 	\brAttr{porcentajeDescuento}{porcentajeDescuento}{Int}
 		{Descuento de porcentaje(\%) a aplicar sobre los medicamentos}{si}
@@ -335,6 +351,10 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 		
 	\brAttr{TotalVenta}{TotalVenta}{Float}
 		{Costo total de la venta realizada}{si}
+		
+		\cdtEntityRelSection
+		
+	\brRel{\brRelComposition}{DetalleVenta}{Una Venta tiene muchos detalles de venta}
 	
 \end{cdtEntidad}
 %- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -409,6 +429,10 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 	
 	\brAttr{Estado}{Estado}{TINYINT}
 		{Estado del proveedor, puede estar activado o desactivado (un tipo de dato TINYINT representa un carácter , por razones de eficiencia se utiliza este tipo de dato en vez de un booleano).}{Sí}	
+		
+		\cdtEntityRelSection
+	\brRel{\brRelComposition}{Lote}{El Ingreso tiene un Lote}
+	\brRel{\brRelComposition}{Lote}{El Ingreso tiene muchos proveedores}
 \end{cdtEntidad}
 
 
@@ -438,6 +462,9 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 		
 	\brAttr{noComprobante}{noComprobante}{String}
 		{Identificador del Comprobante sobre la compra realizada.}{Sí}	
+\cdtEntityRelSection
+	\brRel{\brRelComposition}{Lote}{La sucursal tiene muchos Ingresos de medicamentos}
+	\brRel{\brRelComposition}{Lote}{La sucursal tiene muchas ventas de medicamentos}
 
 \end{cdtEntidad}
 %- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -466,19 +493,19 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 \newpage
 \section{Reglas del Negocio}
 \begin{BussinesRule}{BR1}{Control de Acceso.}
-	\BRitem[Tipo:] Regla de Autorizacion. 
+	\BRitem[Tipo:] Regla de Autorización. 
 				
 	\BRitem[Clase:] Habilitadora. 
 	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:]	El acceso al Sistema debe ser manejado mediante un control de acceso, el cual solo permitira ingresar al sistema una vez que el Empleado ingrese de manera correcta su Usuario y Contraseña.
+	\BRitem[Descripción:]	El acceso al Sistema sera manejado mediante un control de acceso, el cual solo permitira ingresar al sistema una vez que el Dueño,Supervisor o Cajero ingrese de manera correcta su Usuario y Contraseña.
 	\BRitem[Motivación:] Evitar posibles fraudes en las operaciones y funcionamiento del sistema de la farmacia.
 	\BRitem[Ejemplo positivo:]
 	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] \hyperlink{CU0}{CU0}.
+	\BRitem[Referenciado por:] \hyperlink{CU1}{CU1}.
 \end{BussinesRule}
 
 \begin{BussinesRule}{BR2}{Eliminar Un Medicamento.}
-	\BRitem[Tipo:] Regla de Autorizacion. 
+	\BRitem[Tipo:] Regla de Autorización. 
 	\BRitem[Clase:] Habilitadora. 
 	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
 	\BRitem[Descripción:]	Solo el dueño puede eliminar medicamentos que han sido registrados en el sistema.
@@ -492,7 +519,7 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 	\BRitem[Tipo:] Regla de Operacion. 
 	\BRitem[Clase:] Cronometrada. 
 	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:] El numero de medicamentos en el almacen debe de ser mayor a la cantidad que se realiza al momento de la venta.
+	\BRitem[Descripción:] El numero de medicamentos en el almacén debe de ser mayor a la cantidad solicitada por el cliente que se realiza al momento de la venta.
 	\BRitem[Motivación:] Evitar problemas con el inventario de la Farmacia .
 \BRitem[Sentencia:] 
 		\begin{displaymath}
@@ -506,18 +533,18 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 
 %------------------------------------------------------------------------------------
 \begin{BussinesRule}{BR4}{Aplicar Un Descuento.}
-	\BRitem[Tipo:] Regla de Operacion. 
+	\BRitem[Tipo:] Regla de Operación. 
 	\BRitem[Clase:] Ejecutive. 
 	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:] Bajo ciertas Condiciones se aplicaran descuentos sobre ciertos Medicamentos.
-	\BRitem[Motivación:] Evitar perdida de dinero al dejar que los medicamentos que casi no tienen salida de almacen se queden guardados y terminen caducando.
+	\BRitem[Descripción:] El dueño es la única persona con autoridad para aplicar, eliminar o modificar descuentos sobre los medicamentos, o aplicar Paquetes de medicamentos con descuento. Una vez determinados los medicamentos, se les aplicara el descuento que el Dueño proporcione.
+	\BRitem[Motivación:] Evitar perdida de dinero al dejar que los medicamentos que casi no tienen salida de almacén se queden guardados y terminen caducando.
 \BRitem[Sentencia:] 
 		\begin{displaymath}
 			MedicamentoConDescuento=Medicamento*Descuento\\
 		\end{displaymath}
 	\BRitem[Ejemplo positivo:] 
 	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] \hyperlink{CU8}{CU8}.
+	\BRitem[Referenciado por:] CU13, CU14, CU15, CU16, CU17
 \end{BussinesRule}
 
 %------------------------------------------------------------------------------------
@@ -529,7 +556,7 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 	\BRitem[Motivación:] Tener un Reporte de ventas que sea relevante y descriptivo sobre las operaciones de cierto periodo en la farmacia.
 	\BRitem[Ejemplo positivo:]
 	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] \hyperlink{CU23}{CU23}.
+	\BRitem[Referenciado por:] \hyperlink{CU27}{CU27}.
 \end{BussinesRule}
 
 %------------------------------------------------------------------------------------
@@ -541,12 +568,129 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 	\BRitem[Motivación:] Evitar Perdias de dinero en la farmacia y que al final de cada turno de caja las ventas realizadas coincidan con el reporte de ventas.
 	\BRitem[Ejemplo positivo:]
 	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] \hyperlink{CU24}{CU24}.
+	\BRitem[Referenciado por:] \hyperlink{CU28}{CU28}.
 \end{BussinesRule}
+%-----------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR7}{Desactivar Estado del empleado.}
+	\BRitem[Tipo:] Regla de Autorización. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Si el empleado renuncia al trabajo O decide no renovar su contrato con nosotros simplemente se le desactivara su cuenta, así podemos checar todas las operaciones que este Empleado reviso durante su estadía en la sucursal o sucursales que operaba
+	\BRitem[Motivación:] Evitar el acceso a todas las personas que no están registradas en el sistema o que no tienen un estado activado 
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] \hyperlink{CU4}{CU4}.
+\end{BussinesRule}
+
+%-----------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR8}{Activar Estado del empleado.}
+	\BRitem[Tipo:] Regla de Autorización. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Si un empleado que decidió no renovar su contrato con nosotros y decide regresar a aceptar un nuevo contrato, en lugar de generarle una cuenta nueva, simplemente se le reactivara la cuenta que operaba antes de retirarse del empleo
+	\BRitem[Motivación:] Facilidad de operación sobre los antiguos empleados de la sucursal y evitar duplicidades con respecto a las cuentas
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] \hyperlink{CU7}{CU7}.
+\end{BussinesRule}
+
+%-----------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR9}{Devolución al Cliente.}
+	\BRitem[Tipo:] Regla de Autorización. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Las devoluciones al cliente solo se efectuaran cuando presenten el medicamento sobre el cual se efectuara la devolución y su ticket de compra, una vez que el cliente presenta el medicamento y el ticket el cliente puede escoger si quiere que se le de un medicamento por el mismo valor de compra o si se le otorgara un monedero electrónico con una bonificación de dinero virtual el cual solo podrá gastar en productos de nuestras sucursales 
+	\BRitem[Motivación:] Satisfacción al cliente
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] CU30, CU31, CU32, CU.
+\end{BussinesRule}
+
+%-----------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR10}{Uso del monedero electrónico del Cliente.}
+	\BRitem[Tipo:] Regla de Autorización. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El uso del monedero electrónico del cliente solo es valido dentro de nuestras distintas sucursales y valido solo sobre nuestros productos, el cliente puede hacer uso del monedero electrónico cuando el lo desee siempre y cuando tenga una cantidad de dinero en el igual o mayor que la compra que desea efectuar, en dado caso de que la cantidad de dinero sea menor, tendrá que poner la diferencia económica 
+	\BRitem[Motivación:] Satisfacción al cliente
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] \hyperlink{CU7}{CU7}.
+\end{BussinesRule}
+%-----------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR11}{Agregar Nuevo empleado al sistema.}
+	\BRitem[Tipo:] Regla de Autorización. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El dueño es la única persona autorizada para poder agregar nuevos empleados al sistema, cabe destacar que empleado hace referencia a Supervisor y Cajero.
+	\BRitem[Motivación:] Control sobre los empleados bajo su comando.
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] CU8.
+\end{BussinesRule}
+
+%-----------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR12}{Manejo de las Sucursales.}
+	\BRitem[Tipo:] Regla de Autorización. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El dueño es la única persona autorizada para poder agregar sucursales en el sistema asi como el único en modificar los datos de las sucursales  o desactivar las sucursales que se encuentran operando
+	\BRitem[Motivación:] Control sobre las múltiples sucursales bajo su orden.
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] CU18. CU19, CU20, CU21
+\end{BussinesRule}
+
+%-----------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR13}{Manejo de los medicamentos.}
+	\BRitem[Tipo:] Regla de Autorización. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El dueño es la única persona autorizada para poder agregar nuevos medicamentos en el sistema así como su Activación y Desactivación para la venta,.
+	\BRitem[Motivación:] Control sobre el sistema de inventario de las sucursales.
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] CU10, CU11, CU13.
+\end{BussinesRule}
+
+%-----------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR13}{Manejo de los Proveedores.}
+	\BRitem[Tipo:] Regla de Autorización. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El dueño es la única persona autorizada para poder agregar nuevos Proveedores en el sistema así como su Activación y Desactivación para la Compra,.
+	\BRitem[Motivación:] Control de información sobre los múltiples proveedores en el sistema.
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:] 
+	\BRitem[Referenciado por:] CU43, CU44, CU45, CU46.
+\end{BussinesRule}
+
 \newpage
 
 
 \section{Procesos del Negocio}
+En esta sección se describen los procesos a mejorar con el sistema.
+
+\input{proc/proc01.tex}
+\input{proc/proc02.tex}
+\input{proc/proc03.tex}
+%---------------------------------------------------------
+\section{Modelo de procesos TO-BE}
+
+Los nuevos procesos se presentan en esta sección, el mapa de procesos de se muestra en la figura~\ref{fig:mapaProc}.
+
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[width=.8\textwidth]{images/procMap}
+		\caption{Mapa de procesos}
+		\label{fig:mapaProc}
+	\end{center}
+\end{figure}
+
+\input{proc/proc-m01.tex}
+\input{proc/proc-m02.tex}
+\input{proc/proc-m03.tex}
+
 
 
 
