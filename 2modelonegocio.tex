@@ -432,7 +432,10 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 		
 		\cdtEntityRelSection
 	\brRel{\brRelComposition}{Lote}{El Ingreso tiene un Lote}
-	\brRel{\brRelComposition}{Lote}{El Ingreso tiene muchos proveedores}
+	\brRel{\brRelComposition}{Proveedor}{El Ingreso tiene muchos proveedores}
+	\brRel{\brRelComposition}{Proveedor}{El Ingreso tiene muchos proveedores}
+	\brRel{\brRelComposition}{Cajero}{El Ingreso lo registra un cajero}
+	\brRel{\brRelComposition}{Sucursal}{El Ingreso se realiza en una Sucursal}
 \end{cdtEntidad}
 
 
@@ -492,86 +495,8 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 %------------------------------------------------------
 \newpage
 \section{Reglas del Negocio}
-\begin{BussinesRule}{BR1}{Control de Acceso.}
-	\BRitem[Tipo:] Regla de Autorización. 
-				
-	\BRitem[Clase:] Habilitadora. 
-	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:]	El acceso al Sistema sera manejado mediante un control de acceso, el cual solo permitira ingresar al sistema una vez que el Dueño,Supervisor o Cajero ingrese de manera correcta su Usuario y Contraseña.
-	\BRitem[Motivación:] Evitar posibles fraudes en las operaciones y funcionamiento del sistema de la farmacia.
-	\BRitem[Ejemplo positivo:]
-	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] \hyperlink{CU1}{CU1}.
-\end{BussinesRule}
-
-\begin{BussinesRule}{BR2}{Eliminar Un Medicamento.}
-	\BRitem[Tipo:] Regla de Autorización. 
-	\BRitem[Clase:] Habilitadora. 
-	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:]	Solo el dueño puede eliminar medicamentos que han sido registrados en el sistema.
-	\BRitem[Motivación:] Evitar posibles fraudes en las operaciones y funcionamiento del sistema de la farmacia.
-	\BRitem[Ejemplo positivo:]
-	\BRitem[Ejemplo negativo:]
-	\BRitem[Referenciado por:] \hyperlink{CU3}{CU3}.
-\end{BussinesRule}
-%------------------------------------------------------------------------------------
-\begin{BussinesRule}{BR3}{Realizar Una Venta.}
-	\BRitem[Tipo:] Regla de Operacion. 
-	\BRitem[Clase:] Cronometrada. 
-	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:] El numero de medicamentos en el almacén debe de ser mayor a la cantidad solicitada por el cliente que se realiza al momento de la venta.
-	\BRitem[Motivación:] Evitar problemas con el inventario de la Farmacia .
-\BRitem[Sentencia:] 
-		\begin{displaymath}
-			Inventario>=Venta\\
-			Inventario= CantidadInventario-Venta;
-		\end{displaymath}
-	\BRitem[Ejemplo positivo:] 
-	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] \hyperlink{CU5}{CU5}.
-\end{BussinesRule}
-
-%------------------------------------------------------------------------------------
-\begin{BussinesRule}{BR4}{Aplicar Un Descuento.}
-	\BRitem[Tipo:] Regla de Operación. 
-	\BRitem[Clase:] Ejecutive. 
-	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:] El dueño es la única persona con autoridad para aplicar, eliminar o modificar descuentos sobre los medicamentos, o aplicar Paquetes de medicamentos con descuento. Una vez determinados los medicamentos, se les aplicara el descuento que el Dueño proporcione.
-	\BRitem[Motivación:] Evitar perdida de dinero al dejar que los medicamentos que casi no tienen salida de almacén se queden guardados y terminen caducando.
-\BRitem[Sentencia:] 
-		\begin{displaymath}
-			MedicamentoConDescuento=Medicamento*Descuento\\
-		\end{displaymath}
-	\BRitem[Ejemplo positivo:] 
-	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] CU13, CU14, CU15, CU16, CU17
-\end{BussinesRule}
-
-%------------------------------------------------------------------------------------
-\begin{BussinesRule}{BR5}{Abrir Turno de Caja.}
-	\BRitem[Tipo:] Regla de Integridad Referencial. 
-	\BRitem[Clase:] Ejecutive. 
-	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:]Al inicio de cada jornada laboral el supervisor debe ser el que Abre el turno de caja para iniciar con las operaciones diarias de la farmacia.
-	\BRitem[Motivación:] Tener un Reporte de ventas que sea relevante y descriptivo sobre las operaciones de cierto periodo en la farmacia.
-	\BRitem[Ejemplo positivo:]
-	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] \hyperlink{CU27}{CU27}.
-\end{BussinesRule}
-
-%------------------------------------------------------------------------------------
-\begin{BussinesRule}{BR6}{Cerrar Turno de Caja.}
-	\BRitem[Tipo:] Regla de Integridad Referencial. 
-	\BRitem[Clase:] Ejecutive. 
-	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:]Al final de cada jornada laboral el supervisor se encargara del cierre de caja.
-	\BRitem[Motivación:] Evitar Perdias de dinero en la farmacia y que al final de cada turno de caja las ventas realizadas coincidan con el reporte de ventas.
-	\BRitem[Ejemplo positivo:]
-	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] \hyperlink{CU28}{CU28}.
-\end{BussinesRule}
 %-----------------------------------------------------------------------------------------
-\begin{BussinesRule}{BR7}{Desactivar Estado del empleado.}
+\begin{BussinesRule}{BR1}{Desactivar Estado del empleado.}
 	\BRitem[Tipo:] Regla de Autorización. 
 	\BRitem[Clase:] Habilitadora. 
 	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
@@ -579,92 +504,68 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 	\BRitem[Motivación:] Evitar el acceso a todas las personas que no están registradas en el sistema o que no tienen un estado activado 
 	\BRitem[Ejemplo positivo:]
 	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] \hyperlink{CU4}{CU4}.
 \end{BussinesRule}
 
 %-----------------------------------------------------------------------------------------
-\begin{BussinesRule}{BR8}{Activar Estado del empleado.}
-	\BRitem[Tipo:] Regla de Autorización. 
-	\BRitem[Clase:] Habilitadora. 
+\begin{BussinesRule}{BR2}{Caducidad del Medicamento.}
+	\BRitem[Tipo:] Regla de condición. 
+	\BRitem[Clase:] Cronometrada. 
 	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:] Si un empleado que decidió no renovar su contrato con nosotros y decide regresar a aceptar un nuevo contrato, en lugar de generarle una cuenta nueva, simplemente se le reactivara la cuenta que operaba antes de retirarse del empleo
-	\BRitem[Motivación:] Facilidad de operación sobre los antiguos empleados de la sucursal y evitar duplicidades con respecto a las cuentas
-	\BRitem[Ejemplo positivo:]
-	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] \hyperlink{CU7}{CU7}.
-\end{BussinesRule}
-
-%-----------------------------------------------------------------------------------------
-\begin{BussinesRule}{BR9}{Devolución al Cliente.}
-	\BRitem[Tipo:] Regla de Autorización. 
-	\BRitem[Clase:] Habilitadora. 
-	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:] Las devoluciones al cliente solo se efectuaran cuando presenten el medicamento sobre el cual se efectuara la devolución y su ticket de compra, una vez que el cliente presenta el medicamento y el ticket el cliente puede escoger si quiere que se le de un medicamento por el mismo valor de compra o si se le otorgara un monedero electrónico con una bonificación de dinero virtual el cual solo podrá gastar en productos de nuestras sucursales 
-	\BRitem[Motivación:] Satisfacción al cliente
-	\BRitem[Ejemplo positivo:]
-	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] CU30, CU31, CU32, CU.
-\end{BussinesRule}
-
-%-----------------------------------------------------------------------------------------
-\begin{BussinesRule}{BR10}{Uso del monedero electrónico del Cliente.}
-	\BRitem[Tipo:] Regla de Autorización. 
-	\BRitem[Clase:] Habilitadora. 
-	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:] El uso del monedero electrónico del cliente solo es valido dentro de nuestras distintas sucursales y valido solo sobre nuestros productos, el cliente puede hacer uso del monedero electrónico cuando el lo desee siempre y cuando tenga una cantidad de dinero en el igual o mayor que la compra que desea efectuar, en dado caso de que la cantidad de dinero sea menor, tendrá que poner la diferencia económica 
-	\BRitem[Motivación:] Satisfacción al cliente
-	\BRitem[Ejemplo positivo:]
-	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] \hyperlink{CU7}{CU7}.
+	\BRitem[Descripción:] Un medicamento esta caduco cuando la fecha del medicamento es menor que la fecha actual
+	\BRitem[Motivación:] Evitar venta de medicamento caducado
+	\BRitem[Ejemplo positivo:] CaducidadMedicamento<FechaActual
+	\BRitem[Ejemplo negativo:]  CaducidadMedicament>FechaActual
 \end{BussinesRule}
 %-----------------------------------------------------------------------------------------
-\begin{BussinesRule}{BR11}{Agregar Nuevo empleado al sistema.}
-	\BRitem[Tipo:] Regla de Autorización. 
-	\BRitem[Clase:] Habilitadora. 
+\begin{BussinesRule}{BR3}{Reporte Mensual de Mes.}
+	\BRitem[Tipo:] Cronometrada. 
+	\BRitem[Clase:] Condicional. 
 	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:] El dueño es la única persona autorizada para poder agregar nuevos empleados al sistema, cabe destacar que empleado hace referencia a Supervisor y Cajero.
-	\BRitem[Motivación:] Control sobre los empleados bajo su comando.
+	\BRitem[Descripción:] La fecha limite para Presentar el reporte de venta mensual de la sucursal sera los Dias 28 de cada Mes.
+	\BRitem[Motivación:]  Control Económico de la sucursal rápido y eficaz.
 	\BRitem[Ejemplo positivo:]
 	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] CU8.
 \end{BussinesRule}
-
 %-----------------------------------------------------------------------------------------
-\begin{BussinesRule}{BR12}{Manejo de las Sucursales.}
-	\BRitem[Tipo:] Regla de Autorización. 
-	\BRitem[Clase:] Habilitadora. 
+\begin{BussinesRule}{BR4}{Cancelar una Venta.}
+	\BRitem[Tipo:] Habilitador. 
+	\BRitem[Clase:] Autorización. 
 	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:] El dueño es la única persona autorizada para poder agregar sucursales en el sistema asi como el único en modificar los datos de las sucursales  o desactivar las sucursales que se encuentran operando
-	\BRitem[Motivación:] Control sobre las múltiples sucursales bajo su orden.
+	\BRitem[Descripción:] En dado caso de que el cliente cancele su compra, el Supervisor debe de cancelar la operación de venta.
+	\BRitem[Motivación:]  Control sobre las acciones que puede realizar cada empleado
 	\BRitem[Ejemplo positivo:]
 	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] CU18. CU19, CU20, CU21
 \end{BussinesRule}
-
 %-----------------------------------------------------------------------------------------
-\begin{BussinesRule}{BR13}{Manejo de los medicamentos.}
-	\BRitem[Tipo:] Regla de Autorización. 
-	\BRitem[Clase:] Habilitadora. 
+\begin{BussinesRule}{BR5}{Cancelar una Venta.}
+	\BRitem[Tipo:] Habilitador. 
+	\BRitem[Clase:] Autorización. 
 	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:] El dueño es la única persona autorizada para poder agregar nuevos medicamentos en el sistema así como su Activación y Desactivación para la venta,.
-	\BRitem[Motivación:] Control sobre el sistema de inventario de las sucursales.
+	\BRitem[Descripción:] En dado caso de que el cliente cancele su compra, el Supervisor debe de cancelar la operación de venta.
+	\BRitem[Motivación:]  Control sobre las acciones que puede realizar cada empleado
 	\BRitem[Ejemplo positivo:]
 	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] CU10, CU11, CU13.
 \end{BussinesRule}
-
 %-----------------------------------------------------------------------------------------
-\begin{BussinesRule}{BR13}{Manejo de los Proveedores.}
-	\BRitem[Tipo:] Regla de Autorización. 
-	\BRitem[Clase:] Habilitadora. 
-	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
-	\BRitem[Descripción:] El dueño es la única persona autorizada para poder agregar nuevos Proveedores en el sistema así como su Activación y Desactivación para la Compra,.
-	\BRitem[Motivación:] Control de información sobre los múltiples proveedores en el sistema.
-	\BRitem[Ejemplo positivo:]
-	\BRitem[Ejemplo negativo:] 
-	\BRitem[Referenciado por:] CU43, CU44, CU45, CU46.
+\begin{BussinesRule}{BR6}{Cantidad Máxima de venta a mostrador.}
+	\BRitem[Tipo:] Habilitador. 
+	\BRitem[Clase:] Integridad Referencial. 
+	\BRitem[Nivel:] Cronometrada. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] La cantidad de medicamentos máxima que el cajero puede realizar es de 20
+	\BRitem[Motivación:]  Control sobre las acciones que puede realizar cada empleado
+	\BRitem[Ejemplo positivo:]   Venta Al Mostrador<20.
+	\BRitem[Ejemplo negativo:] Venta al Mostrador>20.
 \end{BussinesRule}
-
+%-----------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR7}{Cantidad Excedente de venta a mostrador.}
+	\BRitem[Tipo:] Habilitador. 
+	\BRitem[Clase:] Integridad Referencial. 
+	\BRitem[Nivel:] Ejecutiva. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Si la cantidad a vender excede la cantidad de 20 , esta requiere autorización por parte del supervisor
+	\BRitem[Motivación:]  Control sobre las acciones que puede realizar cada empleado
+	\BRitem[Ejemplo positivo:]   Venta Al Mostrador>20.
+	\BRitem[Ejemplo negativo:] Venta al Mostrador<20.
+\end{BussinesRule}
 \newpage
 
 
