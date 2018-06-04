@@ -13,7 +13,8 @@
 		\UCitem{Precondiciones}{Debe haber una sucursal nueva física, que aun no este registrada en el sistema.}
 		\UCitem{Postcondiciones}{Aparecerá una nueva sucursal en el sistema.}
 		\UCitem{Errores}{La pagina sea inaccesible por el momento debido a fallas con los servidores.}
-		\UCitem{Observaciones}{}
+		\UCitem{Observaciones}{En entrada hacer referencia a los datos que estan el la pantalla formulario de Sucursal,
+		Falta verificar los datos que se introducen para registrar la sucursal,que el nombre de la sucursal no se repita, que la dirección no se repita, que sea una dirección valida bucandola en google maps por ejemplo,como  no se hace cambios en los datos de la sucursal seria idoneo que se confirmara que los datos que se introducierón por el usuario sean los correctos al momento que se preciona el botón guardar, que ningun campo del formulario este vacio,el id de la sucursal no lo mete el usuario es auntoincrement , es igual para todos los id de las tablas.}
 		\UCitem{Estado}{En revisión}
 		\UCitem{Viene de}{CU0}
 	\end{UseCase}
@@ -23,7 +24,7 @@
 
 
 	\begin{UCtrayectoria}{Principal}
-		\UCpaso Se incluye el caso de uso \UCref{CU0} paso 11
+		\UCpaso Se incluye el caso de uso \UCref{CU0}
 		\UCpaso[\UCactor] Selecciona la opción Sucursales en la  \IUref{01}{Pantalla Principal}
 		\UCpaso Genera y Despliega la \IUref{14}{Tabla Sucursales}
 		\UCpaso[\UCactor] Selecciona la opción para registrar una nueva sucursal presionando el botón \IUbutton{+Nuevo} en la \IUref{14}{Tabla Sucursales}.
