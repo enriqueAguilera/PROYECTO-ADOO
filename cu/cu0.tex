@@ -1,4 +1,4 @@
- \begin{UseCase}{CU1}{Control de Acceso}{
+ \begin{UseCase}{CU0}{Control de Acceso}{
 		Operación inicial para poder acceder al sistema. De éste Caso de uso se extiende a todos los demás casos de uso.
 	}
 		\UCitem{Versión}{\color{Gray}0.1}
@@ -37,22 +37,22 @@
 %--------------------------------------		
 	\begin{UCtrayectoriaA}{A}{El Correo no esta Correcto}
 			\UCpaso Muestra el Mensaje en la \IUref{IU0}{Login} {\bf MSG01-}`` Error en la Operación[{\em correo con formato }] Introduzca un correo con el formato Ejemplo@ejemplo.com.''.
-			\UCpaso Continúa en el paso 3 del \UCref{CU1}.
+			\UCpaso Continúa en el paso 3 del \UCref{CU0}.
 		\end{UCtrayectoriaA}
 %----------------------------------------
 		\begin{UCtrayectoriaA}{B}{El \UCactor no esta registrado}
 			\UCpaso Muestra el Mensaje en la \IUref{IU0}{Login} {\bf MSG01-}``Error en la operación [{\em Usuario no Encontrado}] El usuario y/o contraseña no existen  .''.
 			\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
-			\UCpaso[] Continua en el paso 3 del \UCref{CU1}.
+			\UCpaso[] Continua en el paso 3 del \UCref{CU0}.
 		\end{UCtrayectoriaA}		
 %--------------------------------------
 		\begin{UCtrayectoriaA}{C}{La cuenta a la que intenta acceder no esta activa}
 			\UCpaso Muestra el Mensaje en la \IUref{IU0}{Login} {\bf MSG01-}``Error en la operación [{\em Cuenta Desactivada}] Contacta con el Dueño para resolver el problema .''.
 			\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}
-			\UCpaso Continua en el paso 3 del \UCref{CU1}.
+			\UCpaso Continua en el paso 3 del \UCref{CU0}.
 		\end{UCtrayectoriaA}
 %--------------------------------------
 		\begin{UCtrayectoriaA}{F}{La Contraseña es incorrecta}
 			\UCpaso Muestra el Mensaje en la \IUref{IU0}{Login} {\bf MSG01-}``Error en la Operación [{\em Contraseña invalida}] La contraseña ingresada no coincide con la cuenta.''.
-			\UCpaso Continúa en el paso 2 del \UCref{CU1}.
+			\UCpaso Continúa en el paso 2 del \UCref{CU0}.
 		\end{UCtrayectoriaA}
