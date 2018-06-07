@@ -1,5 +1,5 @@
 \begin{UseCase}{CU15}{Agregar nueva sucursal}{
-		Se requiere una forma para agregar una nueva sucursal en el sistema.
+		Se requiere una forma para agregar una nueva sucursal en el sistema. Para esto el Dueño selecciona la opción de sucursales en la \IUref{01}{Pantalla Principal} lo cual nos lleva a \IUref{13}{Tabla Sucursal} y en esta pantalla se seleccionara la opción de +Nuevo y nos despliega la  \IUref{IU3}{Formulario Sucursal} en la cual damos de alta los datos de la nueva sucursal que queremos agregar en el sistema
 	}
 		\UCitem{Versión}{\color{Gray}0.1.3}
 		\UCitem{Autor}{\color{Gray}Aguilera Rosas Landa Enrique}
@@ -31,6 +31,7 @@
 		\UCpaso[\UCactor] Llena los datos del formulario \IUref{IU3}{Formulario Sucursal}, de manera que cada dato corresponda con la información que se pide y selecciona el botón \IUbutton{Guardar} .   
 		\UCpaso Verifica que todos los datos sean llenados correctamente como se solicita en la \IUref{3}{Formulario Sucursal}\Trayref{A}
 		\UCpaso Verifica que los datos ingresados no se repitan con los de otras sucursales existentes en el sistema y que la dirección sea una dirección valida buscando en google maps. \Trayref{B} \Trayref{C}
+		\UCpaso Inserta los datos de la nueva sucursal en la tabla de Sucursal. \Trayref{D}
 		\UCpaso Genera y despliega la ventana \IUref{MSG0}{Operación Realizada Con Éxito} 
 		\UCpaso [\UCactor] Cierra la ventana presionando el \IUbutton{OK}
 		\UCpaso Redirige al [\UCactor] a la  \IUref{01}{Pantalla Principal}.
@@ -50,7 +51,12 @@
 			\UCpaso Continúa en el paso 6 del \UCref{CU15}.
 		\end{UCtrayectoriaA}
 %-------------------------------------------------------------------------
-\begin{UCtrayectoriaA}{B}{Dirección Invalida.}
+\begin{UCtrayectoriaA}{C}{Dirección Invalida.}
 			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}] La dirección ingresada no es una dirección valida  \IUref{IU3}{Formulario Sucursal}.''.
+			\UCpaso Continúa en el paso 6 del \UCref{CU15}.
+		\end{UCtrayectoriaA}
+%-------------------------------------------------------------------------
+\begin{UCtrayectoriaA}{D}{Error al guardar los datos.}
+			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}] Hubo un error al intentar guardar los datos \IUref{IU3}{Formulario Sucursal}.''.
 			\UCpaso Continúa en el paso 6 del \UCref{CU15}.
 		\end{UCtrayectoriaA}
