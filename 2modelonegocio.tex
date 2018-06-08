@@ -514,7 +514,7 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 	\BRitem[Descripción:] Un medicamento esta caduco cuando la fecha del medicamento es menor que la fecha actual
 	\BRitem[Motivación:] Evitar venta de medicamento caducado
 	\BRitem[Ejemplo positivo:] CaducidadMedicamento<FechaActual
-	\BRitem[Ejemplo negativo:]  CaducidadMedicament>FechaActual
+	\BRitem[Ejemplo negativo:]  CaducidadMedicamento>FechaActual
 \end{BussinesRule}
 %-----------------------------------------------------------------------------------------
 \begin{BussinesRule}{BR3}{Reporte Mensual de Mes.}
@@ -566,6 +566,49 @@ Vía de Administración:  Es la forma en la que el cliente se tiene que aplicar 
 	\BRitem[Ejemplo positivo:]   Venta Al Mostrador>20.
 	\BRitem[Ejemplo negativo:] Venta al Mostrador<20.
 \end{BussinesRule}
+%-------------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR8}{Compra del Medicamento.}
+	\BRitem[Tipo:] Regla de condición. 
+	\BRitem[Clase:] Cronometrada. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Los medicamentos que compramos  a nuestros proveedores deben de tener una fecha de caducidad mayor a 2 años
+	\BRitem[Motivación:] Evitar venta de medicamento caducado
+	\BRitem[Ejemplo positivo:] CaducidadMedicamento>FechaActual
+	\BRitem[Ejemplo negativo:]  CaducidadMedicamento<FechaActual
+\end{BussinesRule}
+%-----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR9}{Sucursales operadas por el supervisor.}
+	\BRitem[Tipo:] Regla de condición. 
+	\BRitem[Clase:] Cronometrada. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El supervisor puede tener un máximo de 3 sucursales bajo su supervisión y debe de tener un mínimo de 1 sucursal.  Y una sucursal puede tener un máximo de 3 supervisores y debe de tener mínimo 1 supervisor
+	\BRitem[Motivación:] Sacar el máximo provecho de las operaciones diarias de las sucursales 
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:]  
+\end{BussinesRule}
+%-----------------------------------------------------------------------------------------
+\begin{BussinesRule}{BR10}{Sucursales operadas por el cajero.}
+	\BRitem[Tipo:] Regla de condición. 
+	\BRitem[Clase:] Cronometrada. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Una sucursal debe de tener un mínimo de 1 cajero por cada turno, hasta un máximo de 2 cajeros por cada turno
+	\BRitem[Motivación:] Sacar el máximo provecho de las operaciones diarias de las sucursales 
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:]  
+\end{BussinesRule}
+%-----------------------------------------------------------------------------------------
+
+\begin{BussinesRule}{BR11}{Jornadas Laborales.}
+	\BRitem[Tipo:] Regla de condición. 
+	\BRitem[Clase:] Cronometrada. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] La jornada Laboral de cada turno sera no mayor a 8 horas, entendiéndose que tenemos 3 turnos laborales; Turno Matutino 6:00 ->14:00; Turno Vespertino 14:00->22:00; Turno Nocturno 22:00->6:00
+	\BRitem[Motivación:] Sacar el máximo provecho de las operaciones diarias de las sucursales 
+	\BRitem[Ejemplo positivo:]
+	\BRitem[Ejemplo negativo:]  
+\end{BussinesRule}
+%-----------------------------------------------------------------------------------------
 \newpage
 
 

@@ -1,17 +1,17 @@
 \begin{UseCase}{CU14}{Recibir Medicamento}{
-		Si el proveedor llega con un nuevo lote de medicamentos el cajero debe de tener una opción para poder ingresar esos medicamentos, Los medicamentos que recibe el cajero se registraran en la opción de ingresos en la \IUref{01}{Pantalla Principal}. lo cual nos desplegara la \IUref{20}{Formulario Ingreso} y en esta pantalla ingresaremos los datos del Medicamento que recibimos, las unidades que se reciben y el lote del medicamento
+		Si el proveedor llega con un nuevo lote de medicamentos el cajero debe de tener una opción para poder ingresar esos medicamentos, Los medicamentos que recibe el cajero se registraran seleccionando la opción de ingresos en la \IUref{01}{Pantalla Principal}. lo cual nos desplegara la \IUref{20}{Formulario Ingreso} y en esta pantalla ingresaremos los datos del Medicamento que recibimos, las unidades que se reciben y el lote del medicamento
 	}
-		\UCitem{Versión}{\color{Gray}0.1.4}
+		\UCitem{Versión}{\color{Gray}0.8}
 		\UCitem{Autor}{\color{Gray}Aguilera Rosas Landa Enrique}
 		\UCitem{Supervisa}{\color{Gray}Zamora Gachuz Jesús Felipe}
 		\UCitem{Actor}{Cajero}
 		\UCitem{Propósito}{Control rápido y eficaz sobre el inventario de la farmacia.}
-		\UCitem{Entradas}{Lote, Proveedor, Nombre del Medicamento, Unidades a Recibir del Medicamento}
+		\UCitem{Entradas}{Lote, Proveedor, Nombre del Medicamento, Unidades a Recibir del Medicamento, Precio de compra del medicamento, Precio de venta del medicamento}
 		\UCitem{Origen}{Teclado, Lector de Código de Barras}
-		\UCitem{Salidas}{Lote,  ID del Cajero, Nombre de la Sucursal, Fecha y Hora, ID del Medicamento, Unidades a Recibir del Medicamento, Total a Pagar.}
+		\UCitem{Salidas}{Lote,  ID del Cajero, Nombre de la Sucursal, Fecha y Hora, ID del Medicamento, Unidades recibidas del Medicamento, Total a Pagar.}
 		\UCitem{Destino}{Pantalla}
 		\UCitem{Precondiciones}{El Medicamento debe estar registrado en el sistema.}
-		\UCitem{Postcondiciones}{Las unidades del Medicamento deben de aumentar de acuerdo a las unidades ingresadas.}
+		\UCitem{Postcondiciones}{Las unidades del Medicamento deben de aumentar de acuerdo a las unidades ingresadas en la sucursal actual.}
 		\UCitem{Errores}{La pagina sea inaccesible por el momento debido a fallas con los servidores, Que el empleado tenga su cuenta no este registrado}
 		\UCitem{Observaciones}{}
 		\UCitem{Estado}{Revisión}
@@ -23,35 +23,39 @@
 		\UCpaso[\UCactor] Selecciona La opción Compras en la \IUref{01}{Pantalla Principal} presionando el botón \IUbutton{Compras}.
 		\UCpaso Despliega las opciones de Compras en la \IUref{01}
 		\UCpaso [\UCactor] Selecciona La opción Ingresos en la \IUref{01}{Pantalla Principal} presionando el botón \IUbutton{Ingresos}.
-		\UCpaso Genera y Despliega la \IUref{20}{Formulario Ingreso} con los campos vacíos y listos para llenar.
 		\UCpaso Llena el campo ID del cajero con el ID del cajero actualmente en sesión.
 		\UCpaso Llena el campo Nombre de la Sucursal con el Nombre de la sucursal actualmente en sesión.
 		\UCpaso Llena el campo Fecha y Hora con la fecha y hora actual del sistema.
-		\UCpaso Genera una lista de los proveedores actualmente registrados en el sistema, sera mostrado mediante un Combobox.
-		\UCpaso[\UCactor] Selecciona el proveedor de la lista generada en el Combobox. \Trayref{A}
-		\UCpaso[\UCactor] Introduce el Lote del medicamento que recibe, Nombre del medicamento, unidades que recibe del medicamento. \Trayref{B}
-		\UCpaso Verifica que el Nombre del medicamento Ingresado Exista en la lista de medicamentos registrados actualmente en el sistema. \Trayref{C}
+		\UCpaso Genera una lista de los proveedores actualmente registrados en el sistema, sera mostrado mostrado en el campo de Proveedor.
+		\UCpaso Genera y Despliega la \IUref{20}{Formulario Ingreso} con los campos especificados anteriormente llenos.
+		\UCpaso[\UCactor] Selecciona el proveedor de la lista generada en el campo proveedor. \Trayref{A}
+		\UCpaso[\UCactor] Introduce el Lote del medicamento que recibe, Código de barras del medicamento, unidades que recibe del medicamento. \Trayref{B}
+		\UCpaso Llena el campo de Precio Compra, Precio Venta del medicamento recién capturado por el lector de código de barras.
+		\UCpaso [\UCactor] Modifica el precio de compra y precio de venta dependiendo de la especificación del proveedor.
 		\UCpaso Calcula el total a pagar mediante la cantidad de unidades que se reciben del medicamento multiplicado por el precio de compra del medicamento
-		\UCpaso[\UCactor] Guarda el medicamento que recibió presionando el botón \IUbutton{Guardar}
-		\UCpaso Aumenta las unidades de medicamento que acaba de recibir en la tabla de medicamentos
+		\UCpaso[\UCactor] Confirma la operación presionando el botón \IUbutton{Guardar}
+		\UCpaso Verifica que el Nombre del medicamento Ingresado Exista en la lista de medicamentos registrados actualmente en el sistema.
+		\UCpaso Genera y despliega la ventana. \IUref{MSG0}{Operación Realizada Con Éxito} \Trayref{C}
+		\UCpaso [\UCactor] Cierra la ventana presionando el \IUbutton{OK}.
+		\UCpaso Aumenta las unidades de medicamento que acaba de recibir en el sistema conforme a las unidades que se ingresaron. 
+		\UCpaso Actualiza el precio de compra y venta del medicamento existente con el que acaba de ingresar. 
 		\UCpaso Redirige al [\UCactor] a la  \IUref{01}{Pantalla Principal}.
 	\end{UCtrayectoria}
 
 
 %-------------------------------------------------------------------------
 \begin{UCtrayectoriaA}{A}{Proveedor no encontrado.}
-			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error en la Operación [{\em Proveedor no encontrado}] revisa que los campos sean llenados correctamente en la \IUref{20}{Formulario Ingreso}.''.
-			\UCpaso Continúa en el paso 6 del \UCref{CU14}.
+			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error en la Operación [{\em Proveedor no encontrado}] El proveedor que buscas no esta registrado en el sistema \IUref{20}{Formulario Ingreso}.''.
+			\UCpaso Continúa en el paso 10 del \UCref{CU14}.
 		\end{UCtrayectoriaA}
 %-------------------------------------------------------------------------
-\begin{UCtrayectoriaA}{B}{Proveedor no encontrado.}
-			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error en la Operación [{\em Error en Operación}] revisa que los campos sean llenados correctamente en la \IUref{20}{Formulario Ingreso}.''.
-			\UCpaso Continúa en el paso 6 del \UCref{CU14}.
+\begin{UCtrayectoriaA}{B}{Medicamento no encontrado.}
+			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error en la Operación [{\em Error en Operación}] El medicamento Ingresado no existe en el inventario del sistema \IUref{20}{Formulario Ingreso}.''.
+			\UCpaso Continúa en el paso 11 del \UCref{CU14}.
 		\end{UCtrayectoriaA}
+		
 %-------------------------------------------------------------------------
-\begin{UCtrayectoriaA}{C}{Medicamento no encontrado.}
-			\UCpaso Muestra el Mensaje {\bf MSG01-}``Error en la Operación [{\em Medicamento no encontrado}] revisa que el medicamento ingresado exista en el inventario del sistema \IUref{20}{Formulario Ingreso}.''.
-			\UCpaso Continúa en el paso 6 del \UCref{CU14}.
+\begin{UCtrayectoriaA}{C}{Error al guardar los datos.}
+			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}] Hubo un error al intentar guardar los datos \IUref{IU3}{Formulario Sucursal}.''.
+			\UCpaso Continúa en el paso 6 del \UCref{CU15}.
 		\end{UCtrayectoriaA}
-%-------------------------------------------------------------------------
-

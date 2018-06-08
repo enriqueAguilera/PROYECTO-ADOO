@@ -1,12 +1,12 @@
 \begin{UseCase}{CU15}{Agregar nueva sucursal}{
-		Se requiere una forma para agregar una nueva sucursal en el sistema. Para esto el Dueño selecciona la opción de sucursales en la \IUref{01}{Pantalla Principal} lo cual nos lleva a \IUref{13}{Tabla Sucursal} y en esta pantalla se seleccionara la opción de +Nuevo y nos despliega la  \IUref{IU3}{Formulario Sucursal} en la cual damos de alta los datos de la nueva sucursal que queremos agregar en el sistema
+		Se requiere una forma para agregar una nueva sucursal en el sistema. Para esto el Dueño selecciona la opción de sucursales en la \IUref{01}{Pantalla Principal} lo cual nos lleva a \IUref{14}{Tabla Sucursales} y en esta pantalla se seleccionara la opción de +Nuevo y nos despliega la  \IUref{IU3}{Formulario Sucursal} en la cual damos de alta los datos de la nueva sucursal que queremos agregar en el sistema; Una vez que damos de alta la nueva sucursal, aparecerá registrada en el sistema la próxima vez que ingresemos a la \IUref{14}{Tabla Sucursales}
 	}
-		\UCitem{Versión}{\color{Gray}0.1.3}
+		\UCitem{Versión}{\color{Gray}0.8}
 		\UCitem{Autor}{\color{Gray}Aguilera Rosas Landa Enrique}
 		\UCitem{Supervisa}{\color{Gray} Correa Medina Carlos Miguel}
 		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
 		\UCitem{Propósito}{Tener el control de una nueva sucursal y que este disponible para operar.}
-		\UCitem{Entradas}{Nombre de la sucursal, Dirección de la sucursal,Teléfono de la sucursal}
+		\UCitem{Entradas}{Nombre de la sucursal, Dirección de la sucursal,Teléfono de la sucursal, Estado República}
 		\UCitem{Origen}{Teclado}
 		\UCitem{Salidas}{Nombre de la sucursal, Dirección de la sucursal,Teléfono de la sucursal, Estado de la sucursal.}
 		\UCitem{Destino}{Pantalla}
@@ -14,7 +14,7 @@
 		\UCitem{Postcondiciones}{Aparecerá una nueva sucursal en el sistema.}
 		\UCitem{Errores}{La pagina sea inaccesible por el momento debido a fallas con los servidores.}
 		\UCitem{Observaciones}{.}
-		\UCitem{Estado}{En revisión}
+		\UCitem{Estado}{Aprobado}
 		\UCitem{Viene de}{CU0}
 	\end{UseCase}
 
@@ -25,38 +25,76 @@
 	\begin{UCtrayectoria}{Principal}
 		\UCpaso Se incluye el caso de uso \UCref{CU0}
 		\UCpaso[\UCactor] Selecciona la opción Sucursales en la  \IUref{01}{Pantalla Principal}
+		\UCpaso verifica que los permisos de usuario sean permisos de Dueño. \Trayref{A}
 		\UCpaso Genera y Despliega la \IUref{14}{Tabla Sucursales}
 		\UCpaso[\UCactor] Selecciona la opción para registrar una nueva sucursal presionando el botón \IUbutton{+Nuevo} en la \IUref{14}{Tabla Sucursales}.
 		\UCpaso Genera y despliega la \IUref{IU3}{Formulario Sucursal} con los campos vacíos y listos para llenar. 
-		\UCpaso[\UCactor] Introduce el nombre de la sucursal, Dirección de la forma: Estado,Av,Calle y número; y el teléfono de la nueva sucursal en la \IUref{IU3}{Formulario Sucursal}, de manera que cada dato corresponda con la información que se pide y selecciona el  botón \IUbutton{Guardar} .   
-		\UCpaso Verifica que todos los datos sean llenados correctamente como se solicita en la \IUref{3}{Formulario Sucursal}\Trayref{A}
-		\UCpaso Verifica que los datos ingresados no se repitan con los de otras sucursales existentes en el sistema y que la dirección sea una dirección valida buscando en google maps. \Trayref{B} \Trayref{C}
-		\UCpaso Inserta los datos de la nueva sucursal en la tabla de Sucursal. \Trayref{D}
-		\UCpaso Genera y despliega la ventana \IUref{MSG0}{Operación Realizada Con Éxito} 
-		\UCpaso [\UCactor] Cierra la ventana presionando el \IUbutton{OK}
-		\UCpaso Redirige al [\UCactor] a la  \IUref{01}{Pantalla Principal}.
+		\UCpaso Genera una lista de los Estados de la República y los muestra en una lista desplegable en el campo de Estado República. 
+		\UCpaso[\UCactor] Introduce el nombre de la sucursal, Dirección de la forma: Estado,Av,Calle y número; el teléfono de la nueva sucursal y el Estado de la República en la que se encuentra la sucursal en la \IUref{IU3}{Formulario Sucursal}, de manera que cada dato corresponda con la información que se pide y presiona el  botón \IUbutton{Guardar} .   
+		\UCpaso Verifica que el campo de nombre sea llenado una cadena de caracteres no mayor a una longitud de de 30. \Trayref{B}
+		\UCpaso Verifica que el campo de nombre no se repita con uno de las sucursales existentes en el sistema. \Trayref{C}
+		\UCpaso Verifica que el campo de Dirección sea llenado con una cadena de caracteres no mayor a una longitud de 200. \Trayref{D}
+		\UCpaso Verifica que el campo de Dirección no se repita con uno de las sucursales existentes en el sistema. \Trayref{E}
+		\UCpaso Verifica que el campo de Teléfono sea llenado con una cadena de caracteres no mayor a  una longitud de 40. \Trayref{F}
+		\UCpaso Verifica que el campo de Teléfono no se repita con el teléfono de otra sucursal existentes en el sistema. \Trayref{G}
+		\UCpaso Verifica que la dirección sea una dirección valida buscando en google maps. \Trayref{H} 
+		\UCpaso Guarda los datos de la nueva sucursal en el Sistema y se mostrara la siguiente vez que se acceda a la \IUref{14}{Tabla Sucursales}.. \Trayref{I} 
+		\UCpaso Genera y despliega la ventana. \IUref{MSG0}{Operación Realizada Con Éxito} 
+		\UCpaso [\UCactor] Cierra la ventana presionando el \IUbutton{OK}.
+		\UCpaso Redirige al [\UCactor] a la  \IUref{14}{Tabla Sucursales}.
 	\end{UCtrayectoria}
 
 
+
+
+%-------------------------------------------------------------------------
+\begin{UCtrayectoriaA}{A}{Permiso denegado.}
+			\UCpaso Muestra el Mensaje {\bf MSG04-}``Cancelado [{\em Permiso Denegado}] No cuentas con los permisos necesarios.''.
+			\UCpaso Redirige al [\UCactor] a la  \IUref{01}{Pantalla Principal}.
+		\end{UCtrayectoriaA}
+%-------------------------------------------------------------------------
+
 %-------------------------------------------------------------------------
 
 
-\begin{UCtrayectoriaA}{A}{Problemas al guardar datos de la sucursal.}
-			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}]Verifique que los datos ingresados correspondan con los datos solicitados en la  \IUref{IU3}{Formulario Sucursal}.''.
+\begin{UCtrayectoriaA}{B}{El campo Nombre no cumple con los requerimientos.}
+			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}]Verifique que el nombre sea una cadena de texto no mayor a una longitud de 30 caracteres \IUref{IU3}{Formulario Sucursal}.''.
 			\UCpaso Continúa en el paso 6 del \UCref{CU15}.
 		\end{UCtrayectoriaA}
 %-------------------------------------------------------------------------
-\begin{UCtrayectoriaA}{B}{Dato Duplicado.}
-			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}] Uno o mas datos ingresados ya existen en el sistema  \IUref{IU3}{Formulario Sucursal}.''.
+\begin{UCtrayectoriaA}{C}{El campo Nombre contiene un nombre que ya existe en el sistema.}
+			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}] El nombre ingresado existe ya en otra sucursal registrada en el sistema  \IUref{IU3}{Formulario Sucursal}.''.
 			\UCpaso Continúa en el paso 6 del \UCref{CU15}.
 		\end{UCtrayectoriaA}
 %-------------------------------------------------------------------------
-\begin{UCtrayectoriaA}{C}{Dirección Invalida.}
+
+\begin{UCtrayectoriaA}{D}{El campo Dirección no cumple con los requerimientos.}
+			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}]Verifique que la Dirección sea una cadena de texto no mayor a una longitud de 200 caracteres  \IUref{IU3}{Formulario Sucursal}.''.
+			\UCpaso Continúa en el paso 6 del \UCref{CU15}.
+		\end{UCtrayectoriaA}
+%-------------------------------------------------------------------------
+\begin{UCtrayectoriaA}{E}{El campo Dirección contiene una Dirección que ya existe en el sistema.}
+			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}] La dirección ingresada existe ya en otra sucursal registrada en el sistema  \IUref{IU3}{Formulario Sucursal}.''.
+			\UCpaso Continúa en el paso 6 del \UCref{CU15}.
+		\end{UCtrayectoriaA}
+%-------------------------------------------------------------------------
+\begin{UCtrayectoriaA}{F}{El campo Teléfono no cumple con los requerimientos.}
+			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}]Verifique que el teléfono sea una cadena de texto no mayor a una longitud de 40 caracteres  \IUref{IU3}{Formulario Sucursal}.''.
+			\UCpaso Continúa en el paso 6 del \UCref{CU15}.
+		\end{UCtrayectoriaA}
+%-------------------------------------------------------------------------
+\begin{UCtrayectoriaA}{G}{El campo Teléfono contiene un teléfono que ya existe en el sistema.}
+			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}] El teléfono ingresado existe ya esta asignado a otra sucursal en el sistema  \IUref{IU3}{Formulario Sucursal}.''.
+			\UCpaso Continúa en el paso 6 del \UCref{CU15}.
+		\end{UCtrayectoriaA}
+%-------------------------------------------------------------------------
+
+\begin{UCtrayectoriaA}{H}{Dirección Invalida.}
 			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}] La dirección ingresada no es una dirección valida  \IUref{IU3}{Formulario Sucursal}.''.
 			\UCpaso Continúa en el paso 6 del \UCref{CU15}.
 		\end{UCtrayectoriaA}
 %-------------------------------------------------------------------------
-\begin{UCtrayectoriaA}{D}{Error al guardar los datos.}
+\begin{UCtrayectoriaA}{I}{Error al guardar los datos.}
 			\UCpaso Muestra el Mensaje {\bf MSG1-}`` [{\em Error en la operación}] Hubo un error al intentar guardar los datos \IUref{IU3}{Formulario Sucursal}.''.
 			\UCpaso Continúa en el paso 6 del \UCref{CU15}.
 		\end{UCtrayectoriaA}
