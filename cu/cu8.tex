@@ -1,45 +1,54 @@
-\begin{UseCase}{CU8}{Agregar un Nuevo Empleado.}{
-		Se requiere una manera sencilla e intuitiva para que el dueño pueda agregar a sus empleados.
+ \begin{UseCase}{CU8}{Consultar Ventas del Día.}{
+		Se requiere una manera sencilla para poder visualizar las ganancias adquiridas y los productos vendidos al término del día, esto se hará
+		mediante la pantalla principal del supervisor donde presionará el botón Reporte de ventas al día, el cual imprimirá un reporte con el
+		desglose de nombre de los medicamentos, cantidad vendida de los medicamentos, precio de los medicamentos y el total de ingresos de la sucursal.
 	}
-		\UCitem{Versión}{\color{Gray}0.1}
-		\UCitem{Autor}{\color{Gray}Vázquez Cruz Fernando Darwin }
-		\UCitem{Supervisa}{\color{Gray}}
-		\UCitem{Actor}{\hyperlink{Alumno}{Dueño}}
-		\UCitem{Propósito}{Agregar un empleado que laborará en la empresa.}
-		\UCitem{Entradas}{Datos del empleado.}
-		\UCitem{Origen}{Teclado, Mouse}
-		\UCitem{Salidas}{Mensaje de confirmación de registro.}
-		\UCitem{Destino}{Pantalla}
-		\UCitem{Precondiciones}{}
-		\UCitem{Postcondiciones}{Habrá un nuevo  empleado registrado en el sistema.}
-		\UCitem{Errores}{El empleado no puede ser agregado.}
-		\UCitem{Tipo}{Caso de uso primario.}
+		\UCitem{Versión}{\color{Gray}0.8}
+		\UCitem{Autor}{\color{Gray}Vázquez Cruz Fernando Darwin.}
+		\UCitem{Supervisa}{\color{Gray}Aguilera Rosas Landa Enrique.}
+		\UCitem{Actor}{\hyperlink{Alumno}{Supervisor.}}
+		\UCitem{Propósito}{Conocer de manera sencilla las ganancias obtenidas durante el día y los productos vendidos para corroborar que las entradas de dinero corresponden con las salidas de productos.}
+		\UCitem{Entradas}{Ingresos y productos vendidos por caja.}
+		\UCitem{Origen}{Teclado, mouse.}
+		\UCitem{Salidas}{Documento con el desglose de nombre de los medicamentos, cantidad vendida de los medicamentos, precio de los medicamentos.}
+		\UCitem{Destino}{Pantalla, impresora.}
+		\UCitem{Precondiciones}{La caja debe estar cerrada.}
+		\UCitem{Postcondiciones}{Genera reporte sobre ingresos y salidas de productos.}
+		\UCitem{Errores}{Que no se realice una conexión a la base de datos,que el servidor se caiga,que no haya ventas en el día, que no haya conexión con la impresora, que la impresora no tenga rollo..}
+		\UCitem{viene de...}{\UCref{CU0}{Control de acceso}}
 		\UCitem{Observaciones}{}
-		\UCitem{Estado}{Revisión}
+		\UCitem{Estado}{En revisión}
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}{Principal}
-		\UCpaso Se incluye el caso de uso \UCref{CU1}.
-		\UCpaso Despliega la \IUref {IU1} {Pantalla Principal}.
-		\UCpaso[\UCactor] Ve los empleados disponibles dando clic en el\Ibutton {+ Empleados }.
-		\UCpaso Despliega los tipos de empleado existentes en el sistema abajo del \Ibutton {+ Empleados }.
-		\UCpaso[\UCactor] Da clic en el \Ibutton {+ Cajero } o en el \Ibutton {+ Supervisor } según el tipo de empleado a agregar.
-		\UCpaso Despliega la \IUref {IU18} {Tabla de Cajeros} o la \IUref {IU13} {Tabla de Supervisores} según el tipo de empleado a agregar.
-		\UCpaso[\UCactor] Independientemente del tipo de empleado a agregar presiona el \Ibutton {+ Nuevo }.
-		\UCpaso Despliega la \IUref {IU7} {Formulario Cajero} o la \IUref {IU2} {Formulario Supervisor} según el tipo de empleado a agregar.
-		\UCpaso [\UCactor] Llena los campos requeridos para registrar un nuevo empleado. 
-		\UCpaso[\UCactor] Da clic en el \Ibutton {+ Guardar } .
-		\UCpaso Despliega el mensaje \bf {+ MSG0}. \Trayref{A}
-		\UCpaso Guarda los datos del nuevo empleado y actualiza la lista de empleados.
-		\UCpaso[\UCactor] Da clic en el \Ibutton {+ Ok }.
-		\UCpaso Re-direcciona al \UCactor a la la \IUref {IU18} {Tabla de Cajeros} o la \IUref {IU13} {Tabla de Supervisores} según el tipo de empleado agregado.
+		\UCpaso Se incluye el caso de uso \UCref{CU0}.
+		\UCpaso [\UCactor] Presiona el botón \IUbutton{Ventas} que esta en la pantalla principal \IUref{IU1}{Pantalla principal}
+		\UCpaso Verifica que los permisos de usuario sean permisos de supervisor. \Trayref{A}
+		\UCpaso[\UCactor] Presiona el botón "Reporte de ventas al día".
+		\UCpaso Verifica que la caja esté cerrada. \Trayref{B}
+		\UCpaso Verifica los productos vendidos en cada turno y los agrupa por nombre.
+		\UCpaso Verifica las ventas de la caja y suma los totales por cada turno.
+		\UCpaso Calcula el total de ingresos del día sumando los ingresos totales de cada turno.
+		\UCpaso Genera una reporte con los productos vendidos, su cantidad y precio y con los ingresos totales de la sucursal.
+		\UCpaso Verifica que haya conexión con la impresora.\Trayref{C}
+		\UCpaso Manda a imprimir el reporte a la impresora.
 	\end{UCtrayectoria}
 
-
-		\begin{UCtrayectoriaA}{A}{El Empleado no puede ser agregado}
-			\UCpaso Despliega el mensaje \bf {+ MSG1 }.
-			\UCpaso[\UCactor] Da clic en el \Ibutton {+ Ok }.
-			\UCpaso Continua en el paso 7 del \UCref{CU8}.
+	%--------------------------------------		
+	\begin{UCtrayectoriaA}{A}{Permiso Denegado}
+			\UCpaso Muestra el Mensaje {\bf MSG4-}"Cancelado[{\em Permiso Denegado }].".
+			\UCpaso Muestra la pantalla \IUref{IU1}{Pantalla Principal}.
+		\end{UCtrayectoriaA}
+	%--------------------------------------		
+		\begin{UCtrayectoriaA}{B}{La caja sigue abierta}
+			\UCpaso Despliega el mensaje \bf {+ MSG1}"[{\em Error en la operación }].".
+			\UCpaso[\UCactor] Da clic en el \Ibutton {+Ok}.
+			\UCpaso Muestra la pantalla \IUref{IU1}{Pantalla principal}.
 		\end{UCtrayectoriaA}
 
-%--------------------------------------
+	%--------------------------------------
+	\begin{UCtrayectoriaA}{C}{No hay conexión con la impresora}
+			\UCpaso Despliega el mensaje \bf {+ MSG7}"[{\em Error de conexión }] Revisar conexión con la impresora.".
+			\UCpaso[\UCactor] Da clic en el \Ibutton {+Reanudar}.
+			\UCpaso Continua en el paso 10 del \UCref{CU8}.
+		\end{UCtrayectoriaA}

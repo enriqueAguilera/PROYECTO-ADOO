@@ -1,0 +1,80 @@
+ \begin{UseCase}{CU7}{Registrar Venta Cliente.}{
+	El cajero debe tener una manera fácil de realizar una venta, la venta se realizará a un cliente registrado utilizando la pantalla de ventas, 
+	donde el cajero tomará los datos del cliente y de el o los medicamentos que se venderán, así como el número de unidades a adquirir teniendo en cuenta
+	que no podrá vender más medicamento del que se tiene en el almacén, una vez realizada la venta el sistema generará un comprobante para el cliente
+	el cual servirá para cualquier aclaración, duda o problema que pueda surgir y para fines de control y consulta por parte de la farmacia.
+	}
+		\UCitem{Versión}{\color{Gray}0.9}
+		\UCitem{Autor}{\color{Gray}Vázquez Cruz Fernando Darwin.}
+		\UCitem{Supervisa}{\color{Gray}Aguilera Rosas Landa Enrique.}
+		\UCitem{Actor}{Cajero.}
+		\UCitem{Propósito}{Tener un control de las salidas de medicamento por ventas a clientes, para fines de cualquier aclaración o duda.}
+		\UCitem{Entradas}{Tipo de cliente, nombre del cliente, apellido materno del cliente, apellido paterno del cliente,código de barras de lo(s) medicamento(s).}
+		\UCitem{Origen}{Teclado, mouse, lector de código de barras.}
+		\UCitem{Salidas}{Comprobante de venta con los datos nombre de sucursal, nombre completo del empleado,lista de medicamentos comprados, precio unitario de cada medicamento, valor total de la compra, cantidad a llevar de cada medicamento, fecha y hora de compra.}
+		\UCitem{Destino}{Pantalla,impresora}
+		\UCitem{Precondiciones}{Los medicamentos a vender deben estar registrados en el sistema, el supervisor debió abrir la caja con anterioridad \UCref{CU9}{Abrir Caja}, los medicamentos a vender deben tener fecha de caducidad vigente mayor a 2 meses.}
+		\UCitem{Postcondiciones}{Disminuye la cantidad de los medicamentos que se vendieron, se tiene una venta más registrada en el sistema a nombre de un cliente, se aumenta el dinero existente en la caja.}
+		\UCitem{Errores}{Que no se realice una conexión a la base de datos,que el servidor se caiga,que los datos proporcionados estén erróneos, que el o los medicamentos estén registrados en el sistema pero no estén disponibles en la sucursal, que no haya conexión con la impresora, que la impresora no tenga rollo.}
+		\UCitem{viene de...}{\UCref{CU0}{Control de acceso}}
+		\UCitem{Observaciones}{}
+		\UCitem{Estado}{Aprobado}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso Se incluye el caso de uso \UCref{CU0}.
+		\UCpaso [\UCactor] Presiona el botón \IUbutton{Ventas} que esta en la pantalla principal \IUref{IU1}{Pantalla principal}
+		\UCpaso Verifica que los permisos de usuario sean permisos de cajero. \Trayref{A}
+		\UCpaso Genera y despliega el Formulario \IUref{IU19}{Formulario Ventas}.
+		\UCpaso Busca el id del cajero que esta actualmente con la sesión activa y llena el campo "Empleado" con el nombre completo del empleado.
+		\UCpaso [\UCactor] En el primer campo de formulario "Cliente" Selecciona la opción "Cliente Preferente".
+		\UCpaso Identifica la opción seleccionada por el [\UCactor].
+		\UCpaso Genera y despliega una lista desplegable con los nombres de los clientes registrados en el sistema.
+		\UCpaso [\UCactor] Selecciona el nombre del cliente al que se le registrará la venta.\Trayref{B}
+		\UCpaso Llena el campo Cliente con el nombre seleccionado en el paso anterior. 
+		\UCpaso [\UCactor] Escanea el código de barras del medicamento con el lector de código de barras.
+		\UCpaso Llena el campo de `"Medicamentos" con el código de barras que se introdujo del lector.\Trayref{C}.
+		\UCpaso Llena el campo "Desglose de medicamentos, precios y cantidad" con el nombre del medicamento, el precio.
+		\UCpaso Restringe la venta del medicamento a las unidades existentes a la sucursal.
+		\UCpaso [\UCactor] En el campo "Desglose de medicamentos, precios y cantidad" selecciona la cantidad del medicamento a vender.\Trayref{D}
+		\UCpaso Calcula el Total a pagar y muestra la cantidad en el campo "Valor Total".
+		\UCpaso [\UCactor] Presiona el botón \IUbutton{Guardar}.
+		\UCpaso Muestra el Mensaje {\bf MSG6-}"Confirmar[{\em Confirmar Operación }]¿Los datos del formulario son correctos?.".
+		\UCpaso [\UCactor] Presiona el botón \IUbutton{Aceptar}
+		\UCpaso Verifica que ningún campo del formulario esté vació. \Trayref{E}
+		\UCpaso Guarda los datos de la venta y reduce el inventario del medicamento vendido.
+		\UCpaso Muestra el Mensaje {\bf MSG0-}"Éxito[{\em Operación Realizada con éxito }].".
+		\UCpaso Añade los datos de la venta al reporte diario de ventas.
+		\UCpaso Muestra la pantalla \IUref{IU19}{Formulario Ventas}.
+	\end{UCtrayectoria}
+
+%--------------------------------------		
+	\begin{UCtrayectoriaA}{A}{Permiso Denegado}
+			\UCpaso Muestra el Mensaje {\bf MSG4-}`"Cancelado[{\em Permiso Denegado }].".
+			\UCpaso Muestra la pantalla \IUref{IU1}{Pantalla Principal}.
+		\end{UCtrayectoriaA}
+
+%--------------------------------------
+		\begin{UCtrayectoriaA}{B}{El cajero no encuentra el nombre del cliente}
+			\UCpaso [\UCactor] Busca el nombre del cliente en el checklist pero no lo encuentra. 
+			\UCpaso [\UCactor] Verifica la información proporcionada por el cliente.
+			\UCpaso [\UCactor] Continua en el paso 6 de este caso de uso.			
+		\end{UCtrayectoriaA}
+		%--------------------------------------
+		\begin{UCtrayectoriaA}{C}{El lector de barras no pudo leer bien el código}
+			\UCpaso Sigue su ejecución sin llenar el campo "Medicamentos""
+			\UCpaso Continua en el paso 11 de este caso de uso.	
+		\end{UCtrayectoriaA}
+%----------------------------------------
+		\begin{UCtrayectoriaA}{D}{El cliente quiere comprar más de 20 unidades del mismo medicamento}
+			\UCpaso Muestra el Mensaje {\bf MSG4-}`"[{\em Permiso Denegado}] Contacta a tu supervisor.".
+			\UCpaso [\UCactor] Solicita la autorización del supervisor.
+			\UCpaso Regresa al paso 15 de este caso de uso.
+		\end{UCtrayectoriaA}		
+		%--------------------------------------
+			\begin{UCtrayectoriaA}{E}{Existe por lo menos un campo obligatorio que esta vacío}
+			\UCpaso Remarca con rojo los campos obligatorios que están vacíos y pone la leyenda "Campo Obligatorio".
+			\UCpaso Muestra el Mensaje {\bf MSG1-}"Error en la operación [{\em Campos obligatorios vacíos}] Los campos llenados con Rojo no pueden estar vacíos.".
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Regresa a la pantalla \IUref{IU19}{Formulario Ventas} Mostrando los campos en rojo y dejando la información introducida por el [\UCactor] en los pasos anteriores de este casos de uso.
+		\end{UCtrayectoriaA}
